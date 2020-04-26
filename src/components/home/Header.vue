@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :class="active===1?'white-color':'normal-color'">
     <div class="avatar" is-link @click="showPopup">
       <van-circle
         v-model="currentRate"
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       currentRate: 50,
-      active: 0,
+      active: 1,
       show: false,
       navList: [
         { id: 0, title: '发现' },
@@ -47,11 +47,16 @@ export default {
   },
   methods: {
     changeCurrent(index) {
+      // 切换当前点击的索引
       this.active = index
+      // 触发父组件的方法并把索引(index)传递过去
+      this.$emit('clickItem', index)
     },
+    // 显示左边用户部分信息
     showPopup() {
       this.show = true
     },
+    // 去收索页面
     goSearch() {
       this.$router.push('/search')
     }
@@ -60,11 +65,25 @@ export default {
 </script>
 
 <style lang="less">
+.normal-color {
+  color: #918885;
+  .active {
+    color: #000;
+    font-weight: 700;
+  }
+}
+.white-color {
+  color: #fff;
+  .active {
+    color: #fff;
+    font-weight: 500;
+  }
+}
 .header {
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: 0;
-  z-index: 1;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -105,7 +124,6 @@ export default {
     }
     span {
       position: relative;
-      color: #fff;
       padding: 6px 0;
     }
   }
@@ -113,10 +131,8 @@ export default {
     padding: 13px;
     width: 49px;
     height: 49px;
-
     .iconfont {
       font-size: 26px;
-      color: #fff;
       margin-left: 6px;
     }
   }
