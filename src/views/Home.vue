@@ -9,6 +9,7 @@
       @change="handleChange"
       duration="1000"
       initial-swipe="1"
+      :show-indicators="false"
     >
       <van-swipe-item>
         <home-find></home-find>

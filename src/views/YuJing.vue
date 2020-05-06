@@ -1,22 +1,22 @@
 <template>
   <div class="yujing_page">
     <van-swipe @change="onChange" style="height: 100vh;" :show-indicators="false" vertical>
-      <van-swipe-item v-for="(item,index) in list" :key="item.id">
-        <div class="player" @click="play(index,item)">
+      <van-swipe-item v-for="(item, index) in list" :key="item.id">
+        <div class="player" @click="play(index, item)">
           <!-- <img src="../assets/images/bg.jpg" alt /> -->
-          <video :ref="'homeVideo-'+index" src="../assets/video/dance.mp4"></video>
+          <video :ref="'homeVideo-' + index" src="../assets/video/dance.mp4"></video>
         </div>
         <!-- 视频详情 -->
-        <div class="play_detail">{{item.play_detail}}</div>
+        <div class="play_detail">{{ item.play_detail }}</div>
         <!-- 侧边导航 -->
         <aside-nav></aside-nav>
         <!-- 播放按钮 -->
-        <div class="play_btn" @click.stop="play(index,item)">
+        <div class="play_btn" @click.stop="play(index, item)">
           <span v-show="!item.isPlay" class="iconfont icon-bofang"></span>
         </div>
         <!-- 字幕查看 -->
         <div class="look_text" v-show="showText">
-          <span>{{item.text}}</span>
+          <span>{{ item.text }}</span>
         </div>
         <!-- 底部组件 -->
         <tab-bar :id="item.id" :numbers="item.numbers" @click.stop></tab-bar>
@@ -45,8 +45,7 @@ export default {
     'tab-bar': Tabbar,
     'aside-nav': AsideNav
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     onChange(index) {
       console.log(index)
@@ -68,6 +67,7 @@ export default {
 .yujing_page {
   height: 100vh;
   width: 100%;
+  color: #fff;
   .player {
     width: 100%;
     height: 100vh;
@@ -118,7 +118,6 @@ export default {
 }
 .van-swipe-item {
   font-size: 20px;
-  background-color: #f04007;
   line-height: 26px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="header" :class="active===1?'white-color':'normal-color'">
+  <div class="header" :class="active === 1 ? 'white-color' : 'normal-color'">
     <div class="avatar" is-link @click="showPopup">
       <van-circle
         v-model="currentRate"
@@ -12,18 +12,21 @@
     </div>
     <div class="nav">
       <span
-        :class="index===active?'active':''"
-        v-for="(item,index) in navList"
+        :class="index === active ? 'active' : ''"
+        v-for="(item, index) in navList"
         :key="item.id"
         @click="changeCurrent(index)"
-      >{{item.title}}</span>
+      >{{ item.title }}</span>
     </div>
     <div class="search" @click="goSearch">
       <span class="iconfont icon-search"></span>
     </div>
-    <van-popup :style="{ height: '100%',width: '70%' }" position="left" v-model="show">
+    <!-- 弹出框 -->
+    <van-popup :style="{ height: '100%', width: '70%' }" position="left" v-model="show">
       <pop-user></pop-user>
     </van-popup>
+    <!-- 右滑弹出 -->
+    <div class="right_swipe" @touchmove="showPopup"></div>
   </div>
 </template>
 
@@ -65,8 +68,17 @@ export default {
 </script>
 
 <style lang="less">
+.right_swipe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 10px;
+  height: 100vh;
+}
 .normal-color {
   color: #918885;
+  background-color: #fff;
   .active {
     color: #000;
     font-weight: 700;
@@ -81,15 +93,16 @@ export default {
 }
 .header {
   position: fixed;
-  top: 10px;
+  top: 0px;
   left: 0;
   z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 52px;
+  height: 62px;
   width: 100%;
   padding: 10px;
+  padding-top: 20px;
   .avatar {
     position: relative;
     width: 52px;

@@ -42,6 +42,90 @@ export default new Vuex.Store({
         // }
       ],
       isShowText: false
+    },
+    findData: {
+      nav: [
+        { id: '001', title: '话题', imgSrc: require('../assets/images/huati.png') },
+        { id: '002', title: '词汇', imgSrc: require('../assets/images/words.png') },
+        { id: '003', title: '短语', imgSrc: require('../assets/images/words.png') }
+      ],
+      new: [
+        { id: '100', imgSrc: require('../assets/images/find_pro1.jpg'), loveNum: 13 },
+        { id: '101', imgSrc: require('../assets/images/find_pro1.jpg'), loveNum: 36 },
+        { id: '102', imgSrc: require('../assets/images/find_pro1.jpg'), loveNum: 123 },
+        { id: '103', imgSrc: require('../assets/images/find_pro1.jpg'), loveNum: 363 },
+        { id: '104', imgSrc: require('../assets/images/find_pro1.jpg'), loveNum: 386 }
+      ],
+      users: [
+        { id: '2001', name: '黄万通', fans: 2000, works: 60, src: require('../assets/images/bg.jpg') },
+        { id: '2002', name: '裴张岩', fans: 2000, works: 60, src: require('../assets/images/bg.jpg') },
+        { id: '2003', name: '李赛叶', fans: 2000, works: 60, src: require('../assets/images/bg.jpg') }
+      ],
+      cates: [
+        {
+          id: '1001',
+          title: '吐槽大会: 城市的堵车',
+          list: [
+            {
+              id: '8008',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            },
+            {
+              id: '8009',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            },
+            {
+              id: '80010',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            }
+          ]
+        },
+        {
+          id: '1002',
+          title: '可爱的格子们',
+          list: [
+            {
+              id: '8008',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            },
+            {
+              id: '8009',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            },
+            {
+              id: '80010',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            }
+          ]
+        },
+        {
+          id: '1003',
+          title: '接孩子放学',
+          list: [
+            {
+              id: '8008',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            },
+            {
+              id: '8009',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            },
+            {
+              id: '80010',
+              src: require('../assets/images/find_pro1.jpg'),
+              love: 16
+            }
+          ]
+        }
+      ]
     }
   },
   mutations: {
