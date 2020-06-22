@@ -1,56 +1,53 @@
 <template>
   <div class="home">
-    <!-- 首页头部 -->
-    <home-header ref="homeHeader" @clickItem="handleItemClick"></home-header>
-    <!-- 首页轮播 -->
-    <van-swipe
-      ref="homeSwiper"
-      class="my-swipe"
-      @change="handleChange"
-      duration="1000"
-      initial-swipe="1"
-      :show-indicators="false"
-    >
-      <van-swipe-item>
-        <home-find></home-find>
-      </van-swipe-item>
-      <van-swipe-item>
-        <yu-jing></yu-jing>
-      </van-swipe-item>
-      <van-swipe-item>
-        <home-community></home-community>
-      </van-swipe-item>
-    </van-swipe>
+    <!-- 路由 -->
+    <router-view></router-view>
+    <!-- 弹出框 -->
+    <van-popup :style="{ height: '100%', width: '70%' }" position="left" v-model="showUserPop">
+      <pop-user></pop-user>
+    </van-popup>
+    <!-- 右滑弹出 -->
+    <div class="right_swipe" @touchmove="showPopup"></div>
+    <!-- tabbar页面 -->
+    <tab-bar></tab-bar>
   </div>
 </template>
 <script>
-import Header from '../components/home/Header.vue'
-import YuJing from './YuJing.vue'
-import Community from './Community.vue'
-import Find from './Find.vue'
-export default {
-  components: {
-    'home-header': Header,
-    'yu-jing': YuJing,
-    'home-community': Community,
-    'home-find': Find
-  },
-  methods: {
-    handleChange(index) {
-      // 通过header的ref调用swiper组件的changeCurrent方法
-      this.$refs.homeHeader.changeCurrent(index)
+  import BomTab from '../components/home/BomTab'
+  import PopUser from '../components/PopUser.vue'
+  export default {
+    components: {
+      'tab-bar': BomTab,
+      'pop-user': PopUser
     },
-    // 触发导航项点击事件接收index
-    handleItemClick(index) {
-      // 通过swiper的ref调用swiper组件的moveTo方法
-      this.$refs.homeSwiper.swipeTo(index)
+    data() {
+      return {
+        tabActive: 0,
+        showUserPop: false
+      }
+    },
+    methods: {
+      showPopup() {
+        console.log('滑动了')
+      }
     }
   }
-}
+
 </script>
 <style lang="less">
-.home {
-  height: 100vh;
-  width: 100%;
-}
+  .home {
+    height: 100vh;
+    width: 100%;
+    padding-bottom: 50px;
+  }
+
+  .right_swipe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 10px;
+    height: 100vh;
+  }
+
 </style>

@@ -22,20 +22,98 @@ ol {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+
 html,
 body {
   height: 100%;
   width: 100%;
 }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}
+
 a {
   text-decoration: none;
 }
+
 ul,
 ol {
   list-style: none;
 }
+
 input,
 button {
   border: none;
   outline: none;
+}
+
+.color_fff {
+  color: #ffffff;
+}
+
+.theme_color {
+  color: #fc3530;
+}
+
+/* 字体颜色 */
+.black_color {
+  color: #222;
+}
+
+.gray_color {
+  color: #969599;
+}
+
+.yellow_color {
+  color: #febe1e;
+}
+
+/* flex布局 */
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex_bea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex_align {
+  display: flex;
+  align-items: center;
+}
+
+/* 小标签 */
+.tag {
+  /* display: inline-block; */
+  padding: 2px 4px;
+  border-radius: 3px;
+  background-color: #6b4cd6;
+  margin-right: 6px;
+}
+
+.tit {
+  font-size: 15px;
+  color: #222;
+  font-weight: 700;
+}
+
+.new_tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50% 0 50% 0;
+  background-color: #da4a27;
+  color: #fff;
+  padding: 1px 4px;
+  font-size: 12px;
 }

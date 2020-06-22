@@ -1,156 +1,135 @@
 <template>
-  <div class="header" :class="active === 1 ? 'white-color' : 'normal-color'">
+  <div class="header" :class="active === 0 ? 'color_fff':'black_color'">
     <div class="avatar" is-link @click="showPopup">
-      <van-circle
-        v-model="currentRate"
-        :rate="30"
-        layer-color="#f04007"
-        :stroke-width="90"
-        size="46px"
-      />
+      <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="46px" />
       <img src="../../assets/images/user.png" alt />
     </div>
-    <div class="nav">
-      <span
-        :class="index === active ? 'active' : ''"
-        v-for="(item, index) in navList"
-        :key="item.id"
-        @click="changeCurrent(index)"
-      >{{ item.title }}</span>
-    </div>
-    <div class="search" @click="goSearch">
+    <slot></slot>
+    <div v-if="isSearch" class="search" :style="searchStyle" @click="goSearch">
       <span class="iconfont icon-search"></span>
     </div>
-    <!-- 弹出框 -->
-    <van-popup :style="{ height: '100%', width: '70%' }" position="left" v-model="show">
-      <pop-user></pop-user>
-    </van-popup>
-    <!-- 右滑弹出 -->
-    <div class="right_swipe" @touchmove="showPopup"></div>
   </div>
 </template>
 
 <script>
-import PopUser from '../PopUser.vue'
-export default {
-  components: {
-    'pop-user': PopUser
-  },
-  data() {
-    return {
-      currentRate: 50,
-      active: 1,
-      show: false,
-      navList: [
-        { id: 0, title: '发现' },
-        { id: 1, title: '语境' },
-        { id: 2, title: '社区' }
-      ]
-    }
-  },
-  methods: {
-    changeCurrent(index) {
-      // 切换当前点击的索引
-      this.active = index
-      // 触发父组件的方法并把索引(index)传递过去
-      this.$emit('clickItem', index)
+  export default {
+    props: {
+      isSearch: {
+        type: Boolean,
+        default: true
+      },
+      active: {
+        type: Number,
+        default: 1
+      },
+      searchStyle: {
+        type: Object,
+        default () {
+          return {}
+        }
+      }
     },
-    // 显示左边用户部分信息
-    showPopup() {
-      this.show = true
+    data() {
+      return {
+        currentRate: 50,
+        show: false,
+        navList: [{
+            id: 0,
+            title: '发现'
+          },
+          {
+            id: 1,
+            title: '语境'
+          },
+          {
+            id: 2,
+            title: '社区'
+          }
+        ]
+      }
     },
-    // 去收索页面
-    goSearch() {
-      this.$router.push('/search')
+    methods: {
+      changeCurrent(index) {
+        // 切换当前点击的索引
+        this.active = index
+        // 触发父组件的方法并把索引(index)传递过去
+        this.$emit('clickItem', index)
+      },
+      // 显示左边用户部分信息
+      showPopup() {
+        this.show = true
+      },
+      // 去收索页面
+      goSearch() {
+        this.$router.push('/search')
+      }
     }
   }
-}
+
 </script>
 
 <style lang="less">
-.right_swipe {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1000;
-  width: 10px;
-  height: 100vh;
-}
-.normal-color {
-  color: #918885;
-  background-color: #fff;
-  .active {
-    color: #000;
-    font-weight: 700;
-  }
-}
-.white-color {
-  color: #fff;
-  .active {
-    color: #fff;
-    font-weight: 500;
-  }
-}
-.header {
-  position: fixed;
-  top: 0px;
-  left: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 62px;
-  width: 100%;
-  padding: 10px;
-  padding-top: 20px;
-  .avatar {
-    position: relative;
-    width: 52px;
-    height: 52px;
-    img {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      top: 11px;
-      left: 3px;
+  .normal-color {
+    color: #222;
+    background-color: #fff;
+
+    .active {
+      color: #222;
+      font-weight: 700;
     }
   }
-  .nav {
-    display: flex;
-    justify-content: space-around;
-    flex: 1;
-    margin: 0 12px;
+
+  .white-color {
+    color: #fff;
+
     .active {
-      &::before {
-        content: '';
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+
+  .header {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    width: 100%;
+    padding: 10px;
+    padding-top: 20px;
+
+    .avatar {
+      position: relative;
+      width: 52px;
+      height: 52px;
+
+      img {
         position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: block;
-        width: 20px;
-        height: 3px;
-        border-radius: 6px;
-        background-color: red;
-        z-index: 2;
+        width: 40px;
+        height: 40px;
+        top: 11px;
+        left: 3px;
       }
     }
-    span {
-      position: relative;
-      padding: 6px 0;
+
+    .search {
+      padding: 13px;
+      width: 49px;
+      height: 49px;
+
+      .iconfont {
+        font-size: 22px;
+        margin-left: 6px;
+        font-weight: 700;
+      }
+    }
+
+    .van-circle {
+      margin-top: 8px;
     }
   }
-  .search {
-    padding: 13px;
-    width: 49px;
-    height: 49px;
-    .iconfont {
-      font-size: 26px;
-      margin-left: 6px;
-    }
-  }
-  .van-circle {
-    margin-top: 8px;
-  }
-}
+
 </style>
