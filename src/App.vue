@@ -11,4 +11,8 @@
 </script>
 
 <style>
+  .van-search {
+    background-color: transparent;
+  }
+
 </style>

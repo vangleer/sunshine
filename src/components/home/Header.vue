@@ -1,8 +1,12 @@
 <template>
-  <div class="header" :class="active === 0 ? 'color_fff':'black_color'">
+  <div class="header" :class="active === 0 ? 'white-color':'normal-color'">
     <div class="avatar" is-link @click="showPopup">
-      <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="46px" />
-      <img src="../../assets/images/user.png" alt />
+      <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="52px">
+        <div class="icon_box">
+          <span class="iconfont icon-user"></span>
+        </div>
+      </van-circle>
+
     </div>
     <slot></slot>
     <div v-if="isSearch" class="search" :style="searchStyle" @click="goSearch">
@@ -57,7 +61,8 @@
       },
       // 显示左边用户部分信息
       showPopup() {
-        this.show = true
+        console.log('yes')
+        this.$store.commit('showUserinfo')
       },
       // 去收索页面
       goSearch() {
@@ -96,22 +101,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 62px;
+    height: 72px;
     width: 100%;
     padding: 10px;
-    padding-top: 20px;
 
     .avatar {
-      position: relative;
-      width: 52px;
-      height: 52px;
+      .icon_box {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background-color: #eee9ef;
+      }
 
-      img {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        top: 11px;
-        left: 3px;
+      .iconfont {
+        font-size: 26px;
+        line-height: 50px;
+        color: #fff;
+        // color: #fff;
       }
     }
 

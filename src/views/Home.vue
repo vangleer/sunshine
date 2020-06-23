@@ -22,13 +22,22 @@
     },
     data() {
       return {
-        tabActive: 0,
-        showUserPop: false
+        tabActive: 0
+      }
+    },
+    computed: {
+      showUserPop: {
+        get() {
+          return this.$store.state.showUserPop
+        },
+        set() {
+          this.$store.commit('showUserinfo')
+        }
       }
     },
     methods: {
       showPopup() {
-        console.log('滑动了')
+        this.showUserPop = !this.showUserinfo
       }
     }
   }

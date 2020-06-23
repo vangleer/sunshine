@@ -95,10 +95,11 @@ button {
 /* 小标签 */
 .tag {
   /* display: inline-block; */
-  padding: 2px 4px;
+  padding: 2px 5px;
   border-radius: 3px;
   background-color: #6b4cd6;
   margin-right: 6px;
+  font-weight: 700;
 }
 
 .tit {
@@ -116,4 +117,9 @@ button {
   color: #fff;
   padding: 1px 4px;
   font-size: 12px;
+}
+
+/* 上下padding的类 */
+.pd_up {
+  padding: 70px 0 50px 0;
 }

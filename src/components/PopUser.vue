@@ -3,16 +3,13 @@
     <!-- 弹出层头部 -->
     <div class="pop_hd">
       <div class="user_icon">
-        <van-circle
-          v-model="currentRate"
-          :rate="30"
-          layer-color="#f04007"
-          :stroke-width="100"
-          size="60px"
-        />
-        <img src="../assets/images/user.png" alt />
+        <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="70px">
+          <div class="icon_box">
+            <span class="iconfont icon-user"></span>
+          </div>
+        </van-circle>
+        <div class="user_name">小通</div>
       </div>
-      <div class="user_name">小通</div>
       <div class="go_profile">
         <p>
           查看主页
@@ -28,11 +25,11 @@
     <div class="pop_bd">
       <div class="item items1">
         <p>
-          <i class="iconfont icon-clock"></i>
+          <i class="iconfont icon-shijianzhongbiao"></i>
           <span>目标与进度</span>
         </p>
         <p>
-          <i class="iconfont icon-xunzhang"></i>
+          <i class="iconfont icon-xunzhang1"></i>
           <span>成就与勋章</span>
         </p>
         <p>
@@ -42,11 +39,11 @@
       </div>
       <div class="item items2">
         <p>
-          <i class="iconfont icon-icon_xinyong_xianxing_jijin-"></i>
+          <i class="iconfont icon-xiaoxi"></i>
           <span>我的消息</span>
         </p>
         <p>
-          <i class="iconfont icon-xihuan"></i>
+          <i class="iconfont icon-aixin"></i>
           <span>我的收藏</span>
         </p>
       </div>
@@ -73,117 +70,139 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      currentRate: 50
+  export default {
+    data() {
+      return {
+        currentRate: 50
+      }
     }
   }
-}
+
 </script>
 <style lang="less">
-.pop_user {
-  width: 100%;
-  height: 100%;
-  .pop_hd {
-    position: relative;
+  .pop_user {
     width: 100%;
-    height: 140px;
-    padding: 12px;
-    .user_icon {
-      margin-top: 12px;
+    height: 100%;
+
+    .pop_hd {
       position: relative;
-      width: 52px;
-      height: 52px;
-      img {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+
+      .user_icon {
+        display: flex;
+
+        .icon_box {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background-color: #eee9ef;
+        }
+
+        .iconfont {
+          font-size: 30px;
+          line-height: 70px;
+          color: #fff;
+          // color: #fff;
+        }
+      }
+
+      .user_name {
+        font-size: 18px;
+        font-weight: 700;
+        margin-left: 10px;
+      }
+
+      .go_profile {
         position: absolute;
-        width: 50px;
-        height: 50px;
-        top: 13px;
-        left: 5px;
+        right: 12px;
+        top: 60px;
+
+        p {
+          color: #ccc;
+        }
+      }
+
+      .jilu {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        height: 24px;
+        width: 100%;
+        padding: 12px;
+
+        p {
+          height: 20px;
+          padding: 8px 10px;
+          border-radius: 5px;
+          line-height: 3px;
+          font-size: 13px;
+        }
+
+        p:nth-child(1) {
+          background-color: #f4c5b9;
+          color: #fd410e;
+        }
+
+        p:nth-child(2) {
+          background-color: #faebbe;
+          color: #f5b904;
+        }
       }
     }
-    .user_name {
-      position: absolute;
-      top: 34px;
-      left: 82px;
-      font-size: 18px;
-      font-weight: 700;
-    }
-    .go_profile {
-      position: absolute;
-      right: 12px;
-      top: 70px;
-      p {
-        color: #ccc;
+
+    .pop_bd {
+      width: 100%;
+      height: 300px;
+      margin-top: 40px;
+      padding-left: 30px;
+
+      .item {
+        margin-top: 46px;
+
+        &>p {
+          margin: 22px;
+          display: flex;
+          align-items: center;
+
+          .iconfont {
+            font-size: 26px;
+          }
+
+          span {
+            display: inline-block;
+            margin-left: 12px;
+            font-size: 16px;
+          }
+        }
       }
     }
-    .jilu {
+
+    .pop_bt {
       position: absolute;
       bottom: 0;
       left: 0;
       display: flex;
       justify-content: space-between;
-      height: 24px;
       width: 100%;
-      padding: 12px;
-      p {
-        height: 20px;
-        padding: 8px 10px;
-        border-radius: 5px;
-        line-height: 3px;
-        font-size: 13px;
-      }
-      p:nth-child(1) {
-        background-color: #f4c5b9;
-        color: #fd410e;
-      }
-      p:nth-child(2) {
-        background-color: #faebbe;
-        color: #f5b904;
-      }
-    }
-  }
-  .pop_bd {
-    width: 100%;
-    height: 300px;
-    margin-top: 40px;
-    padding-left: 30px;
-    .item {
-      margin-top: 46px;
-      & > p {
-        margin: 22px;
-        display: flex;
-        align-items: center;
+      padding: 30px;
+
+      &>div {
+        text-align: center;
+
         .iconfont {
           font-size: 26px;
         }
-        span {
-          display: inline-block;
-          margin-left: 12px;
+
+        p {
+          margin-top: 10px;
           font-size: 16px;
         }
       }
     }
   }
-  .pop_bt {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 30px;
-    & > div {
-      text-align: center;
-      .iconfont {
-        font-size: 26px;
-      }
-      p {
-        margin-top: 10px;
-        font-size: 16px;
-      }
-    }
-  }
-}
+
 </style>

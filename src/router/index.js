@@ -14,6 +14,7 @@ Vue.use(VueRouter)
 const routes = [{
     path: '/',
     component: Home,
+    redirect: '/yujing',
     children: [{
         path: 'find',
         component: Find
@@ -29,10 +30,6 @@ const routes = [{
       {
         path: 'message',
         component: Message
-      },
-      {
-        path: 'film',
-        component: Film
       }
     ]
   },
@@ -41,8 +38,8 @@ const routes = [{
     component: Search
   },
   {
-    path: '/',
-    redirect: '/yujing'
+    path: '/film',
+    component: Film
   }
 ]
 const router = new VueRouter({

@@ -4,7 +4,7 @@
       @click="handleNavClick(index,item.path)">
       {{item.title}}
       <div v-if="index===2" class="item_third flex_center">
-        <text class="iconfont icon-add"></text>
+        <span class="iconfont icon-add"></span>
       </div>
     </div>
   </div>
