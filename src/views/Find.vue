@@ -11,96 +11,166 @@
       </van-search>
     </home-header>
 
-    <!-- 录播图 -->
-    <div class="swipe_box">
-      <van-swipe class="find_swipe" indicator-color="#f04130">
-        <van-swipe-item>
-          <img src="../assets/images/study1.jpg" alt="">
-        </van-swipe-item>
-        <van-swipe-item><img src="../assets/images/study2.jpg" alt=""></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/study3.png" alt=""></van-swipe-item>
-      </van-swipe>
-    </div>
+    <PullRefresh>
+      <!-- 录播图 -->
+      <div class="swipe_box">
+        <van-swipe class="find_swipe" indicator-color="#f04130">
+          <van-swipe-item>
+            <img src="../assets/images/study1.jpg" alt="">
+          </van-swipe-item>
+          <van-swipe-item><img src="../assets/images/study2.jpg" alt=""></van-swipe-item>
+          <van-swipe-item><img src="../assets/images/study3.png" alt=""></van-swipe-item>
+        </van-swipe>
+      </div>
 
-    <!-- 导航链接 -->
-    <div class="nav_link flex_bea">
-      <div class="link topic flex_bea">
-        <div class="icon flex_center">
-          <span class="iconfont icon-huati"></span>
-        </div>
-        <div class="text">话题</div>
-      </div>
-      <div class="link primer flex_bea">
-        <div class="icon flex_center">
-          <span class="iconfont icon-gongandunpai"></span>
-        </div>
-        <div class="text">入门</div>
-      </div>
-      <div class="link vocabulary flex_bea">
-        <div class="icon flex_center">
-          <span class="iconfont icon-adn"></span>
-        </div>
-        <div class="text">词汇</div>
-      </div>
-      <div class="link phrase flex_bea">
-        <div class="icon flex_center">
-          <span class="iconfont icon-shuxingliebiaoxiangqing2"></span>
-        </div>
-        <div class="text">短语</div>
-      </div>
-    </div>
-
-    <!-- 今日任务 -->
-    <div class="day_task">
-      <div class="top_com flex_between">
-        <span class="tit">今日任务</span>
-        <div class="btn">全部话题</div>
-      </div>
-      <div class="bom">
-        <!-- 练习主题 -->
-        <div class="top flex_bea">
-          <p>地道表达</p>
-          <span class="iconfont icon-xihuan"></span>
-        </div>
-        <!-- 练习内容 -->
-        <div class="title">
-          <span class="tag">#</span>
-          <span class="text">练一练:{{'there is the least I could do,but it was the most'}}</span>
-        </div>
-        <!-- 练习数据 -->
-        <div class="num">
-          <span>123456次播放</span>
-          <span class="m">*</span>
-          <span>7人参与</span>
-        </div>
-
-        <!-- 练习样本 -->
-        <div class="yangben">
-          <div class="example flex_align">
-            <img src="../assets/images/user.jpg" alt="">
-            <img src="../assets/images/user.jpg" alt="">
-            <img src="../assets/images/user.jpg" alt="">
-            <span class="text">
-              有3个实例
-            </span>
+      <!-- 导航链接 -->
+      <div class="nav_link flex_bea">
+        <div class="link topic flex_bea">
+          <div class="icon flex_center">
+            <span class="iconfont icon-huati"></span>
           </div>
-          <div class="btn">立即打卡</div>
+          <div class="text">话题</div>
+        </div>
+        <div class="link primer flex_bea">
+          <div class="icon flex_center">
+            <span class="iconfont icon-gongandunpai"></span>
+          </div>
+          <div class="text">入门</div>
+        </div>
+        <div class="link vocabulary flex_bea">
+          <div class="icon flex_center">
+            <span class="iconfont icon-adn"></span>
+          </div>
+          <div class="text">词汇</div>
+        </div>
+        <div class="link phrase flex_bea">
+          <div class="icon flex_center">
+            <span class="iconfont icon-shuxingliebiaoxiangqing2"></span>
+          </div>
+          <div class="text">短语</div>
         </div>
       </div>
-    </div>
 
-    <!-- 推荐练习 -->
-    <div class="practice">
-      <div class="top_com flex_between">
-        <span class="tit">推荐练习</span>
-        <div class="btn">
-          <span class="iconfont icon-share"></span> 换一批
+      <!-- 今日任务 -->
+      <div class="day_task">
+        <div class="top_com flex_between">
+          <span class="tit">今日任务</span>
+          <div class="btn">全部话题</div>
+        </div>
+        <div class="bom">
+          <!-- 练习主题 -->
+          <div class="top flex_bea">
+            <p>地道表达</p>
+            <span class="iconfont icon-xihuan"></span>
+          </div>
+          <!-- 练习内容 -->
+          <div class="title">
+            <span class="tag">#</span>
+            <span class="text">练一练:{{'there is the least I could do,but it was the most'}}</span>
+          </div>
+          <!-- 练习数据 -->
+          <div class="num">
+            <span>123456次播放</span>
+            <span class="m">*</span>
+            <span>7人参与</span>
+          </div>
+
+          <!-- 练习样本 -->
+          <div class="yangben">
+            <div class="example flex_align">
+              <img src="../assets/images/user.jpg" alt="">
+              <img src="../assets/images/user.jpg" alt="">
+              <img src="../assets/images/user.jpg" alt="">
+              <span class="text">
+                有3个实例
+              </span>
+            </div>
+            <div class="btn">立即打卡</div>
+          </div>
         </div>
       </div>
 
-      <!-- 练习列表 -->
-      <div class="list">
-        <div class="p_item" v-for="i in 4" :key="i">
+      <!-- 推荐练习 -->
+      <div class="practice">
+        <div class="top_com flex_between">
+          <span class="tit">推荐练习</span>
+          <div class="btn">
+            <span class="iconfont icon-share"></span> 换一批
+          </div>
+        </div>
+
+        <!-- 练习列表 -->
+        <div class="list">
+          <div class="p_item" v-for="i in 4" :key="i">
+            <div class="flex_bea practise_top">
+              <div class="left flex_align">
+                <div class="tag">词</div>
+                <div>
+                  <span class="tit">大幂幂</span>
+                  <!-- 练习数据 -->
+                  <div class="num">
+                    <span>123456次播放</span>
+                    <span class="m">*</span>
+                    <span>7人参与</span>
+                  </div>
+                </div>
+              </div>
+              <div class="right flex_align">
+                <span class="iconfont icon-xihuan"></span>
+                <div class="btn_p">练习</div>
+              </div>
+            </div>
+            <div class="example flex_align">
+              <img src="../assets/images/user.jpg" alt="">
+              <img src="../assets/images/user.jpg" alt="">
+              <img src="../assets/images/user.jpg" alt="">
+              <span class="text">
+                有3个实例
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 社区精选 -->
+      <div class="community_select">
+        <!-- 精选主题 -->
+        <div class="top_com flex_between">
+          <span class="tit">精选主题</span>
+          <div class="btn">差看更多</div>
+        </div>
+        <div class="wrapper" ref="comScroll">
+          <div class="bom">
+            <div class="b_item" v-for="i in 4" :key="i">
+              <!-- 视频组件 -->
+              <div style="height: 130px;">
+                <VideoBox></VideoBox>
+              </div>
+              <!-- 详情 -->
+              <div class="info">
+                <div class="tit topic">english is an international language</div>
+                <div class="tool flex_bea">
+                  <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="">
+                    <span>大幂幂~~</span></p>
+                  <p class="flex_align">
+                    <span class="iconfont icon-xihuan"></span>
+                    <span>12345</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 猜你喜欢 -->
+      <div class="you_like">
+        <div class="top_com flex_between">
+          <span class="tit">今日任务</span>
+          <div class="btn">全部话题</div>
+        </div>
+        <div class="l_item">
           <div class="flex_bea practise_top">
             <div class="left flex_align">
               <div class="tag">词</div>
@@ -119,97 +189,29 @@
               <div class="btn_p">练习</div>
             </div>
           </div>
-          <div class="example flex_align">
-            <img src="../assets/images/user.jpg" alt="">
-            <img src="../assets/images/user.jpg" alt="">
-            <img src="../assets/images/user.jpg" alt="">
-            <span class="text">
-              有3个实例
-            </span>
+          <div class="text_com">
+            asfdoihhhhdiasuhdddddddddddddddddddddddddddddddddddddddasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddaiasdsadasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            <!-- <span>全文</span> -->
           </div>
-        </div>
-      </div>
-    </div>
+          <!-- 视频 -->
+          <div class="play_box">
+            <VideoBox></VideoBox>
+          </div>
 
-    <!-- 社区精选 -->
-    <div class="community_select">
-      <!-- 精选主题 -->
-      <div class="top_com flex_between">
-        <span class="tit">精选主题</span>
-        <div class="btn">差看更多</div>
-      </div>
-      <div class="wrapper" ref="comScroll">
-        <div class="bom">
-          <div class="b_item" v-for="i in 4" :key="i">
-            <!-- 视频组件 -->
-            <div style="height: 130px;">
-              <VideoBox></VideoBox>
+          <div class="owner flex_bea">
+            <div class="icon">
+              <img src="../assets/images/user2.jpg" alt="">
             </div>
-            <!-- 详情 -->
-            <div class="info">
-              <div class="tit topic">english is an international language</div>
-              <div class="tool flex_bea">
-                <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="">
-                  <span>大幂幂~~</span></p>
-                <p class="flex_align">
-                  <span class="iconfont icon-xihuan"></span>
-                  <span>12345</span>
-                </p>
-              </div>
+            <div class="tool">
+              <span class="iconfont icon-share">132</span>
+              <span class="iconfont icon-pinglun">12</span>
+              <span class="iconfont icon-aixin">456</span>
+              <span class="iconfont icon-aixin">789</span>
             </div>
           </div>
         </div>
       </div>
-
-    </div>
-
-    <!-- 猜你喜欢 -->
-    <div class="you_like">
-      <div class="top_com flex_between">
-        <span class="tit">今日任务</span>
-        <div class="btn">全部话题</div>
-      </div>
-      <div class="l_item">
-        <div class="flex_bea practise_top">
-          <div class="left flex_align">
-            <div class="tag">词</div>
-            <div>
-              <span class="tit">大幂幂</span>
-              <!-- 练习数据 -->
-              <div class="num">
-                <span>123456次播放</span>
-                <span class="m">*</span>
-                <span>7人参与</span>
-              </div>
-            </div>
-          </div>
-          <div class="right flex_align">
-            <span class="iconfont icon-xihuan"></span>
-            <div class="btn_p">练习</div>
-          </div>
-        </div>
-        <div class="text_com">
-          asfdoihhhhdiasuhdddddddddddddddddddddddddddddddddddddddasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddaiasdsadasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-          <!-- <span>全文</span> -->
-        </div>
-        <!-- 视频 -->
-        <div class="play_box">
-          <VideoBox></VideoBox>
-        </div>
-
-        <div class="owner flex_bea">
-          <div class="icon">
-            <img src="../assets/images/user2.jpg" alt="">
-          </div>
-          <div class="tool">
-            <span class="iconfont icon-share">132</span>
-            <span class="iconfont icon-pinglun">12</span>
-            <span class="iconfont icon-aixin">456</span>
-            <span class="iconfont icon-aixin">789</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    </PullRefresh>
 
   </div>
 </template>
@@ -218,10 +220,12 @@
   import Header from '../components/home/Header'
   import VideoBox from '../components/VideoBox.vue'
   import BScroll from 'better-scroll'
+  import PullRefresh from '../components/PullRefresh'
   export default {
     components: {
       'home-header': Header,
-      VideoBox
+      VideoBox,
+      PullRefresh
     },
     data() {
       return {
@@ -233,7 +237,8 @@
         scrollX: true,
         eventPassthrough: 'vertical'
       })
-    }
+    },
+    methods: {}
   }
 
 </script>
@@ -242,7 +247,6 @@
   .find {
     width: 100%;
     background-color: #f9f9f9;
-
   }
 
   // 轮播图
@@ -258,7 +262,6 @@
       height: 100%;
       border-radius: 10px;
       overflow: hidden;
-
     }
 
     img {
@@ -320,7 +323,6 @@
         font-size: 21px;
       }
     }
-
   }
 
   // 今日任务
@@ -414,7 +416,7 @@
 
     .bom {
       display: flex;
-      width: calc(148px*4);
+      width: calc(148px * 4);
       justify-content: space-between;
       overflow: scroll;
     }
@@ -533,7 +535,6 @@
     background-color: #f06b40;
     color: #fff;
     font-weight: 700;
-
   }
 
   .example {
@@ -563,6 +564,7 @@
     .left {
       .tag {
         padding: 6px 10px;
+        color: #fff;
       }
     }
 

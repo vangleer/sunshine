@@ -17,32 +17,51 @@ const routes = [{
     redirect: '/yujing',
     children: [{
         path: 'find',
-        component: Find
+        component: Find,
+        meta: {
+          index: 0
+        }
       },
       {
         path: 'yujing',
-        component: YuJing
+        component: YuJing,
+        meta: {
+          index: 1
+        }
       },
       {
         path: 'community',
-        component: Community
+        component: Community,
+        meta: {
+          index: 2
+        }
       },
       {
         path: 'message',
-        component: Message
+        component: Message,
+        meta: {
+          index: 3
+        }
       }
     ]
   },
   {
     path: '/search',
-    component: Search
+    component: Search,
+    meta: {
+      index: 4
+    }
   },
   {
     path: '/film',
-    component: Film
+    component: Film,
+    meta: {
+      index: 5
+    }
   }
 ]
 const router = new VueRouter({
   routes
 })
+
 export default router

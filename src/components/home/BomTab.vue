@@ -43,6 +43,12 @@
         ]
       }
     },
+    created() {
+      const path = this.$route.path
+      this.currenNav = this.tabList.findIndex((item) => {
+        return item.path === path
+      })
+    },
     computed: {
       bg() {
         return this.currenNav === 0
@@ -51,6 +57,9 @@
     methods: {
       handleNavClick(index, path) {
         this.currenNav = index
+        if (index === 2) {
+          return this.$router.push(path)
+        }
         this.$router.replace(path)
       }
     }

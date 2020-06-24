@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    showUserPop: false
+    showUserPop: false // 显示隐藏用户详情框
   },
   mutations: {
     showUserinfo(state, opt) {
