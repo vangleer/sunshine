@@ -24,33 +24,33 @@
     <!-- 弹出层中间部分 -->
     <div class="pop_bd">
       <div class="item items1">
-        <p>
+        <p @click="$router.push('/goal')">
           <i class="iconfont icon-shijianzhongbiao"></i>
-          <span>目标与进度</span>
+          <span>目标与数据</span>
         </p>
-        <p>
-          <i class="iconfont icon-xunzhang1"></i>
-          <span>成就与勋章</span>
-        </p>
-        <p>
-          <i class="iconfont icon-integral"></i>
-          <span>我的积分</span>
+        <p @click="$router.push('/adjustment')">
+          <i class="iconfont icon-icon_jiaohuan"></i>
+          <span>难度调整</span>
         </p>
       </div>
       <div class="item items2">
-        <p>
-          <i class="iconfont icon-xiaoxi"></i>
-          <span>我的消息</span>
-        </p>
-        <p>
+        <p @click="$router.push('/favorite')">
           <i class="iconfont icon-aixin"></i>
           <span>我的收藏</span>
         </p>
+         <p @click="$router.push('/achievment')">
+          <i class="iconfont icon-xunzhang1"></i>
+          <span>成就与勋章</span>
+        </p>
       </div>
       <div class="item items3">
-        <p>
-          <i class="iconfont icon-icon_jiaohuan"></i>
-          <span>难度调整</span>
+           <p @click="$router.push('/intergral')">
+          <i class="iconfont icon-integral"></i>
+          <span>我的积分</span>
+        </p>
+        <p @click="$router.push('/invitefriends')">
+          <i class="iconfont icon-tianjiajiahaoyoutianjiapengyou"></i>
+          <span>邀请好友</span>
         </p>
       </div>
     </div>

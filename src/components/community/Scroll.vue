@@ -2,7 +2,9 @@
   <div class="scroll" ref="scrollRef">
     <div>
       <div class="load_icon">
-        <van-loading color="#e54427" v-show="showLoad" />
+        <div class="load_box" v-show="showLoad">
+          <van-loading color="#e54427" />
+        </div>
       </div>
       <slot></slot>
       <div class="load_bom">

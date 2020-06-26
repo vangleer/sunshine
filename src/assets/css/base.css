@@ -91,6 +91,10 @@ button {
   display: flex;
   align-items: center;
 }
+.text {
+  font-size: 13px;
+  color: #7d7c7c;
+}
 
 /* 小标签 */
 .tag {
@@ -122,4 +126,11 @@ button {
 /* 上下padding的类 */
 .pd_up {
   padding: 70px 0 50px 0;
+}
+
+/* 没有更多了 */
+.no_more {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
 }

@@ -27,6 +27,15 @@
 </script>
 
 <style lang="less">
+.app {
+  .van-nav-bar .van-icon {
+    color: #222;
+    font-weight: 700;
+  }
+  .van-nav-bar__title {
+    font-weight: 700;
+  }
+}
   .left-enter {
     transform: translateX(100vw);
   }

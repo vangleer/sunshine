@@ -9,6 +9,10 @@ import Find from '../views/Find.vue'
 import Community from '../views/Community.vue'
 import Message from '../views/Message.vue'
 import Film from '../views/Film.vue'
+import Thank from '../views/Thank.vue'
+import Comment from '../views/Comment.vue'
+import NewFans from '../views/NewFans.vue'
+import Profile from '../views/Profile.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -57,6 +61,76 @@ const routes = [{
     component: Film,
     meta: {
       index: 5
+    }
+  },
+  {
+    path: '/thank',
+    component: Thank,
+    meta: {
+      index: 6
+    }
+  },
+  {
+    path: '/comment',
+    component: Comment,
+    meta: {
+      index: 7
+    }
+  },
+  {
+    path: '/newfans',
+    component: NewFans,
+    meta: {
+      index: 8
+    }
+  },
+  {
+    path: '/profile',
+    component: Profile,
+    meta: {
+      index: 9
+    }
+  },
+  {
+    path: '/goal',
+    component: () => import('../views/Goal.vue'),
+    meta: {
+      index: 10
+    }
+  },
+  {
+    path: '/adjustment',
+    component: () => import('../views/Adjustment.vue'),
+    meta: {
+      index: 11
+    }
+  },
+  {
+    path: '/favorite',
+    component: () => import('../views/Favorite.vue'),
+    meta: {
+      index: 12
+    }
+  },
+  {
+    path: '/achievment',
+    component: () => import('../views/Achievment.vue'),
+    meta: {
+      index: 13
+    }
+  },
+  {
+    path: '/intergral',
+    component: () => import('../views/Integral.vue'),
+    meta: {
+      index: 14
+    }
+  },
+  {
+    path: '/invitefriends',
+    component: () => import('../views/InviteFriends.vue'),
+    meta: {
+      index: 15
     }
   }
 ]

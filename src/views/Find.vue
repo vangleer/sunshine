@@ -220,12 +220,10 @@
   import Header from '../components/home/Header'
   import VideoBox from '../components/VideoBox.vue'
   import BScroll from 'better-scroll'
-  import PullRefresh from '../components/PullRefresh'
   export default {
     components: {
       'home-header': Header,
-      VideoBox,
-      PullRefresh
+      VideoBox
     },
     data() {
       return {
