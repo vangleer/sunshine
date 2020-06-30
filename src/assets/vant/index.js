@@ -16,9 +16,13 @@ import {
   Tabs,
   Tab,
   NavBar,
-  Progress
+  Cell,
+  Progress,
+  Rate
 } from 'vant'
+Vue.use(Rate)
 Vue.use(Tabs)
+Vue.use(Cell)
 Vue.use(Progress)
 Vue.use(NavBar)
 Vue.use(Tab)

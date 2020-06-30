@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1357969",
+      "name": "实线六边形",
+      "font_class": "shixianliubianxing",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "3120889",
+      "name": "奖章勋章",
+      "font_class": "medal",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "3123455",
+      "name": "六边形",
+      "font_class": "liubianxing",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "9352599",
+      "name": "积分",
+      "font_class": "jifen1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "689286",
       "name": "时间 钟表",
       "font_class": "shijianzhongbiao",
