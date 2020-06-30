@@ -1,7 +1,7 @@
 <template>
   <div class="goal">
     <!-- 头部导航 -->
-    <van-nav-bar title="目标与数据" :fixed="true" left-arrow @click-left="$router.back()" />
+    <van-nav-bar title="目标与数据" :border="false" :fixed="true" left-arrow @click-left="$router.back()" />
 
     <!-- 内容 -->
     <div class="content">
@@ -38,23 +38,11 @@
         <div class="title">当前级别: 简单</div>
         <div class="item">
           <p>在本级别获取听力经验值达到320000</p>
-          <van-progress
-            :percentage="50"
-            text-color="#222"
-            color="#fb7e68"
-            stroke-width="20"
-            track-color="#fceaea"
-          />
+          <van-progress :percentage="50" text-color="#222" color="#fb7e68" stroke-width="20" track-color="#fceaea" />
         </div>
         <div class="item">
           <p>在本级别进行各项口语练习累计300次</p>
-          <van-progress
-            :percentage="50"
-            text-color="#222"
-            color="#f77323"
-            stroke-width="20"
-            track-color="#f7f0dc"
-          />
+          <van-progress :percentage="50" text-color="#222" color="#f77323" stroke-width="20" track-color="#f7f0dc" />
         </div>
       </div>
       <!-- 分项进度 -->
@@ -75,125 +63,143 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
-export default {
-  data() {
-    return {
-      scroll: null,
-      currentRate: 50
+  import BScroll from 'better-scroll'
+  export default {
+    data() {
+      return {
+        scroll: null,
+        currentRate: 50
+      }
+    },
+    mounted() {
+      this.scroll = new BScroll(this.$refs.scrollRef, {
+        scrollX: true,
+        scrollY: false,
+        click: true,
+        bounce: false
+      })
     }
-  },
-  mounted() {
-    this.scroll = new BScroll(this.$refs.scrollRef, {
-      scrollX: true,
-      scrollY: false,
-      click: true,
-      bounce: false
-    })
   }
-}
+
 </script>
 
 <style lang="less" scoped>
-.goal {
-  width: 100%;
-  overflow: hidden;
-  padding-top: 50px;
-}
-.content {
-  background-color: #f8f8f8;
-  padding: 12px;
-}
-.top {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 12px;
-  .icon_box {
-    width: 50px;
-    height: 50px;
-    background-color: #eee9ef;
-    border-radius: 50%;
-    border: 3px solid #ed4129;
-    margin-right: 10px;
-    .iconfont {
-      color: #fff;
-      font-size: 23px;
-    }
+  .goal {
+    width: 100%;
+    overflow: hidden;
+    padding-top: 50px;
   }
-}
-.study {
-  position: relative;
-  &::after {
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    content: '';
-    width: 2px;
-    height: 16px;
-    background-color: #a6a6a6;
-  }
-  margin-top: 16px;
-  .today {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    p {
-      font-size: 23px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-  }
-}
 
-// 当前级别
-.current {
-  .title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #222;
+  .content {
+    background-color: #f8f8f8;
     padding: 12px;
   }
-  .item {
+
+  .top {
+    background-color: #fff;
+    border-radius: 10px;
     padding: 12px;
-    p {
-      margin: 16px 0;
+
+    .icon_box {
+      width: 50px;
+      height: 50px;
+      background-color: #eee9ef;
+      border-radius: 50%;
+      border: 3px solid #ed4129;
+      margin-right: 10px;
+
+      .iconfont {
+        color: #fff;
+        font-size: 23px;
+      }
     }
   }
-}
 
-.inc {
-  width: 100%;
-  overflow: scroll-x;
-  background-color: #f8f8f8;
-  padding: 12px;
-  .tit {
-    font-size: 18px;
-    padding: 16px 0;
-  }
-  .list {
-    display: flex;
-    width: 200%;
-    // white-space: nowrap;
-    .item {
+  .study {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      content: '';
+      width: 2px;
+      height: 16px;
+      background-color: #a6a6a6;
+    }
+
+    margin-top: 16px;
+
+    .today {
+      display: flex;
       flex-direction: column;
-      float: left;
-      width: 220px;
-      background-color: #fff;
-      border-radius: 10px;
-      height: 220px;
-      margin-right: 12px;
+      align-items: center;
+      width: 50%;
+
       p {
-        font-size: 13px;
+        font-size: 23px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  // 当前级别
+  .current {
+    .title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #222;
+      padding: 12px;
+    }
+
+    .item {
+      padding: 12px;
+
+      p {
         margin: 16px 0;
       }
-      .btn {
-        padding: 6px 16px;
-        color: #fff;
-        background-color: #eb4724;
-        border-radius: 40px;
+    }
+  }
+
+  .inc {
+    width: 100%;
+    overflow: scroll-x;
+    background-color: #f8f8f8;
+    padding: 12px;
+
+    .tit {
+      font-size: 18px;
+      padding: 16px 0;
+    }
+
+    .list {
+      display: flex;
+      width: 200%;
+
+      // white-space: nowrap;
+      .item {
+        flex-direction: column;
+        float: left;
+        width: 220px;
+        background-color: #fff;
+        border-radius: 10px;
+        height: 220px;
+        margin-right: 12px;
+
+        p {
+          font-size: 13px;
+          margin: 16px 0;
+        }
+
+        .btn {
+          padding: 6px 16px;
+          color: #fff;
+          background-color: #eb4724;
+          border-radius: 40px;
+        }
       }
     }
   }
-}
+
 </style>

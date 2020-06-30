@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "662544",
+      "name": "海报",
+      "font_class": "haibao",
+      "unicode": "e6c7",
+      "unicode_decimal": 59079
+    },
+    {
+      "icon_id": "1045078",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "2503442",
+      "name": "微信",
+      "font_class": "weixin1",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "3971581",
+      "name": "面对面扫码",
+      "font_class": "mianduimiansaoma",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
       "icon_id": "1357969",
       "name": "实线六边形",
       "font_class": "shixianliubianxing",

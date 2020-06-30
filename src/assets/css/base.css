@@ -27,11 +27,9 @@ html,
 body {
   height: 100%;
   width: 100%;
+  font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
-}
 
 a {
   text-decoration: none;
@@ -91,10 +89,12 @@ button {
   display: flex;
   align-items: center;
 }
+
 .text {
   font-size: 13px;
   color: #7d7c7c;
 }
+
 /* 小标签 */
 .tag {
   /* display: inline-block; */

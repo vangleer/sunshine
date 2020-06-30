@@ -18,9 +18,11 @@ import {
   NavBar,
   Cell,
   Progress,
-  Rate
+  Rate,
+  Divider
 } from 'vant'
 Vue.use(Rate)
+Vue.use(Divider)
 Vue.use(Tabs)
 Vue.use(Cell)
 Vue.use(Progress)

@@ -38,13 +38,13 @@
           <i class="iconfont icon-aixin"></i>
           <span>我的收藏</span>
         </p>
-         <p @click="$router.push('/achievment')">
+        <p @click="$router.push('/achievment')">
           <i class="iconfont icon-xunzhang1"></i>
           <span>成就与勋章</span>
         </p>
       </div>
       <div class="item items3">
-           <p @click="$router.push('/intergral')">
+        <p @click="$router.push('/intergral')">
           <i class="iconfont icon-integral"></i>
           <span>我的积分</span>
         </p>
@@ -57,11 +57,11 @@
     <!-- 弹出层底部 -->
 
     <div class="pop_bt">
-      <div>
+      <div @click="$router.push('/settings')">
         <i class="iconfont icon-shezhi"></i>
         <p>系统设置</p>
       </div>
-      <div>
+      <div @click="$router.push('/feedback')">
         <i class="iconfont icon-fankui"></i>
         <p>意见反馈</p>
       </div>

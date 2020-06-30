@@ -132,6 +132,19 @@ const routes = [{
     meta: {
       index: 15
     }
+  },
+  {
+    path: '/settings',
+    component: () => import('../views/Settings.vue'),
+    meta: {
+      index: 16
+    }
+  }, {
+    path: '/feedback',
+    component: () => import('../views/Feedback.vue'),
+    meta: {
+      index: 17
+    }
   }
 ]
 const router = new VueRouter({
