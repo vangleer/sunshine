@@ -127,7 +127,7 @@ const routes = [{
     }
   },
   {
-    path: '/invitefriends',
+    path: '/inviteFriends',
     component: () => import('../views/InviteFriends.vue'),
     meta: {
       index: 15
@@ -140,10 +140,73 @@ const routes = [{
       index: 16
     }
   }, {
-    path: '/feedback',
+    path: '/feedBack',
     component: () => import('../views/Feedback.vue'),
     meta: {
       index: 17
+    }
+  },
+  {
+    path: '/userData',
+    component: () => import('../views/UserData.vue'),
+    meta: {
+      index: 18
+    }
+  },
+  {
+    path: '/accountData',
+    component: () => import('../views/ZhanghaoData.vue'),
+    meta: {
+      index: 19
+    }
+  },
+  {
+    path: '/devotion',
+    component: () => import('../views/Devotion.vue'),
+    meta: {
+      index: 20
+    }
+  },
+  {
+    path: '/playMode',
+    component: () => import('../views/PlayMode.vue'),
+    meta: {
+      index: 21
+    }
+  },
+  {
+    path: '/hitList',
+    component: () => import('../views/HitList.vue'),
+    meta: {
+      index: 22
+    }
+  },
+  {
+    path: '/aboutUs',
+    component: () => import('../views/AboutUs.vue'),
+    meta: {
+      index: 23
+    }
+  },
+  {
+    path: '/serviceContract',
+    component: () => import('../views/ServiceContract.vue'),
+    meta: {
+      index: 24
+    }
+  },
+  {
+    path: '/privacyPolicy',
+    component: () => import('../views/PrivacyPolicy.vue'),
+    meta: {
+      index: 25
+    }
+  },
+  {
+    path: '/editUser',
+    component: () => import('../views/EditUser.vue'),
+    meta: {
+      index: 26
     }
   }
 ]

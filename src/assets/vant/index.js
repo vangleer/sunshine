@@ -19,9 +19,21 @@ import {
   Cell,
   Progress,
   Rate,
-  Divider
+  Field,
+  Divider,
+  Uploader,
+  Icon,
+  ActionSheet,
+  Picker,
+  DatetimePicker
 } from 'vant'
 Vue.use(Rate)
+Vue.use(DatetimePicker)
+Vue.use(Picker)
+Vue.use(ActionSheet)
+Vue.use(Icon)
+Vue.use(Uploader)
+Vue.use(Field)
 Vue.use(Divider)
 Vue.use(Tabs)
 Vue.use(Cell)

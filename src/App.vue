@@ -38,6 +38,16 @@
     .van-nav-bar__title {
       font-weight: 700;
     }
+
+    .van-uploader__upload {
+      width: 78px;
+      height: 78px;
+    }
+
+    .van-uploader__preview-image {
+      width: 78px;
+      height: 78px;
+    }
   }
 
   .left-enter {

@@ -32,55 +32,54 @@
         list: [{
             id: 1,
             title: '个人资料',
-            path: '/',
+            path: '/userData',
             data: ''
           },
           {
             id: 2,
             title: '账号信息',
-            path: '/',
+            path: '/accountData',
             data: ''
           },
           {
             id: 3,
             title: '什么是贡献者',
-            path: '/',
+            path: '/devotion',
             data: ''
           },
           {
             id: 4,
             title: '播放模式',
-            path: '/',
+            path: '/playMode',
             data: ''
           },
           {
             id: 5,
             title: '黑名单',
-            path: '/',
+            path: '/hitList',
             data: ''
           },
           {
             id: 6,
             title: '关于我们',
-            path: '/',
+            path: '/aboutUs',
             data: ''
           },
           {
             id: 7,
             title: '服务协议',
-            path: '/',
+            path: '/serviceContract',
             data: ''
           },
           {
             id: 8,
             title: '隐私条款',
-            path: '/',
+            path: '/privacyPolicy',
             data: ''
           },
           {
             id: 9,
             title: '清除缓存',
-            path: '/',
             data: ''
           }
         ]
