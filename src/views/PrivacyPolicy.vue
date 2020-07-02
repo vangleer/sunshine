@@ -75,7 +75,6 @@
     color: @blackCoor;
     font-size: @textSize14;
     line-height: 26px;
-
   }
 
 </style>
