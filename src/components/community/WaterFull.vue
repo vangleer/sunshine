@@ -82,7 +82,7 @@
         box-sizing: border-box;
         font-size: 0;
         justify-content: space-between;
-        background-color: #f5f8f9;
+        background-color: @grayBgColor;
         padding: 10px 5px;
 
         .water-sub {
@@ -95,7 +95,7 @@
             width: 100%;
             border-radius: 6px;
             overflow: hidden;
-            background-color: #FFFFFF;
+            background-color: @whiteColor;
             margin-bottom: 10px;
 
             .water-top {
@@ -113,7 +113,7 @@
 
                 .iconfont {
                   font-size: 10px;
-                  color: #fff;
+                  color: @whiteColor;
                 }
               }
 
@@ -126,7 +126,7 @@
                 font-size: 14px;
                 font-weight: 600;
                 line-height: 20px;
-                color: #333333;
+                color: @blackCoor;
                 span-align: justify;
                 margin: 10px;
                 .n-ellipsis(2);
@@ -137,7 +137,7 @@
               display: flex;
               justify-content: space-between;
               margin: 0 10px 10px 10px;
-              font-size: 24upx;
+              font-size: @textSize13;
 
               .water-bottom-item {
                 display: flex;
@@ -167,7 +167,7 @@
                 span {
                   line-height: 16px;
                   font-size: 12px;
-                  color: #333;
+                  color: @blackCoor;
                   margin-left: 7px;
                 }
 
@@ -198,8 +198,8 @@
 
       span {
         padding-top: 20px;
-        font-size: 12px;
-        color: #999;
+        font-size: @textSize13;
+        color: @deepColor;
       }
     }
   }

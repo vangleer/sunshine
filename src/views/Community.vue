@@ -106,7 +106,7 @@
   }
 
   .community {
-    background-color: #f9f9f9;
+    background-color: @grayBgColor;
   }
 
   .nav_cate {
@@ -119,19 +119,19 @@
       font-size: 16px;
       text-align: center;
       font-weight: 700;
-      color: #7d7d7e;
+      color: @deepColor;
     }
 
     .active {
       font-weight: 700;
-      color: #222;
+      color: @blackCoor;
     }
   }
 
   .swiper_box {
     width: 100%;
     height: 80vh;
-    background-color: #f9f9f9;
+    background-color: @grayBgColor;
 
     .swiper {
       width: 100%;

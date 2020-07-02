@@ -108,15 +108,15 @@
   }
 
   .tip {
-    padding: 12px;
-    font-size: 14px;
-    color: #8b8f92;
+    padding: @padding12;
+    font-size: @textSize14;
+    color: @deepColor;
   }
 
   .title {
     padding: 12px;
-    background-color: #f8f8f8;
-    color: #8b8f92;
+    background-color: @grayBgColor;
+    color: @deepColor;
   }
 
   .type {
@@ -141,7 +141,7 @@
     .text_box {
       position: relative;
       padding: 0 12px;
-      background-color: #f9f9f9;
+      background-color: @grayBgColor;
       height: 260px;
 
       textarea {
@@ -150,27 +150,27 @@
         resize: none;
         height: 100%;
         border-radius: 10px;
-        padding: 12px;
-        color: #939191;
+        padding: @padding12;
+        color: @grayColor;
         font-size: 14px;
       }
     }
 
     .img_box {
-      padding: 12px;
+      padding: @padding12;
     }
 
     .num {
       position: absolute;
       right: 24px;
       bottom: 18px;
-      color: #d2d2d2;
+      color: @grayColor;
       font-size: 14px;
       font-weight: 700;
     }
 
     .num2 {
-      color: #d2d2d2;
+      color: @grayColor;
       font-size: 14px;
       font-weight: 700;
     }

@@ -89,8 +89,8 @@
 
 <style lang="less" scoped>
   .no_more {
-    font-size: 15px;
-    color: #929292;
+    font-size: @textSize15;
+    color: @deepColor;
     text-align: center;
     padding-top: 150px;
   }
@@ -102,7 +102,7 @@
     .item {
       width: 100%;
       padding: 15px;
-      background-color: #fff;
+      background-color: @whiteColor;
       margin-top: 10px;
 
       .user {
@@ -118,17 +118,17 @@
         }
 
         .username {
-          margin-left: 10px;
+          margin-left: @margin10;
         }
       }
 
       .skill {
-        font-size: 15px;
-        color: #222;
-        margin-top: 10px;
+        font-size: @textSize15;
+        color: @blackCoor;
+        margin-top: @margin10;
 
         span {
-          color: #f8d974;
+          color: @yelColor;
           margin-right: 5px;
         }
       }
@@ -136,12 +136,12 @@
   }
 
   .play_box {
-    font-size: 14px;
+    font-size: @textSize14;
 
     .v_item {
       width: 100%;
       height: 330px;
-      margin: 10px 0;
+      margin: @margin10 0;
     }
 
     .item_src {
@@ -168,12 +168,12 @@
     .num {
       color: #525659;
       padding: 8px 0;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid @borderColor;
     }
 
     .comment {
       .look_com {
-        color: #85838b;
+        color: @deepColor;
         margin: 8px 0;
       }
 
@@ -187,7 +187,7 @@
           width: 100%;
           height: 35px;
           border-radius: 5px;
-          background-color: #f3f3f3;
+          background-color: @grayBgColor;
           font-size: 8px;
           padding-left: 30px;
         }
@@ -197,7 +197,7 @@
           top: 50%;
           left: 8px;
           transform: translateY(-40%);
-          color: #c6c4c4;
+          color: @grayColor;
         }
       }
     }

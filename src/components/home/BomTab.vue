@@ -69,8 +69,8 @@
 
 <style lang="less" scoped>
   .bg_black {
-    background-color: #161616;
-    color: #d1d1d1;
+    background-color: @blackCoor;
+    color: @grayColor;
 
     .active {
       color: #fff;
@@ -79,10 +79,10 @@
 
   .bg_white {
     background-color: #fff;
-    color: #696b6c;
+    color: @deepColor;
 
     .active {
-      color: #222;
+      color: @blackCoor;
     }
   }
 
@@ -91,12 +91,12 @@
     width: 35px;
     height: 30px;
     border-radius: 6px;
-    background-color: #ec5d35;
+    background-color: @themeColor1;
     margin-top: -3px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     .icon-add {
-      color: #fff;
+      color: @whiteColor;
       font-weight: 700;
     }
   }
@@ -110,20 +110,20 @@
     padding-top: 15px;
     padding-bottom: 3px;
     width: 100%;
-    font-size: 15px;
+    font-size: @textSize15;
     height: 50px;
 
     // background-color: red;
     .item {
       position: relative;
       font-weight: 500;
-      font-size: 16px;
+      font-size: @textSize16;
       // padding-bottom: 20px;
     }
 
     .active {
       font-weight: 700;
-      font-size: 16px;
+      font-size: @textSize16;
 
       &::after {
         content: '';
@@ -133,7 +133,7 @@
         transform: translateX(-50%);
         width: 18px;
         height: 3px;
-        background-color: #fc3530;
+        background-color: @themeColor2;
         border-radius: 3px;
       }
     }

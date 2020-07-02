@@ -93,8 +93,8 @@
   .content {
     width: 100%;
     height: 93vh;
-    padding-top: 12px;
-    background-color: #f9f9f9;
+    padding-top: @padding12;
+    background-color: @grayBgColor;
   }
 
   .list {
@@ -103,24 +103,24 @@
 
     .item {
       display: flex;
-      padding: 0 12px;
+      padding: 0 @padding12;
       height: 42px;
       justify-content: space-between;
       align-items: center;
 
       .tit {
-        font-size: 15px;
+        font-size: @textSize15;
       }
 
       .right {
-        color: #9d9d9d;
+        color: @deepColor;
       }
     }
 
     .logout {
-      color: #ed4e33;
+      color: @themeColor1;
       font-weight: 700;
-      border-top: 1px solid #eee;
+      border-top: 1px solid @borderColor;
       // padding-top: 16px;
       height: 56px;
     }

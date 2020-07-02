@@ -4,10 +4,10 @@
     <van-nav-bar title="难度调整" left-arrow @click-left="$router.back()" />
     <div class="swipe_box">
       <van-swipe class="my-swipe" indicator-color="white">
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt=""/></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt=""/></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt=""/></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt=""/></van-swipe-item>
+        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
+        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
+        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
+        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
       </van-swipe>
       <!-- 级别 -->
       <div class="jibie">
@@ -38,102 +38,118 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {}
+  export default {
+    data() {
+      return {}
+    }
   }
-}
+
 </script>
 
 <style lang="less" scoped>
-.swipe_box {
-  width: 100%;
-  padding: 10px 0;
-  background-color: #f9f9f9;
-  height: 380px;
-  img {
+  .swipe_box {
     width: 100%;
-    height: 250px;
-  }
-  .jibie {
-    position: relative;
-    margin-top: 10px;
-    width: 100%;
-    height: 4px;
-    background-color: #e5481f;
-    &::before,
-    &::after {
-      top: -3px;
-      //   transform: translate(-50%);
-      position: absolute;
-      content: '';
-      width: 12px;
-      height: 12px;
-      background-color: #e5481f;
-      border-radius: 50%;
+    padding: 10px 0;
+    background-color: @grayBgColor;
+    height: 380px;
+
+    img {
+      width: 100%;
+      height: 250px;
     }
-    &::after {
-      right: 0;
-    }
-    .item {
+
+    .jibie {
       position: relative;
-      padding-top: 16px;
-      text-align: center;
-      &::before {
+      margin-top: 10px;
+      width: 100%;
+      height: 4px;
+      background-color: @themeColor2;
+
+      &::before,
+      &::after {
         top: -3px;
-        left: 50%;
-        transform: translate(-50%);
+        //   transform: translate(-50%);
         position: absolute;
         content: '';
         width: 12px;
         height: 12px;
-        background-color: #e5481f;
+        background-color: @themeColor2;
         border-radius: 50%;
       }
-      position: relative;
+
+      &::after {
+        right: 0;
+      }
+
+      .item {
+        position: relative;
+        padding-top: 16px;
+        text-align: center;
+
+        &::before {
+          top: -3px;
+          left: 50%;
+          transform: translate(-50%);
+          position: absolute;
+          content: '';
+          width: 12px;
+          height: 12px;
+          background-color: @themeColor2;
+          border-radius: 50%;
+        }
+
+        position: relative;
+      }
+    }
+
+    .kaoshi {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+
+      span {
+        display: inline-block;
+        background-color: @yelColor;
+        color: #fff;
+        border-radius: 5px;
+        padding: 6px 10px;
+      }
     }
   }
-  .kaoshi {
+
+  .btn {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 88%;
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+    color: #fff;
+    border-radius: 20px;
+    background-color: @themeColor2;
+  }
+
+  .fit {
     display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    span {
-      display: inline-block;
-      background-color: #ffbc20;
-      color: #fff;
-      border-radius: 5px;
-      padding: 6px 10px;
+    padding: 12px;
+
+    .list {
+      margin-left: 20px;
+    }
+
+    p {
+      color: @lightBlack;
+      margin-bottom: 8px;
+      font-size: 14px;
     }
   }
-}
-.btn {
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translate(-50%);
-  width: 88%;
-  height: 42px;
-  text-align: center;
-  line-height: 42px;
-  color: #fff;
-  border-radius: 20px;
-  background-color: #e64626;
-}
-.fit {
-  display: flex;
-  padding: 12px;
-  .list {
-    margin-left: 20px;
-  }
-  p {
-    color: #646464;
-    margin-bottom: 8px;
+
+  .done {
+    padding: 12px;
+    color: @lightBlack;
     font-size: 14px;
   }
-}
-.done {
-  padding: 12px;
-  color: #646464;
-  font-size: 14px;
-}
+
 </style>

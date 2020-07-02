@@ -31,7 +31,7 @@
     overflow-x: hidden;
 
     .van-nav-bar .van-icon {
-      color: #222;
+      color: @blackCoor;
       font-weight: 700;
     }
 

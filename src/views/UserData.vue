@@ -8,7 +8,7 @@
       <div class="icon_box flex_center">
         <!-- <div class="icon flex_center"></div> -->
         <div class="user_icon" v-if="imgUrl">
-          <img :src="imgUrl" alt="">
+          <img :src="imgUrl" alt="" />
         </div>
         <van-uploader v-else :after-read="handleReadAfter">
           <van-button class="flex_center" style="height:100px;width:100px;" round type="plain">
@@ -23,13 +23,13 @@
         <div class="title">我的信息</div>
         <div class="list">
           <van-cell title="昵称" :value="userInfo.nickname" is-link
-            @click="changeRouter({path:'/editUser',title:'昵称',info:userInfo.nickname})" />
-          <van-cell title="性别" :value="userInfo.gender" is-link @click="showSex=true" />
-          <van-cell title="身份" :value="userInfo.identity" @click="showIdentity=true" is-link />
-          <van-cell title="生日" :value="userInfo.birthday" is-link @click="showBirthday=true" />
-          <van-cell title="地区" :value="userInfo.city" is-link @click="showCity=true" />
+            @click="changeRouter({ path: '/editUser', title: '昵称', info: userInfo.nickname })" />
+          <van-cell title="性别" :value="userInfo.gender" is-link @click="showSex = true" />
+          <van-cell title="身份" :value="userInfo.identity" @click="showIdentity = true" is-link />
+          <van-cell title="生日" :value="userInfo.birthday" is-link @click="showBirthday = true" />
+          <van-cell title="地区" :value="userInfo.city" is-link @click="showCity = true" />
           <van-cell title="个性签名" :value="userInfo.signature" is-link
-            @click="changeRouter({path:'/editUser',title:'个性签名',info:userInfo.signature})" />
+            @click="changeRouter({ path: '/editUser', title: '个性签名', info: userInfo.signature })" />
         </div>
       </div>
     </div>
@@ -44,12 +44,12 @@
     <!-- 生日选择 -->
     <van-popup v-model="showBirthday" position="bottom">
       <van-datetime-picker v-model="currentDate" type="date" title="选择年月日" :min-date="minDate" :max-date="maxDate"
-        @confirm="handleBirthConfirm" @cancel="showBirthday=false" />
+        @confirm="handleBirthConfirm" @cancel="showBirthday = false" />
     </van-popup>
 
     <!-- 地区选择 -->
     <van-popup v-model="showCity" position="bottom">
-      <van-picker show-toolbar :columns="areaList" @confirm="onConfirm" @cancel="showCity=false" />
+      <van-picker show-toolbar :columns="areaList" @confirm="onConfirm" @cancel="showCity = false" />
     </van-popup>
   </div>
 </template>
@@ -76,18 +76,23 @@
         areaList: {},
         // 所有性别
         sexActions: [{
-          name: '男'
-        }, {
-          name: '女'
-        }, {
-          name: '不显示'
-        }],
+            name: '男'
+          },
+          {
+            name: '女'
+          },
+          {
+            name: '不显示'
+          }
+        ],
         // 所有身份
         identityAction: [{
-          name: '上班族'
-        }, {
-          name: '上学'
-        }],
+            name: '上班族'
+          },
+          {
+            name: '上学'
+          }
+        ],
         minDate: new Date(1970, 0, 1), // 最小时间
         maxDate: new Date(), // 最大时间
         currentDate: '', // 当前时间
@@ -131,7 +136,10 @@
       handleBirthConfirm(date) {
         const y = date.getFullYear()
         const m = (date.getMonth() + 1).toString().padStart(2, '0')
-        const d = date.getDate().toString().padStart(2, '0')
+        const d = date
+          .getDate()
+          .toString()
+          .padStart(2, '0')
         const full = `${y}-${m}-${d}`
         this.userInfo.birthday = full
         console.log(full)
@@ -147,7 +155,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: #fafafa;
+    background-color: @grayBgColor;
   }
 
   .icon_box {
@@ -201,7 +209,7 @@
 
     .title {
       padding: 12px;
-      background-color: #fafafa;
+      background-color: @grayBgColor;
     }
   }
 

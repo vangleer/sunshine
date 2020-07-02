@@ -252,7 +252,7 @@
     .swiper-item {
       width: 100%;
       // height: 100%;
-      background-color: #fc3530;
+      background-color: @themeColor2;
     }
 
     .swipe_img {

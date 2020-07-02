@@ -87,7 +87,7 @@
     .list2 {
       flex-wrap: wrap;
       background-color: #f9f9f9;
-      padding: 10px;
+      padding: @padding10;
 
       .item {
         width: 48%;

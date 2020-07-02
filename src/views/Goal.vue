@@ -1,7 +1,7 @@
 <template>
   <div class="goal">
     <!-- 头部导航 -->
-    <van-nav-bar title="目标与数据" :border="false" :fixed="true" left-arrow @click-left="$router.back()" />
+    <van-nav-bar title="目标与数据" :border="false" :fixed="true" z-index="100" left-arrow @click-left="$router.back()" />
 
     <!-- 内容 -->
     <div class="content">
@@ -91,19 +91,19 @@
   }
 
   .content {
-    background-color: #f8f8f8;
-    padding: 12px;
+    background-color: @grayBgColor;
+    padding: @padding12;
   }
 
   .top {
     background-color: #fff;
     border-radius: 10px;
-    padding: 12px;
+    padding: @padding12;
 
     .icon_box {
       width: 50px;
       height: 50px;
-      background-color: #eee9ef;
+      background-color: @grayBgColor;
       border-radius: 50%;
       border: 3px solid #ed4129;
       margin-right: 10px;
@@ -125,7 +125,7 @@
       content: '';
       width: 2px;
       height: 16px;
-      background-color: #a6a6a6;
+      background-color: @grayColor;
     }
 
     margin-top: 16px;
@@ -149,12 +149,12 @@
     .title {
       font-size: 17px;
       font-weight: 700;
-      color: #222;
-      padding: 12px;
+      color: @blackCoor;
+      padding: @padding12;
     }
 
     .item {
-      padding: 12px;
+      padding: @padding12;
 
       p {
         margin: 16px 0;
@@ -165,8 +165,8 @@
   .inc {
     width: 100%;
     overflow: scroll-x;
-    background-color: #f8f8f8;
-    padding: 12px;
+    background-color: @grayBgColor;
+    padding: @padding12;
 
     .tit {
       font-size: 18px;
@@ -195,7 +195,7 @@
         .btn {
           padding: 6px 16px;
           color: #fff;
-          background-color: #eb4724;
+          background-color: @themeColor2;
           border-radius: 40px;
         }
       }

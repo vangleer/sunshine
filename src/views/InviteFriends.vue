@@ -80,9 +80,9 @@
     .right {
       padding: 3px 10px 4px 14px;
       border-radius: 30px 0 0 30px;
-      background-color: #fc5a71;
+      background-color: @themeColor2;
       color: #fff;
-      font-size: 14px;
+      font-size: @textSize14;
     }
   }
 
@@ -100,7 +100,7 @@
       width: 100%;
       height: 46px;
       border-radius: 46px;
-      background-color: #f6b922;
+      background-color: @yelColor;
       color: #fff;
       font-size: 18px;
       font-weight: 700;
@@ -122,10 +122,10 @@
         border-radius: 36px;
         border: 1px solid #fff;
         color: #fff;
-        font-size: 15px;
+        font-size: @textSize15;
 
         .iconfont {
-          font-size: 14px;
+          font-size: @textSize14;
           padding-right: 3px;
         }
 
@@ -168,7 +168,7 @@
           transform: translateX(-50%);
           width: 120px;
           height: 28px;
-          background-color: #ff6b6f;
+          background-color: @themeColor2;
           border-radius: 0 0 22px 22px;
           color: #fff;
 
@@ -203,8 +203,8 @@
 
     .bom {
       width: 100%;
-      padding: 12px;
-      font-size: 13px;
+      padding: @padding12;
+      font-size: @textSize13;
       color: #c5a888;
 
       .item {

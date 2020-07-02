@@ -87,7 +87,7 @@
   }
 
   .integral {
-    background-color: #f8f8f8;
+    background-color: @grayBgColor;
   }
 
   .nav_bar {
@@ -121,7 +121,7 @@
 
   .nav2 {
     background-color: #fff;
-    color: #222;
+    color: @blackCoor;
   }
 
   .top {
@@ -152,13 +152,13 @@
 
       .iconfont {
         font-size: 20px;
-        color: #d8b87b;
+        color: @yelColor;
       }
 
       .text {
         font-size: 40px;
         font-weight: 700;
-        color: #d8b87b;
+        color: @yelColor;
       }
     }
 
@@ -176,7 +176,7 @@
   }
 
   .integral_list {
-    padding: 12px;
+    padding: @padding12;
 
     .item {
       margin-bottom: 16px;
@@ -188,7 +188,11 @@
         padding: 15px;
         background-color: #fff;
         font-weight: 700;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid @borderColor;
+      }
+
+      .van-cell {
+        padding: 15px;
       }
 
       .btn {
@@ -199,7 +203,7 @@
         line-height: 28px;
         border-radius: 20px;
         color: #fff;
-        background-color: #dbb77d;
+        background-color: @yelColor;
       }
     }
   }

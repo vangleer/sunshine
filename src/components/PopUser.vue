@@ -88,7 +88,7 @@
       position: relative;
       width: 100%;
       height: 120px;
-      padding: 12px;
+      padding: @padding12;
 
       .user_icon {
         display: flex;
@@ -97,21 +97,21 @@
           width: 70px;
           height: 70px;
           border-radius: 50%;
-          background-color: #eee9ef;
+          background-color: @grayBgColor;
         }
 
         .iconfont {
           font-size: 30px;
           line-height: 70px;
-          color: #fff;
+          color: @whiteColor;
           // color: #fff;
         }
       }
 
       .user_name {
-        font-size: 18px;
+        font-size: @titleSize;
         font-weight: 700;
-        margin-left: 10px;
+        margin-left: @margin10;
       }
 
       .go_profile {
@@ -132,24 +132,24 @@
         justify-content: space-between;
         height: 24px;
         width: 100%;
-        padding: 12px;
+        padding: @padding12;
 
         p {
           height: 20px;
           padding: 8px 10px;
           border-radius: 5px;
           line-height: 3px;
-          font-size: 13px;
+          font-size: @textSize13;
         }
 
         p:nth-child(1) {
           background-color: #f4c5b9;
-          color: #fd410e;
+          color: @themeColor2;
         }
 
         p:nth-child(2) {
           background-color: #faebbe;
-          color: #f5b904;
+          color: @yelColor;
         }
       }
     }
@@ -169,13 +169,13 @@
           align-items: center;
 
           .iconfont {
-            font-size: 26px;
+            font-size: @iconSize;
           }
 
           span {
             display: inline-block;
-            margin-left: 12px;
-            font-size: 16px;
+            margin-left: @margin12;
+            font-size: @textSize16;
           }
         }
       }
@@ -194,12 +194,12 @@
         text-align: center;
 
         .iconfont {
-          font-size: 26px;
+          font-size: @iconSize;
         }
 
         p {
-          margin-top: 10px;
-          font-size: 16px;
+          margin-top: @margin10;
+          font-size: @textSize16;
         }
       }
     }

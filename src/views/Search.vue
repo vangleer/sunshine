@@ -45,10 +45,10 @@
   .search_page {
     height: 100vh;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: @grayBgColor;
 
     input {
-      caret-color: #f94d09;
+      caret-color: @themeColor2;
     }
 
     .van-search__content {
@@ -56,7 +56,7 @@
     }
 
     .van-search__action {
-      color: #f94d09;
+      color: @themeColor2;
     }
 
     .search_cate {
@@ -68,12 +68,12 @@
         position: relative;
         padding: 12px;
         font-size: 14px;
-        color: #918885;
+        color: @grayColor;
         font-weight: 700;
       }
 
       span.active {
-        color: #000;
+        color: @blackCoor;
         font-weight: 700;
       }
 
@@ -84,7 +84,7 @@
         right: 0;
         width: 1px;
         height: 10px;
-        background-color: #918885;
+        background-color: @grayColor;
       }
     }
   }

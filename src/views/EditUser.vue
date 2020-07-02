@@ -41,14 +41,14 @@
 
 <style lang="less" scoped>
   .edit {
-    background-color: #f9f9f9;
+    background-color: @grayBgColor;
     width: 100%;
     height: 100vh;
   }
 
   .content {
     position: relative;
-    margin-top: 10px;
+    margin-top: @margin10;
     height: 120px;
 
     textarea {
@@ -57,17 +57,17 @@
       resize: none;
       height: 100%;
       // border-radius: 10px;
-      padding: 12px;
-      color: #21242b;
-      font-size: 14px;
+      padding: @padding12;
+      color: @blackCoor;
+      font-size: @textSize14;
     }
 
     .num {
       position: absolute;
       right: 24px;
-      bottom: 10px;
-      color: #d2d2d2;
-      font-size: 14px;
+      bottom: @margin10;
+      color: @grayColor;
+      font-size: @textSize14;
       font-weight: 700;
     }
   }

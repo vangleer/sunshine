@@ -16,45 +16,50 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {}
-  },
-  computed: {
-    showText() {
-      return this.$store.state.homeData.isShowText
-    }
-  },
-  methods: {
-    showTextClick() {
-      this.$store.commit('showText')
+  export default {
+    data() {
+      return {}
+    },
+    computed: {
+      showText() {
+        return this.$store.state.homeData.isShowText
+      }
+    },
+    methods: {
+      showTextClick() {
+        this.$store.commit('showText')
+      }
     }
   }
-}
+
 </script>
 
 <style lang="less" scoped>
-.aside_nav {
-  position: absolute;
+  .aside_nav {
+    position: absolute;
 
-  right: 0;
-  bottom: 100px;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  z-index: 3;
-  width: 66px;
-  height: 260px;
-  padding: 12px;
-  .iconfont {
-    font-size: 32px;
+    right: 0;
+    bottom: 100px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    z-index: 3;
+    width: 66px;
+    height: 260px;
+    padding: @padding12;
+
+    .iconfont {
+      font-size: @iconSize;
+    }
+
+    img {
+      width: 30px;
+      margin-top: -8px;
+    }
+
+    p {
+      font-size: @textSize13;
+    }
   }
-  img {
-    width: 30px;
-    margin-top: -8px;
-  }
-  p {
-    font-size: 13px;
-  }
-}
+
 </style>

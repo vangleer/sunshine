@@ -26,7 +26,7 @@
     height: 100%;
     border-radius: 6px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: @margin10;
 
     .item_src {
       width: 100%;

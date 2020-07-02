@@ -75,20 +75,20 @@
 
 <style lang="less">
   .normal-color {
-    color: #222;
-    background-color: #fff;
+    color: @blackCoor;
+    background-color: @whiteColor;
 
     .active {
-      color: #222;
+      color: @blackCoor;
       font-weight: 700;
     }
   }
 
   .white-color {
-    color: #fff;
+    color: @whiteColor;
 
     .active {
-      color: #fff;
+      color: @whiteColor;
       font-weight: 500;
     }
   }
@@ -103,26 +103,27 @@
     align-items: center;
     height: 72px;
     width: 100%;
-    padding: 10px;
+    padding: @padding12;
 
     .avatar {
+
       .icon_box {
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background-color: #eee9ef;
+        background-color: @grayBgColor;
       }
 
       .iconfont {
-        font-size: 26px;
+        font-size: @iconSize;
         line-height: 50px;
-        color: #fff;
+        color: @whiteColor;
         // color: #fff;
       }
     }
 
     .search {
-      padding: 13px;
+      padding: @padding12;
       width: 49px;
       height: 49px;
 

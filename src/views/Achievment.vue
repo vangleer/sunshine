@@ -88,10 +88,10 @@
 
 <style lang="less" scoped>
   .achievments {
-    background-color: #f8f8f8;
+    background-color: @grayBgColor;
     width: 100%;
     height: 100vh;
-    padding: 12px;
+    padding: @padding12;
   }
 
   .info {
@@ -100,7 +100,7 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background-color: #eee9ef;
+      background-color: @grayBgColor;
 
       .iconfont {
         font-size: 36px;
@@ -111,24 +111,24 @@
     .right {
       h3 {
         font-size: 26px;
-        color: #3a3d46;
+        color: @lightBlack;
         text-align: center;
       }
 
       >div {
-        color: #55595c;
+        color: @deepColor;
         margin-top: 12px;
 
         .iconfont {
           font-size: 30px;
-          color: #ffd777;
+          color: @yelColor;
           font-weight: 700;
           padding-right: 12px;
         }
 
         .num {
           font-size: 30px;
-          color: #ffd777;
+          color: @yelColor;
           font-weight: 700;
           padding-left: 12px;
         }
@@ -164,19 +164,19 @@
       }
 
       .item:nth-child(1) {
-        color: #fa6048;
+        color: @themeColor2;
 
         span {
-          background-color: #fa6048;
+          background-color: @themeColor2;
 
         }
       }
 
       .item:nth-child(2) {
-        color: #fcc500;
+        color: @yelColor;
 
         span {
-          background-color: #fcc500;
+          background-color: @yelColor;
         }
       }
     }
@@ -188,7 +188,7 @@
     width: 100%;
     margin-top: 16px;
     border-radius: 12px;
-    border: 1px solid #eee;
+    border: 1px solid @borderColor;
     overflow: hidden;
     background-color: #fff;
     padding-top: 38px;
@@ -213,7 +213,7 @@
       transform: translate(-50%, -50%);
       width: 1px;
       height: 22px;
-      background-color: #f5f5f5;
+      background-color: @grayBgColor;
     }
 
     >div {
@@ -231,7 +231,7 @@
         width: 20px;
         height: 3px;
         border-radius: 3px;
-        background-color: #e64727;
+        background-color: @themeColor2;
       }
     }
   }
@@ -245,7 +245,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       width: 100%;
-      padding: 12px;
+      padding: @padding12;
 
       .item_p {
         position: relative;
@@ -262,7 +262,7 @@
 
         .text {
           margin-top: 16px;
-          color: #222;
+          color: @blackCoor;
         }
 
         .iconfont {

@@ -107,7 +107,7 @@
 
       .love {
         .iconfont {
-          color: #f04007;
+          color: @themeColor2;
         }
       }
     }
@@ -122,7 +122,7 @@
 
       p {
         margin-top: 6px;
-        font-size: 12px;
+        font-size: @textSize13;
       }
     }
   }

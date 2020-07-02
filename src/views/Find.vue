@@ -244,16 +244,24 @@
 <style lang="less" scoped>
   .find {
     width: 100%;
-    background-color: #f9f9f9;
+    background-color: @grayBgColor;
+  }
+
+  .van-search {
+    padding: 0 15px;
+
+    .van-field {
+      padding-left: 8px;
+    }
   }
 
   // 轮播图
   .swipe_box {
     width: 100%;
-    padding: 0 12px;
+    padding: 0 @padding12;
     border-radius: 10px;
     height: 150px;
-    margin-top: 10px;
+    margin-top: @margin10;
 
     .find_swipe {
       width: 100%;
@@ -289,8 +297,8 @@
       }
 
       .text {
-        font-size: 15px;
-        color: #222;
+        font-size: @textSize15;
+        color: @blackCoor;
       }
     }
 
@@ -332,7 +340,7 @@
       width: 100%;
       height: 260px;
       padding: 12px;
-      background-color: #7895cd;
+      background-color: @purpleColor;
       border-radius: 12px;
       color: #fff;
 
@@ -345,7 +353,7 @@
 
         .iconfont {
           font-size: 26px;
-          color: #fa9721;
+          color: @yelColor;
           font-weight: 700;
         }
       }
@@ -375,7 +383,7 @@
         .btn {
           width: 160px;
           margin: 16px auto;
-          background-color: #f07043;
+          background-color: @themeColor1;
           color: #fff;
           border: 0;
         }
@@ -385,17 +393,17 @@
 
   // 推荐练习
   .practice {
-    padding: 0 12px;
+    padding: 0 @padding12;
 
     .iconfont {
-      color: #8a8989;
+      color: @deepColor;
     }
 
     .list {
       .p_item {
         width: 100%;
         height: 100px;
-        padding: 12px;
+        padding: @padding12;
         background-color: #fff;
         border-radius: 10px;
         margin-bottom: 12px;
@@ -437,7 +445,7 @@
 
       .tool {
         font-size: 12px;
-        color: #bab8b8;
+        color: @grayColor;
 
         .icon {
           width: 20px;
@@ -513,7 +521,7 @@
     border: 1px solid #949494;
     font-size: 14px;
     font-weight: bold;
-    color: #2e2d32;
+    color: @blackCoor;
     text-align: center;
   }
 
@@ -530,7 +538,7 @@
   .btn_p {
     padding: 4px 16px;
     border-radius: 26px;
-    background-color: #f06b40;
+    background-color: @themeColor1;
     color: #fff;
     font-weight: 700;
   }
@@ -544,7 +552,7 @@
     }
 
     .text {
-      color: #222;
+      color: @blackCoor;
       margin-left: 8px;
     }
   }
@@ -552,8 +560,8 @@
   .practise_top {
     .right {
       .iconfont {
-        font-size: 26px;
-        color: #f06b40;
+        font-size: @iconSize;
+        color: @themeColor2;
         font-weight: 700;
         margin-right: 10px;
       }
@@ -568,7 +576,7 @@
 
     .num {
       margin: 0;
-      color: #848487;
+      color: @deepColor;
     }
   }
 
