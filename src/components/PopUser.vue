@@ -2,7 +2,7 @@
   <div class="pop_user">
     <!-- 弹出层头部 -->
     <div class="pop_hd">
-      <div class="user_icon">
+      <div class="user_icon" @click="$router.push('/user')">
         <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="70px">
           <div class="icon_box">
             <span class="iconfont icon-user"></span>

@@ -100,7 +100,7 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background-color: @grayBgColor;
+      background-color: #eee9ef;
 
       .iconfont {
         font-size: 36px;

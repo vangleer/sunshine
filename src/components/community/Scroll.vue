@@ -28,6 +28,7 @@
       // const self = this
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.scrollRef, {
+          click: true,
           // 上拉加载
           pullUpLoad: {
             // 当上拉距离超过30px时触发 pullingUp 事件
@@ -70,23 +71,28 @@
 <style lang="less" scoped>
   .scroll {
     width: 100%;
-    height: 80vh;
+    height: 75vh;
     position: relative;
-    padding-bottom: 80px;
+    // padding-bottom: 80px;
   }
 
   .load_icon {
     position: absolute;
     left: 50%;
-    top: -40px;
+    top: -60px;
     transform: translateX(-50%);
+    // background-color: #fff;
+  }
+
+  .load_box {
+    background-color: #fff;
   }
 
   .load_bom {
     display: flex;
     justify-content: center;
     position: relative;
-    bottom: 20px;
+    bottom: 8px;
     // left: 50%;
     // transform: translateX(-50%);
     // margin: 0 auto;

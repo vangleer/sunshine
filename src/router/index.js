@@ -208,6 +208,13 @@ const routes = [{
     meta: {
       index: 26
     }
+  },
+  {
+    path: '/user',
+    component: () => import('../views/User.vue'),
+    meta: {
+      index: 27
+    }
   }
 ]
 const router = new VueRouter({

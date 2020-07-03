@@ -19,7 +19,7 @@
     <!-- 内容 -->
     <!-- <PullRefresh> -->
     <div class="content">
-      <van-swipe ref="swiperRef" class="atten_swipe" :show-indicators="false" @change="handleChange">
+      <van-swipe ref="swiperRef" class="atten_swipe" :loop="false" :show-indicators="false" @change="handleChange">
         <van-swipe-item>
           <Attention></Attention>
         </van-swipe-item>
@@ -27,7 +27,7 @@
           <WorkArea></WorkArea>
         </van-swipe-item>
         <van-swipe-item>
-          <Attention></Attention>
+          <TallyBook></TallyBook>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -40,12 +40,14 @@
   // import PullRefresh from '../components/PullRefresh'
   import Attention from '../components/community/Attention'
   import WorkArea from '../components/community/WorkArea'
+  import TallyBook from '../components/community/TallyBook'
   export default {
     components: {
       'home-header': Header,
       // PullRefresh,
       Attention,
-      WorkArea
+      WorkArea,
+      TallyBook
     },
     data() {
       return {
@@ -107,6 +109,7 @@
 
   .community {
     background-color: @grayBgColor;
+    // padding-bottom: 80px;
   }
 
   .nav_cate {

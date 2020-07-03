@@ -13,6 +13,13 @@
             <span class="iconfont icon-you"></span>
           </div>
         </div>
+        <!-- 清除缓存 -->
+        <div class="item" @click="clearBuffer">
+          <div class="tit">清除缓存</div>
+          <div class="right">{{bufferData}}
+            <span class="iconfont icon-you"></span>
+          </div>
+        </div>
         <!-- 退出登录 -->
         <div class="item logout">退出登录</div>
       </div>
@@ -29,6 +36,7 @@
   export default {
     data() {
       return {
+        buffer: 156321,
         list: [{
             id: 1,
             title: '个人资料',
@@ -76,13 +84,20 @@
             title: '隐私条款',
             path: '/privacyPolicy',
             data: ''
-          },
-          {
-            id: 9,
-            title: '清除缓存',
-            data: ''
           }
         ]
+      }
+    },
+    computed: {
+      bufferData() {
+        if (!this.buffer) return ''
+        return parseInt(this.buffer / 1024) + ' m'
+      }
+    },
+    methods: {
+      // 清除缓存
+      clearBuffer() {
+        this.buffer = 0
       }
     }
   }
