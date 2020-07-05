@@ -14,8 +14,8 @@
           <!-- 目标 -->
           <div class="goal tit">这是我的目标</div>
           <!-- 视频区 -->
-          <div class="play_list">
-            <div class="v_item" v-for="index2 in 4" :key="index2">
+          <div class="play_list" @touchstart.stop>
+            <div class="v_item" v-for="index2 in 6" :key="index2">
               <VideoBox></VideoBox>
             </div>
           </div>
@@ -31,92 +31,91 @@
 </template>
 
 <script>
-  import VideoBox from '../VideoBox'
-  import MyScroll from './Scroll'
-  export default {
-    components: {
-      VideoBox,
-      MyScroll
-    },
-    mounted() {
-
-    },
-    data() {
-      return {
-        bookScroll: null
-      }
+import VideoBox from '../VideoBox'
+import MyScroll from './Scroll'
+export default {
+  components: {
+    VideoBox,
+    MyScroll
+  },
+  mounted() {},
+  data() {
+    return {
+      bookScroll: null
     }
   }
-
+}
 </script>
 
 <style lang="less" scoped>
-  .tally_book {
-    width: 100%;
+.tally_book {
+  width: 100%;
 
-    .list {
-      width: 100%;
-      padding-bottom: 20px;
+  .list {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+}
+
+.accumulated {
+  margin-top: 10px;
+}
+
+.item {
+  width: 100%;
+  // height: 300rpx;
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 12px;
+
+  .top {
+    height: 50px;
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .tit {
+      margin: 0 10px;
+    }
+
+    .nic {
+      font-size: 16px;
+      color: #ffdb7c;
+      font-weight: 700;
     }
   }
 
-  .accumulated {
-    margin-top: 10px;
+  .goal {
+    margin: 8px 0;
   }
 
-  .item {
-    width: 100%;
-    // height: 300rpx;
+  .play_list {
+    // width: 100vw;
+    display: flex;
+    //   width: 150%;
     background-color: #fff;
-    margin-top: 10px;
-    padding: 12px;
+    overflow: auto;
 
-    .top {
-      height: 50px;
-
-      .icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-
-      .tit {
-        margin: 0 10px;
-      }
-
-      .nic {
-        font-size: 16px;
-        color: #ffdb7c;
-        font-weight: 700;
-      }
-    }
-
-    .goal {
-      margin: 8px 0;
-    }
-
-    .play_list {
-      display: flex;
-      width: 150%;
-      background-color: #fff;
-
-      .v_item {
-        width: 80px;
-        height: 110px;
-        margin-right: 10px;
-      }
-    }
-
-    .wrapper {
-      width: 100vw;
-      background-color: #fff;
-    }
-
-    .kouyu {
-      font-size: 13px;
-      color: #acabb2;
+    .v_item {
+      flex: none;
+      width: 80px;
+      height: 110px;
       margin-right: 10px;
     }
   }
 
+  .wrapper {
+    width: 100vw;
+    background-color: #fff;
+  }
+
+  .kouyu {
+    font-size: 13px;
+    color: #acabb2;
+    margin-right: 10px;
+  }
+}
 </style>
