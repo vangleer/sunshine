@@ -215,6 +215,34 @@ const routes = [{
     meta: {
       index: 27
     }
+  },
+  {
+    path: '/topic',
+    component: () => import('../views/Topic.vue'),
+    meta: {
+      index: 28
+    }
+  },
+  {
+    path: '/introduction',
+    component: () => import('../views/Introduction.vue'),
+    meta: {
+      index: 29
+    }
+  },
+  {
+    path: '/vocabulary',
+    component: () => import('../views/Vocabulary.vue'),
+    meta: {
+      index: 30
+    }
+  },
+  {
+    path: '/phrase',
+    component: () => import('../views/Phrase.vue'),
+    meta: {
+      index: 31
+    }
   }
 ]
 const router = new VueRouter({

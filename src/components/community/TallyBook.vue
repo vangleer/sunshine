@@ -31,91 +31,94 @@
 </template>
 
 <script>
-import VideoBox from '../VideoBox'
-import MyScroll from './Scroll'
-export default {
-  components: {
-    VideoBox,
-    MyScroll
-  },
-  mounted() {},
-  data() {
-    return {
-      bookScroll: null
+  import VideoBox from '../VideoBox'
+  import MyScroll from './Scroll'
+  export default {
+    components: {
+      VideoBox,
+      MyScroll
+    },
+    mounted() {},
+    data() {
+      return {
+        bookScroll: null
+      }
     }
   }
-}
+
 </script>
 
 <style lang="less" scoped>
-.tally_book {
-  width: 100%;
-
-  .list {
+  .tally_book {
     width: 100%;
-    padding-bottom: 20px;
-  }
-}
 
-.accumulated {
-  margin-top: 10px;
-}
-
-.item {
-  width: 100%;
-  // height: 300rpx;
-  background-color: #fff;
-  margin-top: 10px;
-  padding: 12px;
-
-  .top {
-    height: 50px;
-
-    .icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    .tit {
-      margin: 0 10px;
-    }
-
-    .nic {
-      font-size: 16px;
-      color: #ffdb7c;
-      font-weight: 700;
+    .list {
+      width: 100%;
+      padding-bottom: 20px;
     }
   }
 
-  .goal {
-    margin: 8px 0;
+  .accumulated {
+    margin-top: 10px;
   }
 
-  .play_list {
-    // width: 100vw;
-    display: flex;
-    //   width: 150%;
+  .item {
+    width: 100%;
+    // height: 300rpx;
     background-color: #fff;
-    overflow: auto;
+    margin-top: 10px;
+    padding: 12px;
 
-    .v_item {
-      flex: none;
-      width: 80px;
-      height: 110px;
+    .top {
+      height: 50px;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .tit {
+        margin: 0 10px;
+      }
+
+      .nic {
+        font-size: 16px;
+        color: #ffdb7c;
+        font-weight: 700;
+      }
+    }
+
+    .goal {
+      margin: 8px 0;
+    }
+
+    .play_list {
+      // width: 100vw;
+      display: flex;
+      //   width: 150%;
+      background-color: #fff;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      .v_item {
+        flex: none;
+        width: 80px;
+        height: 110px;
+        margin-right: 10px;
+      }
+    }
+
+    .wrapper {
+      width: 100vw;
+      background-color: #fff;
+    }
+
+    .kouyu {
+      font-size: 13px;
+      color: #acabb2;
       margin-right: 10px;
     }
   }
 
-  .wrapper {
-    width: 100vw;
-    background-color: #fff;
-  }
-
-  .kouyu {
-    font-size: 13px;
-    color: #acabb2;
-    margin-right: 10px;
-  }
-}
 </style>

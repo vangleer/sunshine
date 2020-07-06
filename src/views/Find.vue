@@ -3,7 +3,8 @@
   <div class="find pd_up">
     <!-- 头部导航 -->
     <home-header :isSearch="false">
-      <van-search @focus="$router.push('/search')" shape="round" style="width: 80%;margin-top: 6px;" placeholder="搜索词汇/话题/用户">
+      <van-search @focus="$router.push('/search')" shape="round" style="width: 80%;margin-top: 6px;"
+        placeholder="搜索词汇/话题/用户">
         <template v-slot:left-icon>
           <span class="iconfont icon-search"></span>
         </template>
@@ -17,32 +18,32 @@
           <van-swipe-item>
             <img src="../assets/images/study1.jpg" alt="" />
           </van-swipe-item>
-          <van-swipe-item><img src="../assets/images/study2.jpg" alt=""/></van-swipe-item>
-          <van-swipe-item><img src="../assets/images/study3.png" alt=""/></van-swipe-item>
+          <van-swipe-item><img src="../assets/images/study2.jpg" alt="" /></van-swipe-item>
+          <van-swipe-item><img src="../assets/images/study3.png" alt="" /></van-swipe-item>
         </van-swipe>
       </div>
 
       <!-- 导航链接 -->
       <div class="nav_link flex_bea">
-        <div class="link topic flex_bea">
+        <div class="link topic flex_bea" @click="$router.push('/topic')">
           <div class="icon flex_center">
             <span class="iconfont icon-huati"></span>
           </div>
           <div class="text">话题</div>
         </div>
-        <div class="link primer flex_bea">
+        <div class="link primer flex_bea" @click="$router.push('/introduction')">
           <div class="icon flex_center">
             <span class="iconfont icon-gongandunpai"></span>
           </div>
           <div class="text">入门</div>
         </div>
-        <div class="link vocabulary flex_bea">
+        <div class="link vocabulary flex_bea" @click="$router.push('/vocabulary')">
           <div class="icon flex_center">
             <span class="iconfont icon-adn"></span>
           </div>
           <div class="text">词汇</div>
         </div>
-        <div class="link phrase flex_bea">
+        <div class="link phrase flex_bea" @click="$router.push('/phrase')">
           <div class="icon flex_center">
             <span class="iconfont icon-shuxingliebiaoxiangqing2"></span>
           </div>
@@ -146,7 +147,8 @@
             <div class="info">
               <div class="tit topic">english is an international language</div>
               <div class="tool flex_bea">
-                <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="" /> <span>大幂幂~~</span></p>
+                <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="" /> <span>大幂幂~~</span>
+                </p>
                 <p class="flex_align">
                   <span class="iconfont icon-xihuan"></span>
                   <span>12345</span>
@@ -209,357 +211,359 @@
 </template>
 
 <script>
-import Header from '../components/home/Header'
-import VideoBox from '../components/VideoBox.vue'
-export default {
-  components: {
-    'home-header': Header,
-    VideoBox
-  },
-  data() {
-    return {}
-  },
-  methods: {}
-}
+  import Header from '../components/home/Header'
+  import VideoBox from '../components/VideoBox.vue'
+  export default {
+    components: {
+      'home-header': Header,
+      VideoBox
+    },
+    data() {
+      return {}
+    },
+    methods: {}
+  }
+
 </script>
 
 <style lang="less" scoped>
-.find {
-  width: 100%;
-  background-color: @grayBgColor;
-}
-
-.van-search {
-  padding: 0 15px;
-
-  .van-field {
-    padding-left: 8px;
-  }
-}
-
-// 轮播图
-.swipe_box {
-  width: 100%;
-  padding: 0 @padding12;
-  border-radius: 10px;
-  height: 150px;
-  margin-top: @margin10;
-
-  .find_swipe {
+  .find {
     width: 100%;
-    height: 100%;
+    background-color: @grayBgColor;
+  }
+
+  .van-search {
+    padding: 0 15px;
+
+    .van-field {
+      padding-left: 8px;
+    }
+  }
+
+  // 轮播图
+  .swipe_box {
+    width: 100%;
+    padding: 0 @padding12;
     border-radius: 10px;
-    overflow: hidden;
-  }
+    height: 150px;
+    margin-top: @margin10;
 
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-// 导航链接
-.nav_link {
-  margin-top: 11px;
-
-  .link {
-    width: 25%;
-    height: 80px;
-    flex-direction: column;
-
-    .icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-
-      .iconfont {
-        font-size: 25px;
-        color: #fff;
-      }
+    .find_swipe {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    .text {
-      font-size: @textSize15;
-      color: @blackCoor;
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 
-  .topic .icon {
-    background-color: #7456da;
-    box-shadow: 0px 2px 8px rgba(100, 73, 241, 0.8);
-  }
+  // 导航链接
+  .nav_link {
+    margin-top: 11px;
 
-  .primer .icon {
-    background-color: #88b12d;
-    box-shadow: 0px 2px 8px rgba(136, 177, 45, 0.8);
+    .link {
+      width: 25%;
+      height: 80px;
+      flex-direction: column;
 
-    .iconfont {
-      font-size: 28px;
-    }
-  }
+      .icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
 
-  .vocabulary .icon {
-    background-color: #fd682e;
-    box-shadow: 0px 2px 8px rgba(253, 144, 46, 0.8);
-  }
-
-  .phrase .icon {
-    background-color: #fea12a;
-    box-shadow: 0px 2px 8px rgba(245, 161, 42, 0.8);
-
-    .iconfont {
-      font-size: 21px;
-    }
-  }
-}
-
-// 今日任务
-.day_task {
-  width: 100%;
-  padding: 12px;
-
-  .bom {
-    width: 100%;
-    height: 260px;
-    padding: 12px;
-    background-color: @purpleColor;
-    border-radius: 12px;
-    color: #fff;
-
-    .top {
-      margin: 10px 0;
-
-      p {
-        font-size: 14px;
-      }
-
-      .iconfont {
-        font-size: 26px;
-        color: @yelColor;
-        font-weight: 700;
-      }
-    }
-
-    .title {
-      display: flex;
-
-      .tag {
-        height: 22px;
-        margin-top: 3px;
+        .iconfont {
+          font-size: 25px;
+          color: #fff;
+        }
       }
 
       .text {
-        font-size: 18px;
-        font-weight: 700;
-        color: #fff;
+        font-size: @textSize15;
+        color: @blackCoor;
       }
     }
 
-    .yangben {
+    .topic .icon {
+      background-color: #7456da;
+      box-shadow: 0px 2px 8px rgba(100, 73, 241, 0.8);
+    }
+
+    .primer .icon {
+      background-color: #88b12d;
+      box-shadow: 0px 2px 8px rgba(136, 177, 45, 0.8);
+
+      .iconfont {
+        font-size: 28px;
+      }
+    }
+
+    .vocabulary .icon {
+      background-color: #fd682e;
+      box-shadow: 0px 2px 8px rgba(253, 144, 46, 0.8);
+    }
+
+    .phrase .icon {
+      background-color: #fea12a;
+      box-shadow: 0px 2px 8px rgba(245, 161, 42, 0.8);
+
+      .iconfont {
+        font-size: 21px;
+      }
+    }
+  }
+
+  // 今日任务
+  .day_task {
+    width: 100%;
+    padding: 12px;
+
+    .bom {
       width: 100%;
-      height: 100px;
-      border-radius: 8px;
+      height: 260px;
+      padding: 12px;
+      background-color: @purpleColor;
+      border-radius: 12px;
+      color: #fff;
+
+      .top {
+        margin: 10px 0;
+
+        p {
+          font-size: 14px;
+        }
+
+        .iconfont {
+          font-size: 26px;
+          color: @yelColor;
+          font-weight: 700;
+        }
+      }
+
+      .title {
+        display: flex;
+
+        .tag {
+          height: 22px;
+          margin-top: 3px;
+        }
+
+        .text {
+          font-size: 18px;
+          font-weight: 700;
+          color: #fff;
+        }
+      }
+
+      .yangben {
+        width: 100%;
+        height: 100px;
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 16px;
+
+        .btn {
+          width: 160px;
+          margin: 16px auto;
+          background-color: @themeColor1;
+          color: #fff;
+          border: 0;
+        }
+      }
+    }
+  }
+
+  // 推荐练习
+  .practice {
+    padding: 0 @padding12;
+
+    .iconfont {
+      color: @deepColor;
+    }
+
+    .list {
+      .p_item {
+        width: 100%;
+        height: 100px;
+        padding: @padding12;
+        background-color: #fff;
+        border-radius: 10px;
+        margin-bottom: 12px;
+
+        .example {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  // 精选主题
+  .community_select {
+    padding: 12px;
+    overflow: hidden;
+
+    .bom {
+      display: flex;
+      justify-content: space-between;
+      overflow: auto;
+    }
+
+    .b_item {
+      flex: none;
+      width: 140px;
+      margin-right: 12px;
       background-color: #fff;
-      padding: 16px;
 
-      .btn {
-        width: 160px;
-        margin: 16px auto;
-        background-color: @themeColor1;
-        color: #fff;
-        border: 0;
+      .info {
+        padding: 0 6px 12px;
       }
-    }
-  }
-}
 
-// 推荐练习
-.practice {
-  padding: 0 @padding12;
-
-  .iconfont {
-    color: @deepColor;
-  }
-
-  .list {
-    .p_item {
-      width: 100%;
-      height: 100px;
-      padding: @padding12;
-      background-color: #fff;
-      border-radius: 10px;
-      margin-bottom: 12px;
-
-      .example {
-        margin-top: 10px;
-      }
-    }
-  }
-}
-
-// 精选主题
-.community_select {
-  padding: 12px;
-  overflow: hidden;
-
-  .bom {
-    display: flex;
-    justify-content: space-between;
-    overflow: auto;
-  }
-
-  .b_item {
-    flex: none;
-    width: 140px;
-    margin-right: 12px;
-    background-color: #fff;
-
-    .info {
-      padding: 0 6px 12px;
-    }
-
-    .topic {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .tool {
-      font-size: 12px;
-      color: @grayColor;
-
-      .icon {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        margin-right: 4px;
-      }
-    }
-  }
-}
-
-// 猜你喜欢
-.you_like {
-  padding: 0 12px;
-
-  .l_item {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 6px;
-
-    .text_com {
-      margin-top: 10px;
-      width: 100%;
-      word-break: break-all;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      font-size: 15px;
-      line-height: 20px;
-    }
-
-    .play_box {
-      height: 300px;
-    }
-
-    .owner {
-      margin-top: 10px;
-
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
+      .topic {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       .tool {
-        span {
-          font-size: 12px;
-          padding: 0 6px;
-        }
+        font-size: 12px;
+        color: @grayColor;
 
-        .iconfont::before {
-          font-size: 26px;
+        .icon {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          margin-right: 4px;
         }
       }
     }
   }
-}
 
-// find页面公共样式
+  // 猜你喜欢
+  .you_like {
+    padding: 0 12px;
 
-.top_com {
-  padding: 12px 0;
+    .l_item {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 6px;
 
-  .tit {
-    font-size: 18px;
+      .text_com {
+        margin-top: 10px;
+        width: 100%;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 15px;
+        line-height: 20px;
+      }
+
+      .play_box {
+        height: 300px;
+      }
+
+      .owner {
+        margin-top: 10px;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        .tool {
+          span {
+            font-size: 12px;
+            padding: 0 6px;
+          }
+
+          .iconfont::before {
+            font-size: 26px;
+          }
+        }
+      }
+    }
   }
-}
 
-.btn {
-  padding: 6px 12px;
-  border-radius: 18px;
-  border: 1px solid #949494;
-  font-size: 14px;
-  font-weight: bold;
-  color: @blackCoor;
-  text-align: center;
-}
+  // find页面公共样式
 
-.num {
-  font-size: 13px;
-  margin: 10px 0;
+  .top_com {
+    padding: 12px 0;
 
-  .m {
-    margin: 0 6px;
-    // line-height: 26px;
-  }
-}
-
-.btn_p {
-  padding: 4px 16px;
-  border-radius: 26px;
-  background-color: @themeColor1;
-  color: #fff;
-  font-weight: 700;
-}
-
-.example {
-  img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    margin-left: -3px;
+    .tit {
+      font-size: 18px;
+    }
   }
 
-  .text {
+  .btn {
+    padding: 6px 12px;
+    border-radius: 18px;
+    border: 1px solid #949494;
+    font-size: 14px;
+    font-weight: bold;
     color: @blackCoor;
-    margin-left: 8px;
-  }
-}
-
-.practise_top {
-  .right {
-    .iconfont {
-      font-size: @iconSize;
-      color: @themeColor2;
-      font-weight: 700;
-      margin-right: 10px;
-    }
-  }
-
-  .left {
-    .tag {
-      padding: 6px 10px;
-      color: #fff;
-    }
+    text-align: center;
   }
 
   .num {
-    margin: 0;
-    color: @deepColor;
+    font-size: 13px;
+    margin: 10px 0;
+
+    .m {
+      margin: 0 6px;
+      // line-height: 26px;
+    }
   }
-}
+
+  .btn_p {
+    padding: 4px 16px;
+    border-radius: 26px;
+    background-color: @themeColor1;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .example {
+    img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-left: -3px;
+    }
+
+    .text {
+      color: @blackCoor;
+      margin-left: 8px;
+    }
+  }
+
+  .practise_top {
+    .right {
+      .iconfont {
+        font-size: @iconSize;
+        color: @themeColor2;
+        font-weight: 700;
+        margin-right: 10px;
+      }
+    }
+
+    .left {
+      .tag {
+        padding: 6px 10px;
+        color: #fff;
+      }
+    }
+
+    .num {
+      margin: 0;
+      color: @deepColor;
+    }
+  }
+
 </style>

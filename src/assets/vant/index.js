@@ -25,9 +25,13 @@ import {
   Icon,
   ActionSheet,
   Picker,
-  DatetimePicker
+  DatetimePicker,
+  Sidebar,
+  SidebarItem
 } from 'vant'
 Vue.use(Rate)
+Vue.use(Sidebar)
+Vue.use(SidebarItem)
 Vue.use(DatetimePicker)
 Vue.use(Picker)
 Vue.use(ActionSheet)

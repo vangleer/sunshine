@@ -33,10 +33,12 @@
     .van-nav-bar .van-icon {
       color: @blackCoor;
       font-weight: 700;
+      font-size: 20px;
     }
 
     .van-nav-bar__title {
       font-weight: 700;
+      font-size: 18px;
     }
 
     .van-uploader__upload {
