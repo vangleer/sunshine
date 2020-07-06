@@ -27,9 +27,13 @@ import {
   Picker,
   DatetimePicker,
   Sidebar,
-  SidebarItem
+  SidebarItem,
+  IndexAnchor,
+  IndexBar
 } from 'vant'
 Vue.use(Rate)
+Vue.use(IndexBar)
+Vue.use(IndexAnchor)
 Vue.use(Sidebar)
 Vue.use(SidebarItem)
 Vue.use(DatetimePicker)

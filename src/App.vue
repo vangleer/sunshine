@@ -52,8 +52,36 @@
     }
   }
 
+  // 索引栏
+  .van-index-bar__sidebar {
+    padding: 0;
+    right: 10px !important;
+
+    .van-index-bar__index {
+      padding: 0;
+    }
+
+    .van-index-bar__index--active {
+      background-color: @themeColor2;
+      color: #fff !important;
+      padding-left: 0;
+      border-radius: 50%;
+      padding-right: 0;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+    }
+
+    span {
+      line-height: 20px;
+      color: @deepColor;
+    }
+  }
+
   .left-enter {
     transform: translateX(100vw);
+
   }
 
   .left-leave-to {
