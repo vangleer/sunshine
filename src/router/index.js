@@ -243,6 +243,13 @@ const routes = [{
     meta: {
       index: 31
     }
+  },
+  {
+    path: '/autocue',
+    component: () => import('../views/Autocue.vue'),
+    meta: {
+      index: 32
+    }
   }
 ]
 const router = new VueRouter({

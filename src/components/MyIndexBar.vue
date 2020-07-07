@@ -83,10 +83,6 @@
     position: relative;
     left: 100px;
     width: 100%;
-    // flex: 1;
-
-    .van-index-bar {}
-
   }
 
   .right {

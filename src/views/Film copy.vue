@@ -6,6 +6,8 @@
     <div class="count">你正在进行第{{ count }}次输入</div>
     <!-- 取消 -->
     <div class="cansel"><span class="iconfont icon-cuo"></span></div>
+    <video id="myVideo" src="" autoplay muted></video>
+    <canvas ref="myCanvas"></canvas>
     <!-- 右侧工具条 -->
     <div class="tool_r">
       <div class="top">
@@ -33,23 +35,20 @@
 
     <!-- 底部工具条 -->
     <div class="bom">
-      <div class="center_b flex_bea">
-        <div class="tab">
-          <span :class="current === 0 ? 'active' : ''" @click="changeMode(0)">视频</span>
-          <span :class="current === 1 ? 'active' : ''" @click="changeMode(1)">录音</span>
-        </div>
-        <!-- 录制按钮 -->
-        <van-uploader :after-read="afterRead" :accept="acceptType" capture="camera">
-          <van-button style="width: 65px;height: 65px;border-radius: 50%;display: flex;justify-content: center;align-items: center;">
-            <span class="btn"></span>
-          </van-button>
-        </van-uploader>
+      <div class="tab">
+        <span :class="current === 0 ? 'active' : ''" @click="changeMode(0)">视频</span>
+        <span :class="current === 1 ? 'active' : ''" @click="changeMode(1)">录音</span>
       </div>
-      <div class="item">
-        <van-uploader :after-read="afterRead">
+      <div class="flex_align">
+        <div class="item">
           <span class="iconfont icon-haibao"></span>
           <p>导入</p>
-        </van-uploader>
+        </div>
+
+        <!-- 录制按钮 -->
+        <div class="play_btn" @click="start">
+          <span></span>
+        </div>
       </div>
     </div>
   </div>
@@ -62,9 +61,7 @@ export default {
       bgImg: require('../assets/images/study.jpg'),
       count: 1,
       video: null,
-      recorder: null,
       mediaSource: null,
-      acceptType: 'video/*',
       chunks: [],
       recordedBlobs: [],
       current: 0 // 0 为录视频 1为录音
@@ -74,11 +71,6 @@ export default {
   methods: {
     changeMode(opt) {
       this.current = opt
-      this.acceptType = opt === 0 ? 'video/*' : 'audio/*'
-    },
-    afterRead(file) {
-      // 此时可以自行将文件上传至服务器
-      console.log(file)
     }
   }
 }
@@ -132,21 +124,16 @@ export default {
 
 // 底部
 .bom {
-  display: flex;
   position: absolute;
-  bottom: 60px;
+  bottom: 20px;
   width: 100%;
-  .center_b {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: column;
-  }
+  text-align: center;
+
   .item {
-    position: relative;
-    top: 20px;
     text-align: center;
+    margin-bottom: 28px;
     font-size: 14px;
+
     p {
       margin-top: 5px;
     }
@@ -155,11 +142,8 @@ export default {
       font-size: @iconSize;
     }
   }
-  // position: absolute;
-  // left: 50%;
-  // transform: translateX(-50);
+
   .tab {
-    margin-bottom: 20px;
     span {
       padding: 0 8px;
       font-size: 14px;
@@ -175,12 +159,25 @@ export default {
     margin-left: 30px;
   }
 
-  span.btn {
-    display: block;
-    width: 50px;
-    height: 50px;
+  .play_btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
-    background-color: @themeColor2;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    // margin-left: 100px;
+
+    span {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: @themeColor2;
+    }
   }
 }
 </style>
