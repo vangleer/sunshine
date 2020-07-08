@@ -250,6 +250,20 @@ const routes = [{
     meta: {
       index: 32
     }
+  },
+  {
+    path: '/playPage',
+    component: () => import('../views/PlayPage.vue'),
+    meta: {
+      index: 33
+    }
+  },
+  {
+    path: '/topicDetail',
+    component: () => import('../views/TopicDetail.vue'),
+    meta: {
+      index: 33
+    }
   }
 ]
 const router = new VueRouter({

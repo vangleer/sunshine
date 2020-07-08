@@ -29,9 +29,11 @@ import {
   Sidebar,
   SidebarItem,
   IndexAnchor,
-  IndexBar
+  IndexBar,
+  Slider
 } from 'vant'
 Vue.use(Rate)
+Vue.use(Slider)
 Vue.use(IndexBar)
 Vue.use(IndexAnchor)
 Vue.use(Sidebar)
@@ -60,3 +62,11 @@ Vue.use(Tabbar)
 Vue.use(TabbarItem)
 Vue.component('PullRefresh', MyPullRefresh)
 Vue.prototype.$toast = Toast
+
+Vue.filter('dateFormat', (value) => {
+  const date = new Date(value)
+  const m = date.getMinutes().toString().padStart(2, '0')
+  const s = date.getSeconds().toString().padStart(2, '0')
+
+  return `${m}:${s}`
+})
