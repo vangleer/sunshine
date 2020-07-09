@@ -12,7 +12,7 @@
       </div>
       <div class="right" ref="rightRef">
         <div class="list">
-          <div class="item" v-for="index in 20" :key="index">
+          <div class="item" v-for="index in 20" :key="index" @click="$router.push('/topicDetail')">
             <img src="../assets/images/study1.jpg" alt="">
             <span>日常生活</span>
           </div>

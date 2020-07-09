@@ -262,7 +262,14 @@ const routes = [{
     path: '/topicDetail',
     component: () => import('../views/TopicDetail.vue'),
     meta: {
-      index: 33
+      index: 34
+    }
+  },
+  {
+    path: '/login',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      index: 35
     }
   }
 ]

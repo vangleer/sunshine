@@ -170,9 +170,6 @@
       }
     }
 
-    // position: absolute;
-    // left: 50%;
-    // transform: translateX(-50);
     .tab {
       margin-bottom: 20px;
 
