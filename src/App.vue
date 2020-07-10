@@ -14,6 +14,18 @@
         transitionName: 'left' // 路由动画类名
       }
     },
+    async created() {
+      console.log(this.$store.state.userInfo.username)
+      const mobile = JSON.parse(localStorage.getItem('token'))
+      if (mobile) {
+        const res = await this.$http.fetch('/user/getUser', {
+          mobile
+        })
+        if (res.status === 0) return
+        // this.userInfo = res.data
+        this.$store.commit('changeUserInfo', res.data)
+      }
+    },
     watch: {
       $route(to, from) {
         const toIndex = to.meta.index

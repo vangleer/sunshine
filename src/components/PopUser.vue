@@ -8,7 +8,7 @@
             <span class="iconfont icon-user"></span>
           </div>
         </van-circle>
-        <div class="user_name">小通</div>
+        <div class="user_name">{{$store.state.userInfo.username}}</div>
       </div>
       <div class="go_profile">
         <p>

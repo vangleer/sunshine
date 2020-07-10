@@ -11,35 +11,36 @@
 
     <div class="box">
       <div class="title">
-        <span :class="type===0?'active':''" @click="changeType(0)">登录</span>
-        <span :class="type===1?'active':''" @click="changeType(1)">注册</span>
+        <span :class="type === 0 ? 'active' : ''" @click="changeType(0)">登录</span>
+        <span :class="type === 1 ? 'active' : ''" @click="changeType(1)">注册</span>
       </div>
 
       <div class="input_box">
         <div class="item">
-          <p :class="showName?'active':'de'">用户名</p>
-          <input v-model="formData.username" type="text" @focus="handleFocus('showName','username')"
-            @blur="handleBlur('showName','username')">
+          <p :class="showName ? 'active' : 'de'">手机号</p>
+          <input v-model="formData.mobile" type="text" @focus="handleFocus('showName', 'mobile')"
+            @blur="handleBlur('showName', 'mobile')" />
         </div>
         <div class="item">
-          <p :class="showPwd?'active':'de'">密码</p>
-          <input v-model="formData.password" type="text" @focus="handleFocus('showPwd','password')"
-            @blur="handleBlur('showPwd','password')">
+          <p :class="showPwd ? 'active' : 'de'">密码</p>
+          <input v-model="formData.password" type="text" @focus="handleFocus('showPwd', 'password')"
+            @blur="handleBlur('showPwd', 'password')" />
         </div>
 
-        <div class="item code" v-show="type===1">
-          <p :class="showCode?'active':'de'">验证码</p>
-          <input v-model="formData.code" type="text" @focus="handleFocus('showCode','code')"
-            @blur="handleBlur('showCode','code')">
-          <img src="../assets/images/bg1.jpeg" alt="">
+        <!-- <div class="item code" v-show="type===1"> -->
+        <div class="item code">
+          <p :class="showCode ? 'active' : 'de'">验证码</p>
+          <input v-model="formData.code" type="text" @focus="handleFocus('showCode', 'code')"
+            @blur="handleBlur('showCode', 'code')" />
+          <!-- <embed class="img" :src="codeUrl" @click="getCode" type="image/svg+xml" /> -->
+          <img class="img" @click="getCode" :src="codeUrl" alt="" />
         </div>
 
         <!-- 按钮 -->
         <div class="login_btn">
-          <span @click="handleSubmit">{{type===0?'登录':'注册'}}</span>
+          <span @click="handleSubmit">{{ type === 0 ? '登录' : '注册' }}</span>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -53,16 +54,31 @@
         showPwd: false,
         showCode: false,
         formData: {
-          username: '',
+          mobile: '',
           password: '',
           code: ''
         },
+        codeUrl: 'http://localhost:3000/user/getCode?time=' + Date.now(),
+        // codeUrl: this.img_url,
         loginBg: require('../assets/images/login_bg2.jpg')
       }
     },
+    activated() {
+      this.getCode()
+    },
     methods: {
       changeType(type) {
+        this.refreshForm()
         this.type = type
+      },
+      // 刷新表单
+      refreshForm() {
+        this.formData.mobile = ''
+        this.formData.password = ''
+        this.formData.code = ''
+        this.showName = false
+        this.showPwd = false
+        this.showCode = false
       },
       handleFocus(opt, type) {
         if (this.formData[type].trim().length === 0) {
@@ -76,8 +92,40 @@
           this[opt] = false
         }
       },
-      handleSubmit() {
-        console.log(this.formData)
+      async getCode() {
+        this.codeUrl = 'http://localhost:3000/user/getCode?time=' + Date.now()
+      },
+      async handleSubmit() {
+        let res
+        // 登录
+        if (this.type === 0) {
+          res = await this.$http.post('/user/login', this.formData)
+        } else {
+          // 注册
+          res = await this.$http.post('/user/register', this.formData)
+        }
+        if (res.status === 0) {
+          this.$message({
+            type: 'warning',
+            message: res.msg,
+            duration: 1000
+          })
+        } else {
+          this.$message({
+            type: 'success',
+            message: res.msg,
+            duration: 1000
+          })
+          if (this.type === 0) {
+            // 把手机号存到localStorage
+            localStorage.setItem('mobile', res.data.mobile)
+            this.$router.back()
+          } else {
+            this.type = 0
+          }
+          // 清空数据
+          this.refreshForm()
+        }
       }
     }
   }
@@ -191,9 +239,13 @@
     }
 
     .code {
-      img {
+      input {
+        width: 60%;
+      }
+
+      .img {
         width: 120px;
-        height: 22px;
+        height: 36px;
         position: absolute;
         right: 0;
         bottom: 8px;
@@ -220,7 +272,6 @@
       font-weight: 700;
       background: linear-gradient(to right, #33bdfe, #b225ff);
     }
-
   }
 
 </style>

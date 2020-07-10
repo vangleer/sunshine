@@ -3,13 +3,19 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Router from 'vue-router'
+// 导入请求
+import server from './server/fetch'
 // 导入vant组件
 import './assets/vant/index.js'
 // 导入初始化css样式
 import './assets/css/base.css'
+
 // 导入字体图标
 import './assets/fonts/iconfont.css'
 Vue.config.productionTip = false
+Vue.prototype.$http = server
+// 验证码
+Vue.prototype.img_url = 'http://localhost:3000/user/getCode?time=' + Date.now()
 // 处理路由切换报错的问题
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {

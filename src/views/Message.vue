@@ -73,10 +73,24 @@
             text: '新增粉丝',
             path: '/newfans'
           }
-        ]
+        ],
+        userInfo: {}
       }
     },
+    activated() {
+      // 获取用户信息
+      this.getUserinfo()
+    },
+    // 获取用户信息
     methods: {
+      async getUserinfo() {
+        const mobile = JSON.parse(localStorage.getItem('mobile'))
+        const res = await this.$http.fetch('/user/getUser', {
+          mobile
+        })
+        if (res.status === 0) return this.$router.push('/login')
+        this.userInfo = res.data
+      },
       handleNalClick(item) {
         console.log(item.path)
         this.$router.push(item.path)
