@@ -8,6 +8,8 @@ export default new Vuex.Store({
     userInfo: {
       username: '未登录'
     },
+    // 提词器内容
+    autocueContent: '',
     showUserPop: false // 显示隐藏用户详情框
   },
   mutations: {
@@ -16,6 +18,9 @@ export default new Vuex.Store({
     },
     changeUserInfo(state, user) {
       state.userInfo = user
+    },
+    changeContent(state, date) {
+      state.autocueContent = date
     }
   },
   actions: {},

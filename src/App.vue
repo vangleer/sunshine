@@ -16,7 +16,7 @@
     },
     async created() {
       console.log(this.$store.state.userInfo.username)
-      const mobile = JSON.parse(localStorage.getItem('token'))
+      const mobile = JSON.parse(localStorage.getItem('mobile'))
       if (mobile) {
         const res = await this.$http.fetch('/user/getUser', {
           mobile

@@ -271,6 +271,13 @@ const routes = [{
     meta: {
       index: 35
     }
+  },
+  {
+    path: '/test',
+    component: () => import('../views/test.vue'),
+    meta: {
+      index: 36
+    }
   }
 ]
 const router = new VueRouter({

@@ -13,9 +13,9 @@ import './assets/css/base.css'
 // 导入字体图标
 import './assets/fonts/iconfont.css'
 Vue.config.productionTip = false
-Vue.prototype.$http = server
 // 验证码
 Vue.prototype.img_url = 'http://localhost:3000/user/getCode?time=' + Date.now()
+Vue.prototype.$http = server
 // 处理路由切换报错的问题
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {

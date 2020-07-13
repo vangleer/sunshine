@@ -1,7 +1,14 @@
 import axios from 'axios'
-
 axios.defaults.timeout = 50000
 axios.defaults.baseURL = 'http://localhost:3000'
+const instance = axios.create({
+  baseURL: 'http://localhost:3000',
+  // baseURL: 'http://exchangen.52jzsj.com/',
+  // baseURL: "http://192.168.1.117:9503",
+  // http://192.168.1.117:9503
+  timeout: 50000,
+  'Content-Type': 'application/x-www-form-urlencoded'
+})
 
 // http request 拦截器
 axios.interceptors.request.use(
@@ -39,6 +46,7 @@ axios.interceptors.request.use(
 // )
 
 export default {
+  instance,
   /**
    * 封装get方法
    * @param url
@@ -67,9 +75,9 @@ export default {
    * @returns {Promise}
    */
 
-  post(url, data = {}) {
+  post(url, data = {}, opt) {
     return new Promise((resolve, reject) => {
-      axios.post(url, data)
+      axios.post(url, data, opt)
         .then(response => {
           resolve(response.data)
         }, err => {

@@ -9,14 +9,33 @@
 
     <!-- 编辑 -->
     <div class="edit_box">
-      <textarea placeholder="添加提词器内容,就不会忘记哟"></textarea>
+      <textarea v-model="content" placeholder="添加提词器内容,就不会忘记哟"></textarea>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-
+    data() {
+      return {
+        content: ''
+      }
+    },
+    computed: {
+      isDisabled() {
+        return this.content.trim().length <= 0
+      }
+    },
+    methods: {
+      handleSubmit() {
+        // 把内容存到vuex中保存
+        this.$store.commit('changeContent', this.content)
+        // 清空内容
+        this.content = ''
+        // 返回路由
+        this.$router.back()
+      }
+    }
   }
 
 </script>
