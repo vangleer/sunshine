@@ -7,15 +7,15 @@
 
       <div class="nav_item" :class="isLove?'love':''" @click="dianZhan">
         <span class="iconfont icon-love"></span>
-        <p>123</p>
+        <p>{{numbers.love}}</p>
       </div>
       <div class="nav_item">
-        <span class="iconfont icon-message_1"></span>
-        <p>123</p>
+        <span class="iconfont icon-message_1" @click="handleComment"></span>
+        <p>{{numbers.share}}</p>
       </div>
       <div class="nav_item">
-        <span class="iconfont icon-zhuanfa"></span>
-        <p>123</p>
+        <span class="iconfont icon-zhuanfa" @click="shareClick"></span>
+        <p>{{numbers.comment}}</p>
       </div>
 
     </div>
@@ -35,28 +35,54 @@
           return {}
         }
       },
-      id: {
-        type: Number,
-        default: 1
-      }
+      loves: {
+        type: String,
+        default: ''
+      },
+      id: Number
     },
     data() {
       return {
         // 是否点赞
-        isLove: false
+        isLove: false,
+        userId: '',
+        loveNum: 0
       }
     },
+    create() {
+      this.loveNum = parseInt(this.numbers.love)
+    },
     methods: {
-      dianZhan() {
-        const id = this.id
+      // 分享
+      shareClick() {
+        this.$emit('shareClick', this.id)
+      },
+      // 点击评论
+      handleComment() {
+        this.$emit('commentClick', this.id)
+      },
+      // 点赞
+      async dianZhan() {
         this.isLove = !this.isLove
-        if (this.isLove) {
-          this.loveNum = this.loveNum + 1
-          this.$store.commit('increaseLove', id)
+        if (this.$store.state.userInfo && this.$store.state.userInfo.id) {
+          this.userId = this.$store.state.userInfo.id
         } else {
-          this.$store.commit('decreaseLove', id)
-          this.loveNum = this.loveNum - 1
+          return this.$message({
+            type: 'danger',
+            message: '请先登录!'
+          })
         }
+        if (this.isLove) { // 加一
+          this.numbers.love++
+        } else { // 减一
+          this.numbers.love--
+        }
+
+        // 发请求
+        const res = await this.$http.post('/video/dianzhan?id=' + this.id, {
+          love: this.numbers.love
+        })
+        console.log(res)
       }
     }
   }
@@ -94,7 +120,6 @@
       }
 
       .nav_item {
-        // margin-top: 10px;
         width: 50px;
 
         p {

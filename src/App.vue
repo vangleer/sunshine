@@ -24,6 +24,7 @@
         if (res.status === 0) return
         // this.userInfo = res.data
         this.$store.commit('changeUserInfo', res.data)
+        console.log(res.data)
       }
     },
     watch: {

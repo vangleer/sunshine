@@ -32,9 +32,11 @@ import {
   IndexBar,
   Slider,
   Notify,
-  Dialog
+  Dialog,
+  ShareSheet
 } from 'vant'
 Vue.use(Rate)
+Vue.use(ShareSheet)
 Vue.use(Slider)
 Vue.use(IndexBar)
 Vue.use(IndexAnchor)
