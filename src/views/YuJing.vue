@@ -5,7 +5,7 @@
 
     <!-- 轮播组件 -->
     <div class="yu_swiper">
-      <van-swipe class="context_swiper" vertical height="100%">
+      <van-swipe class="context_swiper" vertical height="100%" :show-indicators="false" @change="handleSwipe">
         <van-swipe-item class="swiper-item" v-for="(item,index) in list" :key="index">
           <!-- 视频标签 -->
           <!-- <img @click="handlePlayClick" class="swipe_img" :src="item.imgSrc" /> -->
@@ -41,7 +41,46 @@
     <!-- 分享面板 -->
     <van-share-sheet v-model="showShare" title="立即分享给好友" :options="shareOptions" @select="shareSelect" />
     <!-- 评论面板 -->
-    <van-action-sheet v-model="showComment" :actions="commentActions" @select="commentSelect" />
+    <van-popup v-model="showComment" position="bottom" :style="{ height: '60%',borderRadius: '20px 20px 0 0'}">
+      <div class="com_box">
+        <div class="title">最新评论 6</div>
+        <div class="item" v-for="(item,index) in commentList" :key="index">
+          <div class="user flex_bea">
+            <div class="flex_align">
+              <img v-if="item.icon" src="../assets/images/user2.jpg" alt="">
+              <div v-else class="icon_box"><span class="iconfont icon-user"></span></div>
+              <div class="">
+                <h3>{{item.nickname}}</h3>
+                <p>{{item.add_time}}</p>
+              </div>
+            </div>
+            <div class="flex_align tool">
+              <span class="iconfont icon-pinglun"></span>
+              <div class="flex_align">
+                <span class="iconfont icon-iconfontzhizuobiaozhun44"><span
+                    style="font-size: 20px;">{{item.love_num}}</span></span>
+              </div>
+            </div>
+          </div>
+          <!-- 评论内容 -->
+          <div class="content">
+            <h3>评论内容</h3>
+            <div class="txt">{{item.txt}}</div>
+          </div>
+        </div>
+        <!-- 输入框 -->
+        <div class="input_box flex_bea" v-if="showComment">
+          <input @keydown.enter="sendComment" v-model="commentText" ref="commentRef" type="text"
+            placeholder="说点什么, 让更多人记住你">
+          <span @click="handleFocus" class="iconfont icon-keyboard"></span>
+        </div>
+      </div>
+      <div v-if="commentList.length===0" class="none">暂无评论</div>
+    </van-popup>
+
+    <!-- <van-action-sheet v-model="showComment"
+                      :actions="commentActions"
+                      @select="commentSelect" /> -->
   </div>
 </template>
 
@@ -58,19 +97,16 @@
     data() {
       return {
         title: 'Hello',
-        isPlay: false,
+        commentText: '',
+        isPlay: true,
+        currentPage: 0,
         pageInfo: {
           pageSize: 10,
           page: 1
         },
+        currentId: 0,
         showComment: false,
-        commentActions: [{
-          name: '选项一'
-        }, {
-          name: '选项二'
-        }, {
-          name: '选项三'
-        }],
+        commentList: [],
         showShare: false,
         shareOptions: [
           [{
@@ -269,9 +305,27 @@
     },
     methods: {
       // 点击分享
-      handleComment(id) {
-        console.log(id)
+      async handleComment(id) {
+        this.currentId = id
         this.showComment = true
+        if (!this.$store.state.userInfo.id) {
+          return this.$router.push('/login')
+        }
+        console.log(this.$store.state.userInfo.id)
+        const res = await this.$http.fetch('/video/getComments?id=' + id)
+        if (res.status === 0) return
+        this.commentList = res.data
+      },
+      handleFocus() {
+        this.$refs.commentRef.focus()
+      },
+      // 滑动事件
+      handleSwipe(index) {
+        // 记录当前页面索引
+        this.currentPage = index
+        // 初始播放按钮
+        this.isPlay = true
+        console.log(this.currentPage)
       },
       // 点击评论
       commentSelect(item) {
@@ -280,13 +334,29 @@
         this.showComment = false
         this.$toast(item.name)
       },
+      // 发送评论信息
+      sendComment() {
+        console.log(this.commentText)
+        if (this.commentText.trim().length === 0) {
+          return
+        }
+
+        const res = this.$http.post('/video/addComment', {
+          id: this.currentId,
+          user_id: this.$store.state.userInfo.id,
+          content: this.commentText
+        })
+        console.log(res)
+        this.commentText = ''
+      },
       // 点击分享
       handleShare(id) {
         console.log(id)
         this.showShare = true
       },
       shareSelect(option) {
-        this.$toast(option.name)
+        const url = window.location.href
+        this.$toast(`将:${url}\n分享到${option.name}`)
         this.showShare = false
       },
       // 获取视频列表
@@ -297,8 +367,15 @@
         console.log(res.data)
       },
       // 播放功能
-      handlePlayClick() {
+      handlePlayClick(e) {
         this.isPlay = !this.isPlay
+        const vos = document.querySelectorAll('.swiper-item .swipe_img')
+        if (this.isPlay) {
+          vos[this.currentPage].pause()
+        } else {
+          vos[this.currentPage].play()
+        }
+        console.log(vos)
       },
       // 是否显示字幕
       handleShowCaption(showCaption) {
@@ -452,6 +529,113 @@
         font-size: @textSize13;
       }
     }
+  }
+
+  // 评论盒子
+  .com_box {
+    width: 100%;
+    color: #222;
+    padding-bottom: 50px;
+
+    .item {
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+
+      .icon_box {
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        margin-right: 6px;
+        border-radius: 50%;
+        background-color: @grayBgColor;
+      }
+
+      .iconfont {
+        font-size: 20px;
+        line-height: 38px;
+        color: @whiteColor;
+        // color: #fff;
+      }
+    }
+
+    .title {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 42px;
+      background-color: #f8f8f8;
+      padding-left: 20px;
+      line-height: 42px;
+    }
+
+    .user {
+      padding: 12px;
+
+      img {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+
+      .tool {
+        .iconfont {
+          color: #908f94;
+          font-size: 28px;
+          padding: 0 6px;
+        }
+
+        .icon-pinglun {
+          font-size: 23px;
+        }
+      }
+    }
+
+    .content {
+      padding: 0 12px;
+
+      .txt {
+        background-color: #f8f8f8;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .input_box {
+    position: fixed;
+    z-index: 2000;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 46px;
+    padding: 8px 12px;
+    background-color: #fff;
+    color: #8a898e;
+
+    input {
+      width: 90%;
+      height: 100%;
+      background-color: #fafafa;
+      padding-left: 12px;
+      caret-color: tomato;
+    }
+
+    .iconfont {
+      font-size: 26px;
+      color: #222;
+    }
+  }
+
+  .none {
+    position: absolute;
+    font-size: 20px;
+    color: #222;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
 </style>
