@@ -58,7 +58,7 @@
           password: '',
           code: ''
         },
-        codeUrl: 'http://localhost:3000/user/getCode?time=' + Date.now(),
+        codeUrl: 'http://192.168.1.113:3000/user/getCode?time=' + Date.now(),
         // codeUrl: this.img_url,
         loginBg: require('../assets/images/login_bg2.jpg')
       }
@@ -93,7 +93,7 @@
         }
       },
       async getCode() {
-        this.codeUrl = 'http://localhost:3000/user/getCode?time=' + Date.now()
+        this.codeUrl = 'http://192.168.1.113:3000/user/getCode?time=' + Date.now()
       },
       async handleSubmit() {
         let res

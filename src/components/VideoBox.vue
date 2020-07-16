@@ -3,7 +3,7 @@
     <img class="item_src" src="../assets/images/user.jpg" />
     <div class="love">
       <span class="iconfont icon-xihuan"></span>
-      <span class="num">123456</span>
+      <span class="num">{{video.tip}}</span>
     </div>
     <div class="play_btn flex_center">
       <span class="iconfont icon-bofang"></span>
@@ -13,7 +13,14 @@
 
 <script>
   export default {
-
+    props: {
+      video: {
+        type: Object,
+        default () {
+          return {}
+        }
+      }
+    }
   }
 
 </script>
@@ -51,15 +58,21 @@
 
     .love {
       position: absolute;
+      width: 100%;
       bottom: 6px;
       left: 6px;
       color: #fff;
+      height: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       .iconfont {
         font-size: 14px;
       }
 
       .num {
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 11px;
         margin-left: 4px;
         font-weight: normal;

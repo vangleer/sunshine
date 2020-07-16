@@ -99,6 +99,7 @@
 
   .content {
     width: 100%;
+    padding: 0;
     // height: 100vh;
     // height: 80vh;
 

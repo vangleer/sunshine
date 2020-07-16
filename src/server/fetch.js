@@ -1,8 +1,8 @@
 import axios from 'axios'
 axios.defaults.timeout = 50000
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://192.168.1.113:3000'
 const instance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://192.168.1.113:3000',
   // baseURL: 'http://exchangen.52jzsj.com/',
   // baseURL: "http://192.168.1.117:9503",
   // http://192.168.1.117:9503

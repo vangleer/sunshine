@@ -9,7 +9,7 @@
         <van-swipe-item class="swiper-item" v-for="(item,index) in list" :key="index">
           <!-- 视频标签 -->
           <!-- <img @click="handlePlayClick" class="swipe_img" :src="item.imgSrc" /> -->
-          <video @click="handlePlayClick" class="swipe_img" width="100%" height="100%" :src="item.url"></video>
+          <video @click="handlePlayClick" class="swipe_img" :src="item.url"></video>
           <!-- 底部组件 -->
           <Tabbar :id="item.id" :numbers="{love:item.love_num,share:item.share_num,comment:item.comment_num}"
             :loves="item.love_ids" @shareClick="handleShare" @commentClick="handleComment">
@@ -43,7 +43,7 @@
     <!-- 评论面板 -->
     <van-popup v-model="showComment" position="bottom" :style="{ height: '60%',borderRadius: '20px 20px 0 0'}">
       <div class="com_box">
-        <div class="title">最新评论 6</div>
+        <div class="title">最新评论 {{commentList.length}}</div>
         <div class="item" v-for="(item,index) in commentList" :key="index">
           <div class="user flex_bea">
             <div class="flex_align">
@@ -51,13 +51,14 @@
               <div v-else class="icon_box"><span class="iconfont icon-user"></span></div>
               <div class="">
                 <h3>{{item.nickname}}</h3>
-                <p>{{item.add_time}}</p>
+                <p>{{item.add_time|datetime_ymd}}</p>
               </div>
             </div>
             <div class="flex_align tool">
               <span class="iconfont icon-pinglun"></span>
               <div class="flex_align">
-                <span class="iconfont icon-iconfontzhizuobiaozhun44"><span
+                <span @click="handleLoveComClick(item.id,item.love_num+1)"
+                  class="iconfont icon-iconfontzhizuobiaozhun44"><span
                     style="font-size: 20px;">{{item.love_num}}</span></span>
               </div>
             </div>
@@ -137,167 +138,7 @@
           ]
         ],
         showCaption: false,
-        list: [{
-            id: 1,
-            imgSrc: require('../assets/images/lun5.jpg'),
-            username: '黄万通',
-            centence: 'english is an international language, do you think about it.',
-            words: '先来5000个句子再说',
-            tag: '黄',
-            color: '#c518f0',
-            topic: '13aklshdfksjab',
-            shareList: [{
-                id: 1,
-                title: '喜欢',
-                icon: 'icon-love',
-                num: 1369,
-                en_name: 'love'
-              },
-              {
-                id: 2,
-                title: '消息',
-                icon: 'icon-message_1',
-                num: 52,
-                en_name: 'message'
-              },
-              {
-                id: 3,
-                title: '分享',
-                icon: 'icon-zhuanfa',
-                num: 152,
-                en_name: 'share'
-              }
-            ]
-          },
-          {
-            id: 2,
-            imgSrc: require('../assets/images/lun4.jpg'),
-            username: '黄万通',
-            centence: 'english is an international language, do you think about it.',
-            words: '先来5000个句子再说',
-            topic: '13aklshdfksjab',
-            tag: '裴',
-            color: '#2df1d3',
-            shareList: [{
-                id: 1,
-                title: '喜欢',
-                icon: 'icon-love',
-                num: 1369,
-                en_name: 'love'
-              },
-              {
-                id: 2,
-                title: '消息',
-                icon: 'icon-message_1',
-                num: 52,
-                en_name: 'message'
-              },
-              {
-                id: 3,
-                title: '分享',
-                icon: 'icon-zhuanfa',
-                num: 152,
-                en_name: 'share'
-              }
-            ]
-          },
-          {
-            id: 3,
-            imgSrc: require('../assets/images/lun3.jpg'),
-            username: '黄万通',
-            centence: 'english is an international language, do you think about it.',
-            words: '先来5000个句子再说',
-            topic: '13aklshdfksjab',
-            tag: '男',
-            color: '#18f045',
-            shareList: [{
-                id: 1,
-                title: '喜欢',
-                icon: 'icon-love',
-                num: 1369,
-                en_name: 'love'
-              },
-              {
-                id: 2,
-                title: '消息',
-                icon: 'icon-message_1',
-                num: 52,
-                en_name: 'message'
-              },
-              {
-                id: 3,
-                title: '分享',
-                icon: 'icon-zhuanfa',
-                num: 152,
-                en_name: 'share'
-              }
-            ]
-          },
-          {
-            id: 4,
-            imgSrc: require('../assets/images/lun2.jpg'),
-            username: '黄万通',
-            centence: 'english is an international language, do you think about it.',
-            words: '先来5000个句子再说',
-            topic: '13aklshdfksjab',
-            tag: '女',
-            color: '#f56437',
-            shareList: [{
-                id: 1,
-                title: '喜欢',
-                icon: 'icon-love',
-                num: 1369,
-                en_name: 'love'
-              },
-              {
-                id: 2,
-                title: '消息',
-                icon: 'icon-message_1',
-                num: 52,
-                en_name: 'message'
-              },
-              {
-                id: 3,
-                title: '分享',
-                icon: 'icon-zhuanfa',
-                num: 152,
-                en_name: 'share'
-              }
-            ]
-          },
-          {
-            id: 5,
-            imgSrc: require('../assets/images/lun1.jpeg'),
-            username: '黄万通',
-            centence: 'english is an international language, do you think about it.',
-            words: '先来5000个句子再说',
-            topic: '13aklshdfksjab',
-            tag: '歌',
-            color: '#6b4cd6',
-            shareList: [{
-                id: 1,
-                title: '喜欢',
-                icon: 'icon-love',
-                num: 1369,
-                en_name: 'love'
-              },
-              {
-                id: 2,
-                title: '消息',
-                icon: 'icon-message_1',
-                num: 52,
-                en_name: 'message'
-              },
-              {
-                id: 3,
-                title: '分享',
-                icon: 'icon-zhuanfa',
-                num: 152,
-                en_name: 'share'
-              }
-            ]
-          }
-        ]
+        list: []
       }
     },
     activated() {
@@ -311,10 +152,16 @@
         if (!this.$store.state.userInfo.id) {
           return this.$router.push('/login')
         }
-        console.log(this.$store.state.userInfo.id)
-        const res = await this.$http.fetch('/video/getComments?id=' + id)
-        if (res.status === 0) return
-        this.commentList = res.data
+        this.getComments()
+      },
+      // 评论点赞
+      async handleLoveComClick(id, num) {
+        const res = await this.$http.post('/video/loveComment', {
+          id: id,
+          num: num
+        })
+        if (res.status !== 1) return
+        this.getComments()
       },
       handleFocus() {
         this.$refs.commentRef.focus()
@@ -335,18 +182,27 @@
         this.$toast(item.name)
       },
       // 发送评论信息
-      sendComment() {
+      async sendComment() {
         console.log(this.commentText)
         if (this.commentText.trim().length === 0) {
           return
         }
 
-        const res = this.$http.post('/video/addComment', {
+        const res = await this.$http.post('/video/addComment', {
           id: this.currentId,
           user_id: this.$store.state.userInfo.id,
-          content: this.commentText
+          content: this.commentText,
+          comment_num: this.commentList.length + 1
         })
         console.log(res)
+        if (res.status === 1) {
+          this.getComments()
+        }
+      },
+      async getComments() {
+        const res2 = await this.$http.fetch('/video/getComments?id=' + this.currentId)
+        if (res2.status === 0) return
+        this.commentList = res2.data.reverse()
         this.commentText = ''
       },
       // 点击分享
@@ -413,10 +269,9 @@
     }
 
     .swipe_img {
-      padding: 0;
-      margin: 0;
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 

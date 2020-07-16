@@ -11,11 +11,11 @@
       </div>
       <div class="nav_item">
         <span class="iconfont icon-message_1" @click="handleComment"></span>
-        <p>{{numbers.share}}</p>
+        <p>{{numbers.comment}}</p>
       </div>
       <div class="nav_item">
         <span class="iconfont icon-zhuanfa" @click="shareClick"></span>
-        <p>{{numbers.comment}}</p>
+        <p>{{numbers.share}}</p>
       </div>
 
     </div>

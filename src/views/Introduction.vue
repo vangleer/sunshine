@@ -14,7 +14,6 @@
 
     <!-- 内容 -->
     <div class="wrapper" ref="pageScroll">
-
       <div class="content">
         <div class="top" :style="{backgroundImage: 'url('+bgImg+')'}">
           <div class="title">
@@ -23,7 +22,8 @@
           </div>
         </div>
         <div class="list">
-          <div class="item" v-for="index in 20" :key="index">#打招呼</div>
+          <div class="item" v-for="(item,index) in list" :key="index" @click="$router.push('/topicDetail')">
+            #{{item.word}}</div>
         </div>
       </div>
     </div>
@@ -37,8 +37,12 @@
       return {
         bgImg: require('../assets/images/user2.jpg'),
         showNav: false,
-        pageScroll: null
+        pageScroll: null,
+        list: []
       }
+    },
+    created() {
+      this.getList()
     },
     mounted() {
       this.$nextTick(() => {
@@ -58,6 +62,12 @@
           console.log(this.showNav)
         })
       })
+    },
+    methods: {
+      async getList() {
+        const res = await this.$http.fetch('/mock/introduction')
+        this.list = res.data.data
+      }
     }
   }
 
@@ -72,6 +82,7 @@
 
   .content {
     background-color: @grayBgColor;
+    padding-top: 0;
 
     .list {
       position: relative;

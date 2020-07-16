@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12853172",
+      "name": "收 藏",
+      "font_class": "shoucang1",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "4453082",
+      "name": "灯泡",
+      "font_class": "dengpao",
+      "unicode": "e7b3",
+      "unicode_decimal": 59315
+    },
+    {
+      "icon_id": "8211342",
+      "name": "结束录制",
+      "font_class": "zu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "10157619",
+      "name": "转发",
+      "font_class": "zhuanfa1",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "10886777",
+      "name": "图库",
+      "font_class": "tuku",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "12154178",
+      "name": "收 藏",
+      "font_class": "shoucang",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "14059102",
+      "name": "录制",
+      "font_class": "luzhi",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
       "icon_id": "662544",
       "name": "海报",
       "font_class": "haibao",

@@ -12,7 +12,7 @@
     </home-header>
 
     <PullRefresh>
-      <!-- 录播图 -->
+      <!-- 轮播图 -->
       <div class="swipe_box">
         <van-swipe class="find_swipe" indicator-color="#f04130">
           <van-swipe-item>
@@ -55,7 +55,7 @@
       <div class="day_task">
         <div class="top_com flex_between">
           <span class="tit">今日任务</span>
-          <div class="btn">全部话题</div>
+          <div @click="$router.push('/topic')" class="btn">全部话题</div>
         </div>
         <div class="bom">
           <!-- 练习主题 -->
@@ -85,7 +85,7 @@
                 有3个实例
               </span>
             </div>
-            <div class="btn">立即打卡</div>
+            <div class="btn" @click="$router.push('/topicDetail')">立即打卡</div>
           </div>
         </div>
       </div>
@@ -94,22 +94,22 @@
       <div class="practice">
         <div class="top_com flex_between">
           <span class="tit">推荐练习</span>
-          <div class="btn"><span class="iconfont icon-share"></span> 换一批</div>
+          <div class="btn" @click="getPracticeList"><span class="iconfont icon-share"></span> 换一批</div>
         </div>
 
         <!-- 练习列表 -->
         <div class="list">
-          <div class="p_item" v-for="i in 4" :key="i">
+          <div class="p_item" v-for="(item,index) in romList" :key="index">
             <div class="flex_bea practise_top">
               <div class="left flex_align">
-                <div class="tag">词</div>
+                <div class="tag" :style="{backgroundColor:item.color}">{{item.tag}}</div>
                 <div>
-                  <span class="tit">大幂幂</span>
+                  <span class="tit">{{item.name}}</span>
                   <!-- 练习数据 -->
                   <div class="num">
-                    <span>123456次播放</span>
+                    <span>{{item.play_num}}次播放</span>
                     <span class="m">*</span>
-                    <span>7人参与</span>
+                    <span>{{item.num}}人参与</span>
                   </div>
                 </div>
               </div>
@@ -119,11 +119,9 @@
               </div>
             </div>
             <div class="example flex_align">
-              <img src="../assets/images/user.jpg" alt="" />
-              <img src="../assets/images/user.jpg" alt="" />
-              <img src="../assets/images/user.jpg" alt="" />
+              <img src="../assets/images/user.jpg" v-for="(img,i) in item.videos" :key="i" alt="" />
               <span class="text">
-                有3个实例
+                有{{item.videos}}个实例
               </span>
             </div>
           </div>
@@ -134,24 +132,25 @@
       <div class="community_select">
         <!-- 精选主题 -->
         <div class="top_com flex_between">
-          <span class="tit">精选主题</span>
-          <div class="btn">差看更多</div>
+          <span class="tit">社区精选</span>
+          <div class="btn" @click="$router.push('/community')">查看更多</div>
         </div>
         <div class="bom">
-          <div class="b_item" v-for="i in 4" :key="i">
+          <div class="b_item" v-for="(item,index) in selectList" :key="index">
             <!-- 视频组件 -->
             <div style="height: 130px;">
-              <VideoBox></VideoBox>
+              <VideoBox :video="item" :isLove="false"></VideoBox>
             </div>
             <!-- 详情 -->
             <div class="info">
-              <div class="tit topic">english is an international language</div>
+              <div class="tit topic">{{item.word}}</div>
               <div class="tool flex_bea">
-                <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="" /> <span>大幂幂~~</span>
+                <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="" />
+                  <span>{{item.name}}</span>
                 </p>
                 <p class="flex_align">
                   <span class="iconfont icon-xihuan"></span>
-                  <span>12345</span>
+                  <span>{{item.love_num}}</span>
                 </p>
               </div>
             </div>
@@ -162,20 +161,19 @@
       <!-- 猜你喜欢 -->
       <div class="you_like">
         <div class="top_com flex_between">
-          <span class="tit">今日任务</span>
-          <div class="btn">全部话题</div>
+          <span class="tit">猜你喜欢</span>
         </div>
-        <div class="l_item">
+        <div class="l_item" v-for="(item,index) in likeList" :key="index">
           <div class="flex_bea practise_top">
             <div class="left flex_align">
-              <div class="tag">词</div>
+              <div class="tag" :style="{backgroundColor:item.color}">{{item.tag}}</div>
               <div>
-                <span class="tit">大幂幂</span>
+                <span class="tit">{{item.name}}</span>
                 <!-- 练习数据 -->
                 <div class="num">
-                  <span>123456次播放</span>
+                  <span>{{item.play_num}}次播放</span>
                   <span class="m">*</span>
-                  <span>7人参与</span>
+                  <span>{{item.num}}人参与</span>
                 </div>
               </div>
             </div>
@@ -185,12 +183,12 @@
             </div>
           </div>
           <div class="text_com">
-            asfdoihhhhdiasuhdddddddddddddddddddddddddddddddddddddddasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddaiasdsadasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            {{item.paragraph}}
             <!-- <span>全文</span> -->
           </div>
           <!-- 视频 -->
           <div class="play_box">
-            <VideoBox></VideoBox>
+            <VideoBox :video="item"></VideoBox>
           </div>
 
           <div class="owner flex_bea">
@@ -198,10 +196,12 @@
               <img src="../assets/images/user2.jpg" alt="" />
             </div>
             <div class="tool">
-              <span class="iconfont icon-share">132</span>
-              <span class="iconfont icon-pinglun">12</span>
-              <span class="iconfont icon-aixin">456</span>
-              <span class="iconfont icon-aixin">789</span>
+              <span class="iconfont icon-zhuanfa1" @click="handleShareClick(item)">{{item.share_num}}</span>
+              <span class="iconfont icon-pinglun" @click="handleCommentClick(item)">{{item.comment_num}}</span>
+              <span class="iconfont" :class="item.isLove?'icon-love':'icon-xihuan'"
+                @click="handleLoveClick(item,index)">{{item.love_num}}</span>
+              <span class="iconfont" :class="item.isCollect?'icon-shoucang1':'icon-shoucang'"
+                @click="handleCollectClick(item)">{{item.collect}}</span>
             </div>
           </div>
         </div>
@@ -219,9 +219,45 @@
       VideoBox
     },
     data() {
-      return {}
+      return {
+        romList: [], // 推荐练习列表
+        selectList: [], // 精选
+        likeList: [] // 猜您喜欢
+      }
     },
-    methods: {}
+    activated() {
+      this.getPracticeList()
+      this.getComSelect()
+      this.getListList()
+    },
+    methods: {
+      // 获取推荐练习列表
+      async getPracticeList() {
+        const res = await this.$http.fetch('/mock/romPractice')
+        this.romList = res.data.data
+      },
+      // 获取精选列表
+      async getComSelect() {
+        const res = await this.$http.fetch('/mock/comSelect')
+        this.selectList = res.data.data
+      },
+      // 获取猜您喜欢列表
+      async getListList() {
+        const res = await this.$http.fetch('/mock/youLike')
+        this.likeList = res.data.data
+      },
+      // 点击分享
+      handleShareClick(item) {},
+      // 点击评论
+      handleCommentClick(item) {},
+      // 点击喜欢
+      handleLoveClick(item) {
+        item.isLove = !item.isLove
+        item.isLove ? item.love_num++ : item.love_num--
+      },
+      // 点击收藏
+      handleCollectClick(item) {}
+    }
   }
 
 </script>
@@ -427,6 +463,8 @@
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
         overflow: hidden;
+        word-break: break-all;
+        margin-bottom: 10px;
       }
 
       .tool {
@@ -462,6 +500,7 @@
         overflow: hidden;
         font-size: 15px;
         line-height: 20px;
+        margin-bottom: 10px;
       }
 
       .play_box {
@@ -485,6 +524,19 @@
 
           .iconfont::before {
             font-size: 26px;
+            color: @deepColor;
+          }
+
+          .icon-shoucang::before {
+            font-size: 23px;
+          }
+
+          .icon-shoucang1::before {
+            color: @themeColor2;
+          }
+
+          .icon-love::before {
+            color: @themeColor2;
           }
         }
       }

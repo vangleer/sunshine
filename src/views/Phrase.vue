@@ -2,7 +2,7 @@
   <div class="phrase">
     <van-nav-bar title="短语" :fixed="true" :border="false" z-index="100" left-arrow @click-left="$router.back()" />
     <!-- 索引栏组件 -->
-    <MyIndexBar :sideBarList="sideBarList" :activeKey="activeKey"></MyIndexBar>
+    <MyIndexBar :sideBarList="sideBarList" :type="2" :activeKey="activeKey"></MyIndexBar>
   </div>
 </template>
 

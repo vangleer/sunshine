@@ -17,7 +17,8 @@
       <div class="play_btn" v-show="showBtn">
         <span class="iconfont icon-bofang1" @click.stop="startPlay"></span>
       </div>
-      <video v-if="current==0" class="video" ref="myVideo" @click.stop="startPlay" :src="sourceUrl"></video>
+      <video id="upvideo" v-if="current==0" class="video" ref="myVideo" @click.stop="startPlay"
+        :src="sourceUrl"></video>
       <audio v-if="current==1" class="video" ref="myVideo" @click.stop="startPlay" :src="sourceUrl"></audio>
     </div>
     <!-- 右侧工具条 -->
@@ -58,6 +59,7 @@
         </div>
         <!-- 录制按钮 -->
         <van-uploader :after-read="afterRead" :accept="acceptType" capture="camera">
+          <!-- <van-uploader :after-read="afterRead" :accept="acceptType"> -->
           <van-button
             style="width: 66px;height: 66px;border-radius: 50%;display: flex;justify-content: center;align-items: center;">
             <span class="btn"></span>
@@ -92,6 +94,23 @@
     },
     mounted() {},
     methods: {
+      // 截取视频的第一帧
+      findvideocover(video) {
+        const canvas = document.createElement('canvas')
+        const img = document.createElement('img')
+        canvas.width = video.clientWidth * 0.8
+        console.log(video.clientWidth)
+        console.log(video.clientHeight)
+        canvas.height = video.clientHeight * 0.8
+        video.addEventListener('loadeddata', () => {
+          canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+          var dataURL = canvas.toDataURL('image/png')
+          this.bgImg = dataURL
+          img.width = 400
+          img.height = 300
+          console.log(img.src)
+        })
+      },
       changeMode(opt) {
         this.current = opt
         this.acceptType = opt === 0 ? 'video/*' : 'audio/*'
@@ -144,7 +163,9 @@
         this.sourceUrl = file.content
         this.showBtn = true
         const video = this.$refs.myVideo
+        this.findvideocover(video)
         setTimeout(() => {
+          console.log('ok')
           this.allTime = video.duration
           video.addEventListener('timeupdate', (e) => {
             setTimeout(() => {

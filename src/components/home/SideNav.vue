@@ -9,7 +9,7 @@
       <div>字幕</div>
     </div>
 
-    <div class="item">
+    <div class="item" @click="handleDetail">
       <span class="iconfont icon-comment"></span>
       <div>详情</div>
     </div>
@@ -27,6 +27,9 @@
       handleShowCaption() {
         this.showCaption = !this.showCaption
         this.$emit('showCaption', this.showCaption)
+      },
+      handleDetail() {
+        this.$toast('暂未实现此功能!')
       }
     }
   }

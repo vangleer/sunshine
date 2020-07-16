@@ -12,17 +12,10 @@
       </div>
       <div class="right" ref="rightRef">
         <div class="list">
-          <div class="item" v-for="index in 20" :key="index" @click="$router.push('/topicDetail')">
-            <img src="../assets/images/study1.jpg" alt="">
-            <span>日常生活</span>
-          </div>
-          <div class="item">
-            <img src="../assets/images/study1.jpg" alt="">
-            <span>日常生活</span>
-          </div>
-          <div class="item">
-            <img src="../assets/images/study1.jpg" alt="">
-            <span>日常生活</span>
+          <div class="item" v-for="(item,index) in topicList" :key="index" @click="$router.push('/topicDetail')">
+            <!-- <img src="../assets/images/study1.jpg" alt=""> -->
+            <div class="bg" :style="{backgroundColor:item.color}"></div>
+            <span>{{item.word}}</span>
           </div>
         </div>
       </div>
@@ -82,8 +75,13 @@
             opt: ''
           }
         ],
-        scroll: null
+        scroll: null,
+        topicList: []
       }
+    },
+    created() {
+      this.getTypes()
+      this.onChange()
     },
     mounted() {
       this.$nextTick(() => {
@@ -94,8 +92,13 @@
       })
     },
     methods: {
-      onChange(index) {
-        console.log(index)
+      async getTypes() {
+        const res = await this.$http.fetch('/mock/getTypes')
+        this.sideBarList = res.data
+      },
+      async onChange(index) {
+        const res = await this.$http.fetch('/mock/topic')
+        this.topicList = res.data.data
       }
     }
   }
@@ -135,6 +138,7 @@
         position: relative;
         width: 45%;
         height: 140px;
+        padding: 0;
         margin-bottom: 20px;
 
         img {
@@ -142,6 +146,12 @@
           height: 100%;
           border-radius: 12px;
 
+        }
+
+        .bg {
+          width: 100%;
+          height: 100%;
+          border-radius: 12px;
         }
 
         span {

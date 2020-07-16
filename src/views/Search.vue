@@ -1,11 +1,19 @@
 <template>
   <div class="search_page">
-    <!-- 收索框 -->
-    <van-search v-model="searchValue" placeholder="收索词汇/短语/话题/用户" clearable show-action @cancel="$router.back()" />
-    <!-- 选择分类 -->
-    <div class="search_cate">
-      <span :class="index===activeItem?'active':''" v-for="(item,index) in cates" :key="item.id"
-        @click="handleChangeCate(index)">{{item.title}}</span>
+    <div style="position: fixed;top: 0;left: 0;width: 100%;">
+      <!-- 收索框 -->
+      <van-search v-model="searchValue" placeholder="收索词汇/短语/话题/用户" @input="handleSearch" clearable show-action
+        @cancel="$router.back()" />
+      <!-- 选择分类 -->
+      <div class="search_cate">
+        <span :class="index===activeItem?'active':''" v-for="(item,index) in cates" :key="item.id"
+          @click="handleChangeCate(index)">{{item.title}}</span>
+      </div>
+    </div>
+
+    <!-- 搜索内容 -->
+    <div class="content">
+      <div class="item" v-for="(item,index) in list" :key="index">{{item.word}}</div>
     </div>
   </div>
 </template>
@@ -28,13 +36,34 @@
             id: 2,
             title: '用户'
           }
-        ]
+        ],
+        list: [],
+        allList: [],
+        timeId: null
       }
+    },
+    async created() {
+      const res = await this.$http.fetch('/mock/words?type=' + this.activeItem)
+      this.allList = res.data.data
     },
     methods: {
       // 切换收索内容
-      handleChangeCate(index) {
+      async handleChangeCate(index) {
         this.activeItem = index
+        const res = await this.$http.fetch('/mock/words?type=' + this.activeItem)
+        this.allList = res.data.data
+      },
+      handleSearch() {
+        clearTimeout(this.timeId)
+        this.timeId = setTimeout(() => {
+          if (this.searchValue.trim().length <= 0) {
+            this.list = []
+            return
+          }
+          this.list = this.allList.filter((item, index) => {
+            return item.word.startsWith(this.searchValue)
+          })
+        }, 300)
       }
     }
   }
@@ -43,7 +72,6 @@
 
 <style lang="less">
   .search_page {
-    height: 100vh;
     width: 100%;
     background-color: @grayBgColor;
 
@@ -75,17 +103,29 @@
       span.active {
         color: @blackCoor;
         font-weight: 700;
-      }
 
-      span:nth-child(-n + 2)::after {
-        content: '';
-        position: absolute;
-        top: 16px;
-        right: 0;
-        width: 1px;
-        height: 10px;
-        background-color: @grayColor;
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translate(-50%, -50%);
+          width: 20px;
+          height: 2px;
+          background-color: #f53a35;
+        }
       }
+    }
+  }
+
+  .content {
+    padding-top: 98px;
+    padding-bottom: 10px;
+
+    .item {
+      padding: 12px;
+      background-color: #fff;
+      margin-top: 10px;
     }
   }
 
