@@ -1,22 +1,22 @@
 <template>
   <div class="tally_book">
-    <MyScroll>
+    <MyScroll @finishPullUp="handleFinishPullUp" @finishPullDown="handleFinishPullDown">
       <div class="list">
-        <div class="item" v-for="index in 6" :key="index">
+        <div class="item" v-for="(item,index) in list" :key="index">
           <!-- 上面用户信息 -->
           <div class="top flex_align">
-            <img class="icon" src="../../assets/images/user2.jpg" />
+            <img class="icon" :src="item.photo" />
             <div class="name">
-              <span class="tit">大裴裴</span>
+              <span class="tit">{{item.name}}</span>
               <span class="nic">的目标</span>
             </div>
           </div>
           <!-- 目标 -->
-          <div class="goal tit">这是我的目标</div>
+          <div class="goal tit">{{item.title}}</div>
           <!-- 视频区 -->
           <div class="play_list" @touchstart.stop>
-            <div class="v_item" v-for="index2 in 6" :key="index2">
-              <VideoBox></VideoBox>
+            <div class="v_item" v-for="(item2,index2) in item.goals" :key="index2">
+              <VideoBox :video="item2"></VideoBox>
             </div>
           </div>
           <!-- 口语练习和经验值 -->
@@ -38,10 +38,29 @@
       VideoBox,
       MyScroll
     },
-    mounted() {},
+    mounted() {
+      this.getList()
+    },
     data() {
       return {
-        bookScroll: null
+        bookScroll: null,
+        list: []
+      }
+    },
+    methods: {
+      async getList() {
+        const res = await this.$http.fetch('/mock/tallyBookList')
+        this.list = res.data.data
+        console.log(this.list)
+      },
+      // 上拉加载
+      handleFinishPullUp() {
+        this.getList()
+      },
+      // 下拉刷新
+      async handleFinishPullDown() {
+        const res = await this.$http.fetch('/mock/tallyBookList')
+        this.list = [...res.data.data, ...this.list]
       }
     }
   }

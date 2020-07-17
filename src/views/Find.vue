@@ -11,7 +11,7 @@
       </van-search>
     </home-header>
 
-    <PullRefresh>
+    <PullRefresh @refresh="handleRefresh">
       <!-- 轮播图 -->
       <div class="swipe_box">
         <van-swipe class="find_swipe" indicator-color="#f04130">
@@ -61,31 +61,30 @@
           <!-- 练习主题 -->
           <div class="top flex_bea">
             <p>地道表达</p>
-            <span class="iconfont icon-xihuan"></span>
+            <span @click="handleCollectClick(todayTask)" class="iconfont"
+              :class="todayTask.isCollect?'icon-shoucang1':'icon-shoucang'"></span>
           </div>
           <!-- 练习内容 -->
           <div class="title">
             <span class="tag">#</span>
-            <span class="text">练一练:{{ 'there is the least I could do,but it was the most' }}</span>
+            <span class="text van-multi-ellipsis--l2">练一练: {{ todayTask.name }}</span>
           </div>
           <!-- 练习数据 -->
           <div class="num">
-            <span>123456次播放</span>
+            <span>{{todayTask.play_num}}次播放</span>
             <span class="m">*</span>
-            <span>7人参与</span>
+            <span>{{todayTask.num}}人参与</span>
           </div>
 
           <!-- 练习样本 -->
           <div class="yangben">
             <div class="example flex_align">
-              <img src="../assets/images/user.jpg" alt="" />
-              <img src="../assets/images/user.jpg" alt="" />
-              <img src="../assets/images/user.jpg" alt="" />
+              <img :src="img" v-for="(img,i) in todayTask.videos" :key="i" alt="" />
               <span class="text">
-                有3个实例
+                有{{todayTask.videos.length}}个实例
               </span>
             </div>
-            <div class="btn" @click="$router.push('/topicDetail')">立即打卡</div>
+            <div class="btn" @click="handleGoDetail(todayTask)">立即打卡</div>
           </div>
         </div>
       </div>
@@ -114,14 +113,15 @@
                 </div>
               </div>
               <div class="right flex_align">
-                <span class="iconfont icon-xihuan"></span>
-                <div class="btn_p">练习</div>
+                <span class="iconfont" :class="item.isCollect?'icon-shoucang1':'icon-shoucang'"
+                  @click="handleCollectClick(item)"></span>
+                <div class="btn_p" @click="handleGoDetail(item)">练习</div>
               </div>
             </div>
             <div class="example flex_align">
-              <img src="../assets/images/user.jpg" v-for="(img,i) in item.videos" :key="i" alt="" />
+              <img :src="img" v-for="(img,i) in item.videos" :key="i" alt="" />
               <span class="text">
-                有{{item.videos}}个实例
+                有{{item.videos.length}}个实例
               </span>
             </div>
           </div>
@@ -145,7 +145,7 @@
             <div class="info">
               <div class="tit topic">{{item.word}}</div>
               <div class="tool flex_bea">
-                <p class="flex_align"><img class="icon" src="../assets/images/user2.jpg" alt="" />
+                <p class="flex_align"><img class="icon" :src="item.photo" alt="" />
                   <span>{{item.name}}</span>
                 </p>
                 <p class="flex_align">
@@ -178,8 +178,7 @@
               </div>
             </div>
             <div class="right flex_align">
-              <span class="iconfont icon-xihuan"></span>
-              <div class="btn_p">练习</div>
+              <div class="btn_p" @click="handleGoDetail(item)">练习</div>
             </div>
           </div>
           <div class="text_com">
@@ -188,12 +187,12 @@
           </div>
           <!-- 视频 -->
           <div class="play_box">
-            <VideoBox :video="item"></VideoBox>
+            <VideoBox :video="item" :isLove="false"></VideoBox>
           </div>
 
           <div class="owner flex_bea">
             <div class="icon">
-              <img src="../assets/images/user2.jpg" alt="" />
+              <img :src="item.photo" alt="" />
             </div>
             <div class="tool">
               <span class="iconfont icon-zhuanfa1" @click="handleShareClick(item)">{{item.share_num}}</span>
@@ -222,15 +221,24 @@
       return {
         romList: [], // 推荐练习列表
         selectList: [], // 精选
-        likeList: [] // 猜您喜欢
+        likeList: [], // 猜您喜欢
+        todayTask: {}
       }
     },
-    activated() {
+    created() {
       this.getPracticeList()
       this.getComSelect()
       this.getListList()
+      this.getTodayTask()
     },
     methods: {
+      // 刷新功能
+      handleRefresh() {
+        this.getPracticeList()
+        this.getComSelect()
+        this.getListList()
+        this.getTodayTask()
+      },
       // 获取推荐练习列表
       async getPracticeList() {
         const res = await this.$http.fetch('/mock/romPractice')
@@ -256,7 +264,38 @@
         item.isLove ? item.love_num++ : item.love_num--
       },
       // 点击收藏
-      handleCollectClick(item) {}
+      handleCollectClick(item) {
+        const arr = JSON.parse(localStorage.getItem('collect_list'))
+        item.isCollect = !item.isCollect
+        item.isCollect ? item.collect++ : item.collect--
+        if (item.isCollect) {
+          arr.push(item)
+          this.$toast({
+            duration: 500,
+            message: '收藏成功'
+          })
+        } else {
+          arr.some((ele, index) => {
+            if (ele.id === item.id) {
+              arr.splice(index, 1)
+              return true
+            }
+          })
+        }
+        localStorage.setItem('collect_list', JSON.stringify(arr))
+      },
+      // 获取今日任务数据
+      async getTodayTask() {
+        const res = await this.$http.fetch('/mock/todayTask')
+        this.todayTask = res.data.data
+      },
+      // 去练习
+      handleGoDetail(item) {
+        // 将数据保存到localstorage中
+        localStorage.setItem('topic_detail', JSON.stringify(item))
+        // 跳转页面
+        this.$router.push('/topicDetail')
+      }
     }
   }
 
@@ -391,6 +430,7 @@
           font-size: 18px;
           font-weight: 700;
           color: #fff;
+          word-break: break-all;
         }
       }
 
@@ -448,13 +488,15 @@
     }
 
     .b_item {
+      position: relative;
       flex: none;
       width: 140px;
+      height: 210px;
       margin-right: 12px;
       background-color: #fff;
 
       .info {
-        padding: 0 6px 12px;
+        padding: 0 6px 0;
       }
 
       .topic {
@@ -468,6 +510,9 @@
       }
 
       .tool {
+        position: absolute;
+        width: 90%;
+        bottom: 10px;
         font-size: 12px;
         color: @grayColor;
 
@@ -518,8 +563,9 @@
 
         .tool {
           span {
+            display: inline-block;
             font-size: 12px;
-            padding: 0 6px;
+            width: 60px;
           }
 
           .iconfont::before {

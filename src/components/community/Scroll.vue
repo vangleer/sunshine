@@ -49,6 +49,7 @@
           setTimeout(() => {
             // 事情做完，需要调用此方法告诉 better-scroll 数据已加载，否则上拉事件只会执行一次
             this.scroll.finishPullUp()
+            this.$emit('finishPullUp')
             this.showUpload = false
           }, 1000)
         })
@@ -60,6 +61,7 @@
             // 事情做完，需要调用此方法告诉 better-scroll 数据已加载，否则下拉事件只会执行一次
             this.showLoad = false
             this.scroll.finishPullDown()
+            this.$emit('finishPullDown')
           }, 2000)
         })
       })

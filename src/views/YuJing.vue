@@ -141,7 +141,8 @@
         list: []
       }
     },
-    activated() {
+    activated() {},
+    created() {
       this.getVideoList()
     },
     methods: {

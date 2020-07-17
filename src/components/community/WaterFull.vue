@@ -7,8 +7,8 @@
         <div class="water-box">
           <div class="water-sub" v-for="(items,index) in waterList" :key="index">
             <div class="water-item" v-for="(item,index) in items" :key="index">
-              <div class="water-top">
-                <img :src="item.cover" mode="widthFix" />
+              <div class="water-top" @click="$router.push('/playPage')">
+                <img :src="item.cover" :style="{width:item.width+'%',height:item.height+'px'}" />
                 <h3 v-html="item.title"></h3>
                 <div class="play_btn flex_center">
                   <span class="iconfont icon-bofang"></span>
@@ -17,13 +17,14 @@
               <div class="water-bottom">
                 <div class="water-bottom-item">
                   <div class="img-box">
-                    <img class="water-avatar" :src="item.photo" mode="widthFix" />
+                    <img class="water-avatar" :src="item.photo" />
                   </div>
                   <span class="water-name" v-html="item.name"></span>
                 </div>
                 <div class="water-bottom-item">
-                  <span class="iconfont icon-xihuan"></span>
-                  <span v-html="item.likeCount"></span>
+                  <span class="iconfont" :class="!item.isLove?'icon-aixin':'icon-love'"
+                    @click.stop="handleLoveClick(item)"></span>
+                  <span :class="!item.isLove?'':'num'">{{item.love_num}}</span>
                 </div>
               </div>
             </div>
@@ -67,6 +68,14 @@
           console.log('写请求数据接口，将数据赋值给waterList')
         }
         this.$toast('刷新啦')
+      },
+      handleLoveClick(item) {
+        item.isLove = !item.isLove
+        if (item.isLove) {
+          item.love_num++
+        } else {
+          item.love_num--
+        }
       }
     }
   }
@@ -147,13 +156,13 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  width: 10px;
-                  height: 10px;
+                  width: 20px;
+                  height: 20px;
                   border-radius: 50%;
                   overflow: hidden;
 
                   .water-avatar {
-                    width: 10px;
+                    width: 20px;
                   }
                 }
 
@@ -171,6 +180,18 @@
                   margin-left: 7px;
                 }
 
+                .iconfont {
+                  font-size: 16px;
+                }
+
+                .icon-love {
+                  color: #f53a35;
+                }
+
+                .num {
+                  color: #f53a35;
+                }
+
                 img {
                   width: 14px;
                 }
@@ -183,7 +204,7 @@
 
     .water-none {
       position: fixed;
-      top: 50px;
+      top: 150px;
       bottom: 0;
       width: 100%;
       display: flex;

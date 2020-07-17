@@ -19,7 +19,8 @@
     <!-- 内容 -->
     <!-- <PullRefresh> -->
     <div class="content">
-      <van-swipe ref="swiperRef" class="atten_swipe" :loop="false" :show-indicators="false" @change="handleChange">
+      <van-swipe ref="swiperRef" :initial-swipe="currentCate" class="atten_swipe" :loop="false" :show-indicators="false"
+        @change="handleChange">
         <van-swipe-item>
           <Attention></Attention>
         </van-swipe-item>
@@ -72,9 +73,13 @@
           id: 123
         }],
         attentionData: [],
-        currentCate: 0
+        currentCate: 1
         // active: 0
       }
+    },
+    created() {},
+    activated() {
+      // this.$refs.swiperRef.swipeTo(this.currentCate)
     },
     methods: {
       // 点击切换

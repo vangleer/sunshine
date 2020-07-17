@@ -94,7 +94,6 @@
 
   .left-enter {
     transform: translateX(100vw);
-
   }
 
   .left-leave-to {

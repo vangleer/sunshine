@@ -1,8 +1,8 @@
 <template>
   <div class="v_item">
-    <img class="item_src" src="../assets/images/user.jpg" />
+    <img class="item_src" :src="video.cover" />
     <div class="love">
-      <span class="iconfont icon-xihuan"></span>
+      <span class="iconfont icon-xihuan" v-if="isLove"></span>
       <span class="num">{{video.tip}}</span>
     </div>
     <div class="play_btn flex_center">
@@ -14,6 +14,10 @@
 <script>
   export default {
     props: {
+      isLove: {
+        type: Boolean,
+        default: true
+      },
       video: {
         type: Object,
         default () {

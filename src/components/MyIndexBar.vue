@@ -10,9 +10,8 @@
         <van-index-bar z-index="99" @select="handleSelect">
           <div v-for="(item,index) in list" :key="index">
             <van-index-anchor :index="item.anchor"><br /></van-index-anchor>
-            <van-cell title-style="font-weight: 700;" v-for="(item2,index2) in item.list" :key="index2"
-              :title="item2.word" is-link />
-
+            <van-cell @click="handleGoDetail(item2)" title-style="font-weight: 700;" v-for="(item2,index2) in item.list"
+              :key="index2" :title="item2.name" is-link />
           </div>
         </van-index-bar>
       </div>
@@ -74,6 +73,19 @@
         console.log('ok')
         console.log(index)
         console.log(this.$refs.contentRef.scrollTop)
+      },
+      handleGoDetail(item) {
+        if (this.type === 1) { // 词汇
+          item.recommend = '词汇'
+        } else { // 短语
+          item.recommend = '短语'
+        }
+        item.isDetail = true
+        item.type = this.sideBarList[this.activeKey].title
+        // 将数据保存到localstorage中
+        localStorage.setItem('topic_detail', JSON.stringify(item))
+        // 跳转页面
+        this.$router.push('/topicDetail')
       }
     }
   }

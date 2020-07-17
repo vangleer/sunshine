@@ -108,7 +108,7 @@
   .content {
     width: 100%;
     height: 100vh;
-    // background-color: red;
+    padding-top: 0;
   }
 
   .msg_nav {

@@ -1,6 +1,6 @@
 <template>
   <div class="work_area">
-    <MyScroll>
+    <MyScroll @finishPullUp="handleFinishPullUp" @finishPullDown="handleFinishPullDown">
       <div class="play_list">
         <WaterFull ref="waterFill"></WaterFull>
       </div>
@@ -18,116 +18,38 @@
     },
     data() {
       return {
-        waterList: [{
-            cover: require('../../assets/images/user.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user2.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 200
-          },
-          {
-            cover: require('../../assets/images/lun1.jpeg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user2.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 160
-          },
-          {
-            cover: require('../../assets/images/lun2.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user2.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 240
-          },
-          {
-            cover: require('../../assets/images/lun3.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 250
-          },
-          {
-            cover: require('../../assets/images/lun4.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user2.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 120
-          },
-          {
-            cover: require('../../assets/images/lun5.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 160
-          },
-          {
-            cover: require('../../assets/images/study1.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user2.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 200
-          },
-          {
-            cover: require('../../assets/images/study2.jpg'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 180
-          },
-          {
-            cover: require('../../assets/images/study3.png'),
-            id: 1,
-            isLiked: '23',
-            likeCount: 0,
-            name: '小小裴',
-            photo: require('../../assets/images/user2.jpg'),
-            title: '#自由穿搭我在行',
-            width: 100,
-            height: 220
-          }
-        ]
+        waterList: []
       }
     },
-    mounted() {
+    created() {},
+    async mounted() {
+      const res = await this.$http.fetch('/mock/workList')
+      this.waterList = res.data.data
       this.$refs.waterFill.handleLoad(this.waterList)
+    },
+    methods: {
+      // 获取作品区的数据
+      async getWorkList() {
+        const res = await this.$http.fetch('/mock/workList')
+        this.waterList = [...this.waterList, ...res.data.data]
+        this.$refs.waterFill.handleLoad(this.waterList)
+      },
+      // 上拉加载
+      handleFinishPullUp() {
+        this.getWorkList()
+      },
+      // 下拉刷新
+      async handleFinishPullDown() {
+        const res = await this.$http.fetch('/mock/workList')
+        this.waterList = res.data.data
+        this.$refs.waterFill.handleLoad(this.waterList)
+      }
     }
   }
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .rec_topic {
     width: 100%;
 

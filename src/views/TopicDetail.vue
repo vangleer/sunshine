@@ -3,7 +3,7 @@
     <!-- 头部导航 -->
     <van-nav-bar class="nav_bar" :class="showNav?'normal_nav':'scroll_nav'" :fixed="true" :border="false">
       <template #title>
-        <h2>我的</h2>
+        <h2>{{showNav?'':itemInfo.name}}</h2>
       </template>
       <template #left>
         <span class="iconfont icon-zuo" @click="$router.back()"></span>
@@ -16,15 +16,23 @@
     <div class="page_scroll" ref="pageScroll">
       <div class="user_page" :style="{backgroundImage:'url('+bgImg+')'}">
         <div class="content">
-          <div class="title flex_bea">
-            <div class="left flex_align">
-              <div class="tag" style="color: #fff;">#</div>
-              <div class="info">
-                <span class="tit">男人的品质</span>
-                <p>456次播放<span>*</span>7人参与</p>
+          <div class="title">
+            <div class="flex_bea">
+              <div class="left flex_align">
+                <div class="tag" :style="{color: '#fff',backgroundColor:itemInfo.color}">{{itemInfo.tag}}</div>
+                <div class="info">
+                  <span class="tit">{{itemInfo.name}}</span>
+                  <p>{{itemInfo.play_num}}次播放<span>*</span>{{itemInfo.num}}人参与</p>
+                </div>
               </div>
+              <div class="right_btn" @click="handleCollect">收藏</div>
             </div>
-            <div class="right_btn">收藏</div>
+            <div class="detail" v-if="itemInfo.isDetail">
+              <p class="tips" @click="$router.back()"><span class="btn">{{itemInfo.type}}</span>查看更多{{itemInfo.type}} >
+              </p>
+              <p class="hear">[{{itemInfo.symbol}}] <span class="iconfont icon-dengpao"></span></p>
+              <p>翻译. {{itemInfo.interpret}}</p>
+            </div>
           </div>
 
           <!-- 样式视频 -->
@@ -52,6 +60,7 @@
         }, {
           name: '作品'
         }],
+        itemInfo: {},
         bgImg: require('../assets/images/bg3.jpg'),
         pageScroll: null,
         activeTab: 0,
@@ -160,6 +169,9 @@
         ]
       }
     },
+    activated() {
+      this.itemInfo = JSON.parse(localStorage.getItem('topic_detail'))
+    },
     mounted() {
       this.$nextTick(() => {
         this.pageScroll = new BScroll(this.$refs.pageScroll, {
@@ -185,7 +197,15 @@
         this.$refs.waterFill.handleLoad(this.waterList)
       })
     },
-    methods: {}
+    methods: {
+      handleCollect() {
+        // 从缓存中拿到收藏数组
+        const arr = JSON.parse(localStorage.getItem('collect_list')) || []
+        arr.push(this.itemInfo)
+        // 在存进缓存中
+        localStorage.setItem('collect_list', JSON.stringify(arr))
+      }
+    }
   }
 
 </script>
@@ -266,10 +286,42 @@
         }
       }
 
+      .detail {
+        padding-left: 31px;
+        font-size: 13px;
+
+        p {
+          margin-top: 6px;
+        }
+
+        .tips {
+          color: #c2c1c6;
+        }
+
+        .btn {
+          padding: 0 8px;
+          border-radius: 6px 0 6px 0;
+          background-color: red;
+          margin-right: 8px;
+          color: #fff;
+        }
+
+        .hear {
+          color: #222;
+          font-weight: 700;
+          font-size: 14px;
+
+          .iconfont {
+            font-size: 18px;
+          }
+        }
+      }
+
     }
 
     .sample_video {
       width: 100%;
+      margin-top: 20px;
     }
   }
 

@@ -1,32 +1,32 @@
 <template>
   <div class="attention_box">
 
-    <MyScroll>
+    <MyScroll @finishPullUp="handleFinishPullUp" @finishPullDown="handleFinishPullDown">
       <!-- 如果没有数据 -->
       <div class="no_more" v-if="lovelist.length<0">快去社区中关注几个努力的大神吧!</div>
       <!-- 有数据 -->
       <div class="list">
-        <div class="item" v-for="index in 4" :key="index">
+        <div class="item" v-for="(item,index) in lovelist" :key="index">
           <!-- 用户信息 -->
           <div class="user flex_align">
             <div class="user_icon">
               <img src="../../assets/images/user2.jpg" />
             </div>
-            <div class="username tit">小裴</div>
+            <div class="username tit">{{item.name}}</div>
           </div>
           <!-- 个人特长 -->
           <div class="skill">
-            <span>#模仿#</span>dog
+            <span>#模仿#</span>{{item.title}}
           </div>
 
           <!-- 视频 信息-->
           <div class="play_box">
             <!-- 视频 -->
-            <VideoBox></VideoBox>
+            <VideoBox :video="item"></VideoBox>
             <!-- 工具条 -->
             <div class="tool_box">
               <div class="flex_bea">
-                <div class="time">21小时前</div>
+                <div class="time">{{item.add_time}}小时前</div>
                 <div class="tools flex_bea">
                   <div class="flex_align">
                     <span class="iconfont icon-share"></span>
@@ -37,20 +37,22 @@
                     评论
                   </div>
                   <div class="flex_align">
-                    <span class="iconfont icon-xihuan"></span>
+                    <span class="iconfont" :class="!item.isLove?'icon-aixin':'icon-love'"
+                      @click.stop="handleLoveClick(item)"></span>
                     点赞
                   </div>
                 </div>
               </div>
-              <div class="num">1人赞过</div>
+              <div class="num">{{item.love_num}}人赞过</div>
             </div>
 
             <!-- 评论区 -->
             <div class="comment">
-              <div class="look_com">查看1条评论</div>
+              <div class="look_com">查看{{item.comment_num}}条评论</div>
               <div class="input_box">
                 <span class="iconfont icon-fankui"></span>
-                <input type="text" placeholder="看了有啥想说的,写下来吧 !" placeholder-style="color:#c6c4c4" />
+                <input v-model="item.commentText" @keyup.enter="sendComment(item)" type="text"
+                  placeholder="看了有啥想说的,写下来吧 !" placeholder-style="color:#c6c4c4" />
               </div>
             </div>
           </div>
@@ -69,18 +71,40 @@
       VideoBox,
       MyScroll
     },
-    props: {
-      lovelist: {
-        type: Array,
-        default () {
-          return []
+    data() {
+      return {
+        lovelist: [],
+        inputText: ''
+      }
+    },
+    mounted() {
+      this.getList()
+    },
+    methods: {
+      async getList() {
+        const res = await this.$http.fetch('/mock/attentionList')
+        this.lovelist = res.data.data
+      },
+      // 上拉加载
+      handleFinishPullUp() {
+        this.getList()
+      },
+      // 下拉刷新
+      async handleFinishPullDown() {
+        const res = await this.$http.fetch('/mock/attentionList')
+        this.lovelist = [...res.data.data, ...this.lovelist]
+      },
+      handleLoveClick(item) {
+        item.isLove = !item.isLove
+        if (item.isLove) {
+          item.love_num++
+        } else {
+          item.love_num--
         }
       },
-      attentionData: {
-        type: Array,
-        default () {
-          return []
-        }
+      sendComment(item) {
+        item.comment_num++
+        item.commentText = ''
       }
     }
   }
@@ -151,6 +175,10 @@
     .tool_box {
       margin-top: 20px;
 
+      .flex_align {
+        width: 100px;
+      }
+
       .time {
         color: #a09fa4;
       }
@@ -160,7 +188,13 @@
 
         .iconfont {
           font-size: 21px;
+          width: 21px;
           margin-right: 5px;
+        }
+
+        .icon-love {
+          color: @themeColor2;
+          font-size: 20px;
         }
       }
     }

@@ -12,10 +12,10 @@
       </div>
       <div class="right" ref="rightRef">
         <div class="list">
-          <div class="item" v-for="(item,index) in topicList" :key="index" @click="$router.push('/topicDetail')">
+          <div class="item" v-for="(item,index) in topicList" :key="index" @click="handleGoDetail(item)">
             <!-- <img src="../assets/images/study1.jpg" alt=""> -->
             <div class="bg" :style="{backgroundColor:item.color}"></div>
-            <span>{{item.word}}</span>
+            <span>{{item.name}}</span>
           </div>
         </div>
       </div>
@@ -99,6 +99,12 @@
       async onChange(index) {
         const res = await this.$http.fetch('/mock/topic')
         this.topicList = res.data.data
+      },
+      handleGoDetail(item) {
+        // 将数据保存到localstorage中
+        localStorage.setItem('topic_detail', JSON.stringify(item))
+        // 跳转页面
+        this.$router.push('/topicDetail')
       }
     }
   }

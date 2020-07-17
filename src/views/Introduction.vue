@@ -22,8 +22,8 @@
           </div>
         </div>
         <div class="list">
-          <div class="item" v-for="(item,index) in list" :key="index" @click="$router.push('/topicDetail')">
-            #{{item.word}}</div>
+          <div class="item" v-for="(item,index) in list" :key="index" @click="handleGoDetail(item)">
+            #{{item.name}}</div>
         </div>
       </div>
     </div>
@@ -67,6 +67,12 @@
       async getList() {
         const res = await this.$http.fetch('/mock/introduction')
         this.list = res.data.data
+      },
+      handleGoDetail(item) {
+        // 将数据保存到localstorage中
+        localStorage.setItem('topic_detail', JSON.stringify(item))
+        // 跳转页面
+        this.$router.push('/topicDetail')
       }
     }
   }
