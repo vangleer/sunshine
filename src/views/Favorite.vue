@@ -8,15 +8,15 @@
       <van-tabs v-model="active" animated swipeable :border="false">
         <van-tab title="喜欢">
           <div class="list">
-            <div class="item" v-for="index in 8" :key="index">
-              <VideoBox></VideoBox>
+            <div class="item" v-for="(item,index) in loveList" :key="index">
+              <VideoBox :video="item" :isLove="false"></VideoBox>
             </div>
           </div>
         </van-tab>
         <van-tab title="我的收藏">
           <div class="list2 flex_between">
             <div class="item" v-for="(item,index) in list2" :key="index" :style="{backgroundColor:item.color}">
-              {{item.title}}</div>
+              {{item.name}}</div>
           </div>
         </van-tab>
       </van-tabs>
@@ -57,7 +57,23 @@
             title: '句型',
             color: '#5267fe'
           }
-        ]
+        ],
+        loveList: []
+      }
+    },
+    created() {
+      this.getLoveList()
+      this.getCollectList()
+    },
+    methods: {
+      // 获取喜欢列表
+      async getLoveList() {
+        const res = await this.$http.fetch('/mock/loveList')
+        this.loveList = res.data.data
+      },
+      // 获取收藏列表
+      getCollectList() {
+        this.list2 = JSON.parse(localStorage.getItem('collect_list'))
       }
     }
   }
@@ -68,19 +84,14 @@
   .tab_box {
     .list {
       display: flex;
-      // justify-content: space-around;
+      justify-content: space-between;
       flex-wrap: wrap;
       width: 100%;
-      padding: 0 10px;
+      padding: 10px;
 
       .item {
         width: 32%;
-        margin-right: 1.5%;
         margin-bottom: 8px;
-      }
-
-      .item:nth-child(3n) {
-        margin-right: 0px;
       }
     }
 
@@ -100,6 +111,9 @@
         color: #fff;
         background-color: #db80a9;
         margin-bottom: 10px;
+        overflow: hidden;
+        word-break: break-all;
+        padding: 0 15px;
       }
     }
   }

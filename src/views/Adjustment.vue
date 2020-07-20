@@ -3,20 +3,18 @@
     <!-- 头部导航 -->
     <van-nav-bar title="难度调整" left-arrow @click-left="$router.back()" />
     <div class="swipe_box">
-      <van-swipe class="my-swipe" indicator-color="white">
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
-        <van-swipe-item><img src="../assets/images/user2.jpg" alt="" /></van-swipe-item>
+      <van-swipe class="my-swipe" indicator-color="white" @change="handleChange">
+        <van-swipe-item v-for="(item,index) in list" :key="index"><img :src="item.easy.img" alt="" /></van-swipe-item>
       </van-swipe>
       <!-- 级别 -->
       <div class="jibie">
         <div class="item">
-          <span>简单</span>
+          <span>{{list[current].easy.title}}</span>
         </div>
       </div>
       <div class="kaoshi">
-        <span>ETS4 A1</span>
+        <span v-for="(item,index) in list[current].easy.tags" :key="index"
+          :style="{backgroundColor:item.color}">{{item.tag.toUpperCase()}}</span>
       </div>
     </div>
 
@@ -24,14 +22,12 @@
     <div class="fit">
       <div class="tit">适合于:</div>
       <div class="list">
-        <p>1.有一定英语基础,希望提升的中同学</p>
-        <p>2.有一定英语基础,希望提升的中同学</p>
-        <p>3.有一定英语基础,希望提升的中同学</p>
+        <p v-for="(item,index) in list[current].easy.tips" :key="index">{{index+1}}.{{item}}</p>
       </div>
     </div>
-    <p class="done"><span class="tit">学完本级:</span> 进行日常对话,描述经历,表达简单的观点</p>
+    <p class="done"><span class="tit">学完本级:</span>{{list[current].easy.down}}</p>
     <!-- 按钮 -->
-    <div class="btn">
+    <div class="btn" @click="handleSelect">
       选择本级别
     </div>
   </div>
@@ -40,7 +36,30 @@
 <script>
   export default {
     data() {
-      return {}
+      return {
+        list: [],
+        current: 0
+      }
+    },
+    created() {
+      this.getList()
+    },
+    methods: {
+      // 改变难度
+      handleChange(index) {
+        this.current = index
+      },
+      // 获取数据
+      async getList() {
+        const res = await this.$http.fetch('/mock/adjustList')
+        this.list = res.data.data
+      },
+      // 选择级别
+      handleSelect() {
+        // 保存级别到本地
+        localStorage.setItem('level', JSON.stringify(this.list[this.current]))
+        this.$toast('选择成功')
+      }
     }
   }
 
@@ -113,6 +132,7 @@
         color: #fff;
         border-radius: 5px;
         padding: 6px 10px;
+        margin: 0 3px;
       }
     }
   }

@@ -6,12 +6,13 @@
     <!-- 内容 -->
     <div class="content">
       <div class="icon_box flex_center">
-        <!-- <div class="icon flex_center"></div> -->
-        <div class="user_icon" v-if="imgUrl">
-          <img :src="imgUrl" alt="" />
-        </div>
-        <van-uploader v-else :after-read="handleReadAfter">
-          <van-button class="flex_center" style="height:100px;width:100px;" round type="plain">
+
+        <van-uploader :after-read="handleReadAfter">
+          <!-- <div class="icon flex_center"></div> -->
+          <div class="user_icon" v-if="imgUrl">
+            <img :src="imgUrl" alt="" />
+          </div>
+          <van-button v-else class="flex_center" style="height:100px;width:100px;" round type="plain">
             <span class="iconfont icon-user"></span>
             <div class="photo">
               <van-icon name="photograph" />
@@ -23,13 +24,13 @@
         <div class="title">我的信息</div>
         <div class="list">
           <van-cell title="昵称" :value="userInfo.nickname" is-link
-            @click="changeRouter({ path: '/editUser', title: '昵称', info: userInfo.nickname })" />
+            @click="changeRouter({ path: '/editUser', title: '昵称', info: userInfo.nickname,type:'nickname' })" />
           <van-cell title="性别" :value="userInfo.gender" is-link @click="showSex = true" />
           <van-cell title="身份" :value="userInfo.identity" @click="showIdentity = true" is-link />
           <van-cell title="生日" :value="userInfo.birthday" is-link @click="showBirthday = true" />
           <van-cell title="地区" :value="userInfo.city" is-link @click="showCity = true" />
           <van-cell title="个性签名" :value="userInfo.signature" is-link
-            @click="changeRouter({ path: '/editUser', title: '个性签名', info: userInfo.signature })" />
+            @click="changeRouter({ path: '/editUser', title: '个性签名', info: userInfo.signature,type:'signature' })" />
         </div>
       </div>
     </div>
@@ -56,23 +57,29 @@
 
 <script>
   import area from '../assets/vant/area.js'
+  import {
+    mapState
+  } from 'vuex'
   export default {
     created() {
       this.areaList = area
       this.currentDate = new Date(this.userInfo.birthday)
     },
+    computed: {
+      ...mapState(['userInfo'])
+    },
     data() {
       return {
         // imgUrl: require('../assets/images/user2.jpg'),
         imgUrl: '',
-        userInfo: {
-          nickname: '小通',
-          gender: '男',
-          identity: '上班',
-          birthday: '1996-04-04',
-          city: '天津',
-          signature: '英语学习者'
-        },
+        // userInfo: {
+        //   nickname: '小通',
+        //   gender: '男',
+        //   identity: '上班',
+        //   birthday: '1996-04-04',
+        //   city: '天津',
+        //   signature: '英语学习者'
+        // },
         areaList: {},
         // 所有性别
         sexActions: [{
@@ -102,16 +109,44 @@
         showCity: false // 城市编辑
       }
     },
+    activated() {
+
+    },
+    async deactivated() {
+      const formData = {
+        user_id: this.userInfo.id,
+        nickname: this.userInfo.nickname,
+        gender: this.userInfo.gender,
+        identity: this.userInfo.identity,
+        birthday: this.userInfo.birthday,
+        city: this.userInfo.city,
+        signature: this.userInfo.signature
+      }
+      console.log(formData)
+      const res = await this.$http.post('/user/editUser', formData)
+      if (res.status === 1) {
+
+      }
+    },
     methods: {
-      handleReadAfter(file) {
+      async handleReadAfter(file) {
+        console.log(file)
         this.imgUrl = file.content
+        const formData = new FormData()
+        formData.append('user_id', this.userInfo.id)
+        formData.append('photo', file.file)
+        const res = await this.$http.instance.post('/user/addPhoto', formData)
+        if (res.data.status === 1) {
+          this.$toast('上传成功')
+        }
       },
       changeRouter(data) {
         this.$router.push({
           path: data.path,
           query: {
             title: data.title,
-            info: data.info
+            info: data.info,
+            type: data.type
           }
         })
       },

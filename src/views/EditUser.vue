@@ -18,7 +18,8 @@
     data() {
       return {
         title: '编辑',
-        message: '小通'
+        message: '小通',
+        type: ''
       }
     },
     computed: {
@@ -29,10 +30,16 @@
     activated() {
       this.title = this.$route.query.title
       this.message = this.$route.query.info
+      this.type = this.$route.query.type
     },
     methods: {
       handleSubmit() {
-        console.log(this.message)
+        this.$store.commit('changeType', {
+          type: this.type,
+          message: this.message
+        })
+        this.$toast('修改成功')
+        this.$router.back()
       }
     }
   }
@@ -50,6 +57,7 @@
     position: relative;
     margin-top: @margin10;
     height: 120px;
+    padding-top: 0;
 
     textarea {
       width: 100%;

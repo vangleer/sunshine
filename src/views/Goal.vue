@@ -11,21 +11,21 @@
             <div class="icon_box flex_center">
               <span class="iconfont icon-user"></span>
             </div>
-            <div class="user_name tit">小通</div>
+            <div class="user_name tit">{{goalInfo.name}}</div>
           </div>
           <div class="text">学习记录</div>
         </div>
         <div class="study flex_align">
           <div class="today">
             <p>
-              8
+              {{goalInfo.day_time}}
               <span class="text">/分钟</span>
             </p>
             <span>今日学习</span>
           </div>
           <div class="today">
             <p>
-              123
+              {{goalInfo.sum_time}}
               <span class="text">分钟</span>
             </p>
             <span>总学习时长</span>
@@ -35,14 +35,16 @@
 
       <!-- 当前级别 -->
       <div class="current">
-        <div class="title">当前级别: 简单</div>
+        <div class="title">当前级别: {{goalInfo.level}}</div>
         <div class="item">
-          <p>在本级别获取听力经验值达到320000</p>
-          <van-progress :percentage="50" text-color="#222" color="#fb7e68" stroke-width="20" track-color="#fceaea" />
+          <p>在本级别获取听力经验值达到{{goalInfo.hearing_num*2000/100}}</p>
+          <van-progress :percentage="goalInfo.hearing_num" text-color="#222" color="#fb7e68" stroke-width="20"
+            track-color="#fceaea" />
         </div>
         <div class="item">
-          <p>在本级别进行各项口语练习累计300次</p>
-          <van-progress :percentage="50" text-color="#222" color="#f77323" stroke-width="20" track-color="#f7f0dc" />
+          <p>在本级别进行各项口语练习累计{{goalInfo.spoke_num*2000/100}}次</p>
+          <van-progress :percentage="goalInfo.spoke_num" text-color="#222" color="#f77323" stroke-width="20"
+            track-color="#f7f0dc" />
         </div>
       </div>
       <!-- 分项进度 -->
@@ -50,9 +52,9 @@
         <div class="tit">分项进度</div>
         <div ref="scrollRef" class="wrapper">
           <div class="list">
-            <div class="item flex_center" v-for="index in 3" :key="index">
-              <van-circle v-model="currentRate" :rate="30" layer-color="#dcd6e5" />
-              <p>打卡300个话题的口语练习</p>
+            <div class="item flex_center" v-for="(item,index) in list" :key="index">
+              <van-circle v-model="item.num" layer-color="#eee" :color="item.color" />
+              <p>打卡300个话题的{{item.title}}练习</p>
               <div class="btn">去完成</div>
             </div>
           </div>
@@ -68,9 +70,18 @@
     data() {
       return {
         scroll: null,
-        currentRate: 50
+        currentRate: 50,
+        goalInfo: {
+          hearing_num: 0,
+          spoke_num: 0
+        },
+        list: []
       }
     },
+    created() {
+      this.getInfo()
+    },
+
     mounted() {
       this.scroll = new BScroll(this.$refs.scrollRef, {
         scrollX: true,
@@ -78,6 +89,15 @@
         click: true,
         bounce: false
       })
+    },
+    methods: {
+      async getInfo() {
+        const res = await this.$http.fetch('/mock/goalData')
+        this.goalInfo = res.data.data
+        const arr = [this.goalInfo.topic, this.goalInfo.words, this.goalInfo.phrase]
+        this.list = arr
+        console.log(this.list)
+      }
     }
   }
 

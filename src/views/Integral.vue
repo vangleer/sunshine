@@ -16,25 +16,25 @@
           <!-- 积分数量 -->
           <div class="num">
             <span class="iconfont icon-integral"></span>
-            <span class="text">17</span>
+            <span class="text">{{integralData.sum}}</span>
           </div>
           <!-- 今日获得积分 -->
           <div class="today">
-            今日获得积分:<span>0/36</span>
+            今日获得积分:<span>{{integralData.day}}/100</span>
           </div>
         </div>
 
         <!-- 获取积分方法 -->
         <div class="integral_list">
-          <div class="item" v-for="index in 8" :key="index">
-            <div class="title">邀请积分</div>
-            <van-cell center label="完成目标+2分" title-style="fontWeight: 700;">
+          <div class="item" v-for="(item,index) in integralData.types" :key="index">
+            <div class="title">{{item.title}}</div>
+            <van-cell center :label="'完成目标+'+item.add+'分'" title-style="fontWeight: 700;">
               <!-- 使用 title 插槽来自定义标题 -->
               <div>
                 <span class="btn">去完成</span>
               </div>
               <template #title>
-                <span class="custom-title">基础型积分</span>
+                <span class="custom-title">{{item.type}}</span>
               </template>
             </van-cell>
           </div>
@@ -52,7 +52,8 @@
         bgImg: require('../assets/images/bg4.jpg'),
         scroll: null,
         isNav: false,
-        flag: true
+        flag: true,
+        integralData: {}
       }
     },
     mounted() {
@@ -75,6 +76,15 @@
           }
         })
       })
+    },
+    created() {
+      this.getIntegralData()
+    },
+    methods: {
+      async getIntegralData() {
+        const res = await this.$http.fetch('/mock/integralData')
+        this.integralData = res.data.data
+      }
     }
   }
 

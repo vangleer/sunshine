@@ -87,15 +87,29 @@
       handleSelect(index) {
         this.currentSelect = index
       },
+      refreshForm() {
+        this.fileList = []
+        this.message = ''
+        this.currentSelect = 8
+      },
       // 点击提交
-      handleSubmit() {
+      async handleSubmit() {
         const files = this.fileList.map(item => item.file)
-        console.log(files)
+        const userId = this.$store.state.userInfo.id
         const formData = new FormData()
-        formData.append('text', this.message)
-        formData.append('files', 1)
-        formData.append('type', this.questionList[this.currentSelect].id)
-        console.log(formData)
+        formData.append('content', this.message)
+        files.forEach((item) => {
+          formData.append('imgs', item)
+        })
+        formData.append('user_id', userId)
+        formData.append('type', this.questionList[this.currentSelect].title)
+        const res = await this.$http.instance.post('/feedback/addFeedback', formData)
+        if (res.data.status === 1) {
+          this.refreshForm()
+          return this.$toast(res.data.msg)
+        } else {
+          return this.$toast.fail(res.data.msg)
+        }
       }
     }
   }

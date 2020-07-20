@@ -24,31 +24,31 @@
     <!-- 弹出层中间部分 -->
     <div class="pop_bd">
       <div class="item items1">
-        <p @click="$router.push('/goal')">
+        <p @click="changeRouter('/goal')">
           <i class="iconfont icon-shijianzhongbiao"></i>
           <span>目标与数据</span>
         </p>
-        <p @click="$router.push('/adjustment')">
+        <p @click="changeRouter('/adjustment')">
           <i class="iconfont icon-icon_jiaohuan"></i>
           <span>难度调整</span>
         </p>
       </div>
       <div class="item items2">
-        <p @click="$router.push('/favorite')">
+        <p @click="changeRouter('/favorite')">
           <i class="iconfont icon-aixin"></i>
           <span>我的收藏</span>
         </p>
-        <p @click="$router.push('/achievment')">
+        <p @click="changeRouter('/achievment')">
           <i class="iconfont icon-xunzhang1"></i>
           <span>成就与勋章</span>
         </p>
       </div>
       <div class="item items3">
-        <p @click="$router.push('/intergral')">
+        <p @click="changeRouter('/intergral')">
           <i class="iconfont icon-integral"></i>
           <span>我的积分</span>
         </p>
-        <p @click="$router.push('/invitefriends')">
+        <p @click="changeRouter('/invitefriends')">
           <i class="iconfont icon-tianjiajiahaoyoutianjiapengyou"></i>
           <span>邀请好友</span>
         </p>
@@ -57,11 +57,11 @@
     <!-- 弹出层底部 -->
 
     <div class="pop_bt">
-      <div @click="$router.push('/settings')">
+      <div @click="changeRouter('/settings')">
         <i class="iconfont icon-shezhi"></i>
         <p>系统设置</p>
       </div>
-      <div @click="$router.push('/feedback')">
+      <div @click="changeRouter('/feedback')">
         <i class="iconfont icon-fankui"></i>
         <p>意见反馈</p>
       </div>
@@ -74,6 +74,16 @@
     data() {
       return {
         currentRate: 50
+      }
+    },
+    methods: {
+      changeRouter(path) {
+        const userId = this.$store.state.userInfo.id && this.$store.state.userInfo.id
+        if (userId) {
+          this.$router.push(path)
+        } else {
+          this.$router.push('/login')
+        }
       }
     }
   }

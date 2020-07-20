@@ -81,7 +81,7 @@
             <div class="example flex_align">
               <img :src="img" v-for="(img,i) in todayTask.videos" :key="i" alt="" />
               <span class="text">
-                有{{todayTask.videos.length}}个实例
+                有{{todayTask.videos&&todayTask.videos.length}}个实例
               </span>
             </div>
             <div class="btn" @click="handleGoDetail(todayTask)">立即打卡</div>
@@ -121,7 +121,7 @@
             <div class="example flex_align">
               <img :src="img" v-for="(img,i) in item.videos" :key="i" alt="" />
               <span class="text">
-                有{{item.videos.length}}个实例
+                有{{item.videos&&item.videos.length}}个实例
               </span>
             </div>
           </div>

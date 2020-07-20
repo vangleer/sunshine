@@ -11,12 +11,13 @@
         </div>
         <div class="right">
           <h3 class="tit">勋章墙</h3>
-          <div class="flex_align"><span class="iconfont icon-medal"></span>已获得勋章 <span class="num">7</span></div>
+          <div class="flex_align"><span class="iconfont icon-medal"></span>已获得勋章 <span
+              class="num">{{modelData.model}}</span></div>
         </div>
       </div>
       <div class="bom flex_bea">
-        <div class="item"><span>1253</span>累计口语练习次数</div>
-        <div class="item"><span>1253</span>积累听力经验值</div>
+        <div class="item"><span>{{modelData.spoke_num}}</span>累计口语练习次数</div>
+        <div class="item"><span>{{modelData.Hear_num}}</span>积累听力经验值</div>
       </div>
     </div>
 
@@ -28,27 +29,27 @@
       </div>
       <div class="tab_content" ref="scrollRef">
         <div class="item" v-if="current===0">
-          <div class="item_p flex_align" v-for="(item,index) in colors" :key="index">
-            <span class="iconfont icon-shixianliubianxing" :style="{color:item}"></span>
+          <div class="item_p flex_align" v-for="(item,index) in modelData.grow_model" :key="index">
+            <span class="iconfont icon-shixianliubianxing" :style="{color:item.color}"></span>
             <div class="icon_box flex_center">
-              <van-rate gutter="8px" :count="3" v-model="value" :size="6" color="#ee0a24" void-icon="star"
+              <van-rate gutter="8px" :count="3" v-model="item.star" :size="6" color="#ee0a24" void-icon="star"
                 void-color="#eee" />
-              <p class="num">7</p>
+              <p class="num">{{item.day}}</p>
               <p class="day">DAY</p>
             </div>
-            <p class="text">啦啦啦啦</p>
+            <p class="text">{{item.title}}</p>
           </div>
         </div>
-        <div class="item" v-else>
-          <div class="item_p flex_align" v-for="(item,index) in colors2" :key="index">
-            <span class="iconfont icon-shixianliubianxing" :style="{color:item}"></span>
+        <div class="item" v-if="current===1">
+          <div class="item_p flex_align" v-for="(item,index) in modelData.level_model" :key="index">
+            <span class="iconfont icon-shixianliubianxing" :style="{color:item.color}"></span>
             <div class="icon_box flex_center">
-              <van-rate gutter="8px" :count="3" v-model="value" :size="6" color="#ee0a24" void-icon="star"
+              <van-rate gutter="8px" :count="3" v-model="item.star" :size="6" color="#ee0a24" void-icon="star"
                 void-color="#eee" />
-              <p class="num">7</p>
+              <p class="num">{{item.day}}</p>
               <p class="day">DAY</p>
             </div>
-            <p class="text">啦啦啦啦</p>
+            <p class="text">{{item.title}}</p>
           </div>
         </div>
       </div>
@@ -64,13 +65,21 @@
         current: 0,
         scroll: null,
         value: 2,
+        modelData: {},
         colors: ['#9499f5', '#ecbea7', '#b5b9c2', '#dedede', '#9499f5', '#dedede', '#fa6048'],
         colors2: ['#9499f5', '#9499f5', '#ecbea7', '#b5b9c2', '#fa6048', '#dedede', '#dedede']
       }
     },
+    created() {
+      this.getModelData()
+    },
     methods: {
       handleLinkClick(index) {
         this.current = index
+      },
+      async getModelData() {
+        const res = await this.$http.fetch('/mock/modelData')
+        this.modelData = res.data.data
       }
     },
     mounted() {
