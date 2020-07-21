@@ -12,7 +12,7 @@
     </div>
 
     <!-- 搜索内容 -->
-    <div class="content">
+    <div class="content" style="padding-top: 98px;">
       <div class="item" v-for="(item,index) in list" :key="index">{{item.word}}</div>
     </div>
   </div>
@@ -119,7 +119,6 @@
   }
 
   .content {
-    padding-top: 98px;
     padding-bottom: 10px;
 
     .item {

@@ -110,7 +110,7 @@
       }
     },
     activated() {
-
+      this.imgUrl = this.userInfo.icon
     },
     async deactivated() {
       const formData = {

@@ -15,17 +15,19 @@
       }
     },
     async created() {
-      console.log(this.$store.state.userInfo.username)
-      const mobile = JSON.parse(localStorage.getItem('mobile'))
-      if (mobile) {
-        const res = await this.$http.fetch('/user/getUser', {
-          mobile
-        })
-        if (res.status === 0) return
-        // this.userInfo = res.data
-        this.$store.commit('changeUserInfo', res.data)
-        console.log(res.data)
-      }
+      // console.log(this.$store.state.userInfo.username)
+      // const mobile = JSON.parse(localStorage.getItem('mobile'))
+      // if (mobile) {
+      //   const res = await this.$http.fetch('/user/getUser', {
+      //     mobile
+      //   })
+      //   if (res.status === 0) return
+      //   // this.userInfo = res.data
+      //   this.$store.commit('changeUserInfo', res.data)
+      //   console.log(res.data)
+      // }
+      // 页面一加载通知vuex获取用户的数据
+      this.$store.dispatch('getUserInfo')
     },
     watch: {
       $route(to, from) {

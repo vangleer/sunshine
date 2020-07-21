@@ -4,11 +4,12 @@
     <div class="pop_hd">
       <div class="user_icon" @click="$router.push('/user')">
         <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="70px">
-          <div class="icon_box">
+          <img class="user_img" v-if="userInfo.icon" :src="userInfo.icon" alt="">
+          <div v-else class="icon_box">
             <span class="iconfont icon-user"></span>
           </div>
         </van-circle>
-        <div class="user_name">{{$store.state.userInfo.username}}</div>
+        <div class="user_name">{{userInfo.username}}</div>
       </div>
       <div class="go_profile">
         <p>
@@ -17,8 +18,8 @@
         </p>
       </div>
       <div class="jilu">
-        <p>听力经验值 2888</p>
-        <p>口语练习0次</p>
+        <p>听力经验值 {{userInfo.empirical_value}}</p>
+        <p>口语练习{{userInfo.oral_num}}次</p>
       </div>
     </div>
     <!-- 弹出层中间部分 -->
@@ -70,15 +71,21 @@
 </template>
 
 <script>
+  import {
+    mapState
+  } from 'vuex'
   export default {
     data() {
       return {
         currentRate: 50
       }
     },
+    computed: {
+      ...mapState(['userInfo'])
+    },
     methods: {
       changeRouter(path) {
-        const userId = this.$store.state.userInfo.id && this.$store.state.userInfo.id
+        const userId = this.userInfo.id && this.userInfo.id
         if (userId) {
           this.$router.push(path)
         } else {
@@ -102,6 +109,12 @@
 
       .user_icon {
         display: flex;
+
+        .user_img {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+        }
 
         .icon_box {
           width: 70px;

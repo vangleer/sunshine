@@ -88,7 +88,6 @@
 
   .content {
     background-color: @grayBgColor;
-    padding-top: 0;
 
     .list {
       position: relative;

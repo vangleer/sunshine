@@ -31,6 +31,18 @@ export default new Vuex.Store({
       state.autocueContent = date
     }
   },
-  actions: {},
+  actions: {
+    async getUserInfo(context) {
+      const mobile = JSON.parse(localStorage.getItem('mobile'))
+      if (mobile) {
+        const res = await Vue.prototype.$http.fetch('/user/getUser', {
+          mobile
+        })
+        if (res.status === 0) return
+        context.commit('changeUserInfo', res.data)
+        console.log(res)
+      }
+    }
+  },
   modules: {}
 })

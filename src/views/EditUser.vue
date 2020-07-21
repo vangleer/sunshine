@@ -8,7 +8,7 @@
 
     <div class="content">
       <textarea v-model="message"></textarea>
-      <span class="num">2&nbsp;/&nbsp;50</span>
+      <span class="num">{{this.message.length}}&nbsp;/&nbsp;{{total}}</span>
     </div>
   </div>
 </template>
@@ -19,7 +19,8 @@
       return {
         title: '编辑',
         message: '小通',
-        type: ''
+        type: '',
+        total: 50
       }
     },
     computed: {
@@ -34,6 +35,9 @@
     },
     methods: {
       handleSubmit() {
+        if (this.message.length >= this.total) {
+          return this.$toast('字数超出了限制!')
+        }
         this.$store.commit('changeType', {
           type: this.type,
           message: this.message
@@ -57,7 +61,6 @@
     position: relative;
     margin-top: @margin10;
     height: 120px;
-    padding-top: 0;
 
     textarea {
       width: 100%;

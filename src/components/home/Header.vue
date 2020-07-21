@@ -2,7 +2,8 @@
   <div class="header" :class="active === 0 ? 'white-color':'normal-color'">
     <div class="avatar" is-link @click="showPopup">
       <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="52px">
-        <div class="icon_box">
+        <img class="user_img" v-if="userInfo.icon" :src="userInfo.icon" alt="">
+        <div v-else class="icon_box">
           <span class="iconfont icon-user"></span>
         </div>
       </van-circle>
@@ -16,6 +17,9 @@
 </template>
 
 <script>
+  import {
+    mapState
+  } from 'vuex'
   export default {
     props: {
       isSearch: {
@@ -51,6 +55,9 @@
           }
         ]
       }
+    },
+    computed: {
+      ...mapState(['userInfo'])
     },
     methods: {
       changeCurrent(index) {
@@ -106,6 +113,11 @@
     padding: @padding12;
 
     .avatar {
+      .user_img {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+      }
 
       .icon_box {
         width: 52px;

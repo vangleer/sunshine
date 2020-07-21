@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <!-- 头部导航 -->
     <van-nav-bar class="nav_bar" :class="showNav?'normal_nav':'scroll_nav'" :fixed="true" :border="false">
@@ -17,31 +16,32 @@
             <!-- 用户个人信息 -->
             <div class="flex_align">
               <div class="user_icon flex_center">
-                <span class="iconfont icon-user"></span>
+                <img v-if="userInfo.icon" :src="userInfo.icon" alt="">
+                <span v-else class="iconfont icon-user"></span>
               </div>
               <div class="info">
-                <span class="tit">小通</span>
-                <div class="hobby">英语学习者</div>
+                <span class="tit">{{userInfo.nickname}}</span>
+                <div class="hobby">{{userInfo.signature}}</div>
               </div>
             </div>
             <!-- 获赞详情 -->
             <div class="honor flex_align">
-              <div><span class="tit">0</span>获感谢</div>
-              <div><span class="tit">2</span>获赞</div>
-              <div><span class="tit">1</span>关注</div>
-              <div><span class="tit">6</span>粉丝</div>
+              <div><span class="tit">{{userInfo.thank_num}}</span>获感谢</div>
+              <div><span class="tit">{{userInfo.awarded_num}}</span>获赞</div>
+              <div><span class="tit">{{userInfo.fans_num}}</span>关注</div>
+              <div><span class="tit">{{20}}</span>粉丝</div>
             </div>
 
             <!-- 荣誉tag -->
             <div class="honor_tags flex_align">
-              <div class="tag_p">勋章 9</div>
-              <div class="tag_r">听力经验值 23654</div>
-              <div class="tag_y">口语练习0次</div>
+              <div class="tag_p">勋章 {{userInfo.model}}</div>
+              <div class="tag_r">听力经验值 {{userInfo.empirical_value}}</div>
+              <div class="tag_y">口语练习{{userInfo.oral_num}}次</div>
             </div>
             <div class="goal">订个目标吧!<span class="iconfont icon-fankui"></span></div>
             <!-- 图表 -->
             <div class="chart_box">
-              <div class="">已记录7天</div>
+              <div class="">已记录{{userInfo.record_days}}天</div>
               <div class="wrapper" ref="dateScroll">
                 <div class="chart">
                   <div class="months">
@@ -82,22 +82,22 @@
           <van-tabs v-model="activeTab">
             <van-tab title="动态">
               <div class="dy_list" v-show="activeTab===0">
-                <div class="d_item" v-for="index in 7" :key="index">
+                <div class="d_item" v-for="(item,index) in activeList" :key="index">
                   <div class="item_t">
-                    <span class="tit">6月</span>
-                    <span>5日</span>
+                    <span class="tit">{{item.month}}月</span>
+                    <span>{{item.day}}日</span>
                   </div>
                   <div class="item_bom flex_align">
                     <div class="left"></div>
                     <div class="right">
-                      <div class="tit">获得1896输入经验值</div>
-                      <div class="desc">解锁新成就: 打卡7天</div>
+                      <div class="tit">获得{{item.num}}输入经验值</div>
+                      <div class="desc">解锁新成就: 打卡{{item.daka_num}}天</div>
                     </div>
                   </div>
                 </div>
               </div>
             </van-tab>
-            <van-tab title="动态">
+            <van-tab :title="'作品'+activeList.length">
               <div class="dy_list" v-show="activeTab===1">
                 <div class="d_item" v-for="index in 7" :key="index">
                   123456
@@ -114,6 +114,9 @@
 </template>
 <script>
   import BScroll from 'better-scroll'
+  import {
+    mapState
+  } from 'vuex'
   export default {
     data() {
       return {
@@ -131,8 +134,15 @@
         userHeight: 0,
         tabHeight: 0,
         navHeight: 0,
-        tabBoxStyle: {}
+        tabBoxStyle: {},
+        activeList: []
       }
+    },
+    activated() {
+      this.getActiveList()
+    },
+    computed: {
+      ...mapState(['userInfo'])
     },
     mounted() {
       this.$nextTick(() => {
@@ -158,7 +168,14 @@
         })
       })
     },
-    methods: {}
+    methods: {
+      // 获取动态
+      async getActiveList() {
+        const res = await this.$http.fetch('/mock/getActiveList')
+        this.activeList = res.data.data
+        console.log(this.activeList)
+      }
+    }
   }
 
 </script>
@@ -253,6 +270,12 @@
     width: 70px;
     border-radius: 50%;
     background-color: #eee9ef;
+
+    img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+    }
 
     .iconfont {
       color: #fff;
