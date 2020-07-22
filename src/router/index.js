@@ -252,13 +252,6 @@ const routes = [{
     }
   },
   {
-    path: '/playPage',
-    component: () => import('../views/PlayPage.vue'),
-    meta: {
-      index: 33
-    }
-  },
-  {
     path: '/topicDetail',
     component: () => import('../views/TopicDetail.vue'),
     meta: {
@@ -277,6 +270,13 @@ const routes = [{
     component: () => import('../views/test.vue'),
     meta: {
       index: 36
+    }
+  },
+  {
+    path: '/playPage',
+    component: () => import('../views/PlayPage.vue'),
+    meta: {
+      index: 37
     }
   }
 ]

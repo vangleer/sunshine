@@ -87,7 +87,7 @@ Vue.filter('timeFormat', (value) => {
 
 Vue.filter('datetime_ymd', function (value, formatter = 'yyyy-MM-dd ') {
   if (!value) return ''
-  const date = new Date(value)
+  const date = new Date(parseInt(value))
   return formatter
     .replace('yyyy', date.getFullYear())
     .replace('MM', (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1))

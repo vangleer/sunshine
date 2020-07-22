@@ -22,7 +22,7 @@
           <!-- 视频 信息-->
           <div class="play_box">
             <!-- 视频 -->
-            <VideoBox :video="item"></VideoBox>
+            <VideoBox :video="item" @imgClick="$router.push('/playPage')"></VideoBox>
             <!-- 工具条 -->
             <div class="tool_box">
               <div class="flex_bea">

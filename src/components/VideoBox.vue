@@ -1,6 +1,6 @@
 <template>
   <div class="v_item">
-    <img class="item_src" :src="video.cover" />
+    <img @click="handleClick" class="item_src" :src="video.cover" />
     <div class="love">
       <span class="iconfont icon-xihuan" v-if="isLove"></span>
       <span class="num">{{video.tip}}</span>
@@ -23,6 +23,11 @@
         default () {
           return {}
         }
+      }
+    },
+    methods: {
+      handleClick(path) {
+        this.$emit('imgClick', path)
       }
     }
   }

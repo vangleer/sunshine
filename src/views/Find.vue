@@ -67,7 +67,7 @@
           <!-- 练习内容 -->
           <div class="title">
             <span class="tag">#</span>
-            <span class="text van-multi-ellipsis--l2">练一练: {{ todayTask.name }}</span>
+            <span class="text van-multi-ellipsis--l2">练一练: {{ todayTask.words }}</span>
           </div>
           <!-- 练习数据 -->
           <div class="num">
@@ -138,7 +138,7 @@
         <div class="bom">
           <div class="b_item" v-for="(item,index) in selectList" :key="index">
             <!-- 视频组件 -->
-            <div style="height: 130px;">
+            <div style="height: 130px;" @click="$router.push('/playPage')">
               <VideoBox :video="item" :isLove="false"></VideoBox>
             </div>
             <!-- 详情 -->
@@ -186,7 +186,7 @@
             <!-- <span>全文</span> -->
           </div>
           <!-- 视频 -->
-          <div class="play_box">
+          <div class="play_box" @click="$router.push('/playPage')">
             <VideoBox :video="item" :isLove="false"></VideoBox>
           </div>
 
@@ -538,7 +538,7 @@
       .text_com {
         margin-top: 10px;
         width: 100%;
-        word-break: break-all;
+        // word-break: break-all;
         display: -webkit-box;
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
@@ -645,8 +645,8 @@
     .right {
       .iconfont {
         font-size: @iconSize;
-        color: @themeColor2;
-        font-weight: 700;
+        color: @yelColor;
+        font-weight: 500;
         margin-right: 10px;
       }
     }

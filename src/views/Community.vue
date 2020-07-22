@@ -19,7 +19,7 @@
     <!-- 内容 -->
     <!-- <PullRefresh> -->
     <div class="content">
-      <van-swipe ref="swiperRef" :initial-swipe="1" class="atten_swipe" :loop="false" :show-indicators="false"
+      <van-swipe ref="swiperRef" :initial-swipe="currentCate" class="atten_swipe" :loop="false" :show-indicators="false"
         @change="handleChange">
         <van-swipe-item>
           <Attention></Attention>

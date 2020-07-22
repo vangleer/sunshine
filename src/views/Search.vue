@@ -61,7 +61,7 @@
             return
           }
           this.list = this.allList.filter((item, index) => {
-            return item.word.startsWith(this.searchValue)
+            return item.word.toLowerCase().startsWith(this.searchValue.toLowerCase())
           })
         }, 300)
       }
