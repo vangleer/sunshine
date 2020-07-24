@@ -19,7 +19,7 @@
       </div>
 
     </div>
-    <div class="tab_play">
+    <div class="tab_play" @click="$router.push('/film')">
       <img src="../../assets/images/camera_nor.png" alt="">
       <p>拍摄</p>
     </div>

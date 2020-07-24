@@ -6,7 +6,10 @@
 
     <div class="info">
       <div class="top flex_bea">
-        <div class="user_icon flex_center">
+        <div class="user_icon" v-if="$store.state.userInfo.icon">
+          <img :src="$store.state.userInfo.icon" style="width: 100%;height:100%;border-radius: 50%;" alt="">
+        </div>
+        <div v-else class="user_icon flex_center">
           <span class="iconfont icon-user"></span>
         </div>
         <div class="right">

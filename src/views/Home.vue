@@ -25,6 +25,9 @@
         tabActive: 0
       }
     },
+    activated() {
+      console.log('首页面')
+    },
     computed: {
       showUserPop: {
         get() {

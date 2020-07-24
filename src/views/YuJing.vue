@@ -76,7 +76,7 @@
           <span @click="handleFocus" class="iconfont icon-keyboard"></span>
         </div>
       </div>
-      <div v-if="commentList.length===0" class="none">暂无评论</div>
+      <div v-if="commentList.length<=0" class="none">暂无评论~</div>
     </van-popup>
 
     <!-- <van-action-sheet v-model="showComment"
@@ -232,6 +232,9 @@
         } else {
           vos[this.currentPage].play()
         }
+        vos[this.currentPage].addEventListener('ended', () => {
+          this.isPlay = true
+        })
         console.log(vos)
       },
       // 是否显示字幕
@@ -385,6 +388,12 @@
         font-size: @textSize13;
       }
     }
+  }
+
+  .none {
+    color: @deepColor;
+    text-align: center;
+    font-size: 20px;
   }
 
 </style>

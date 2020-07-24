@@ -26,7 +26,7 @@
         </div>
 
         <!-- 官方消息 -->
-        <div class="official flex_between">
+        <div class="official flex_between" @click="$router.push('/official')">
           <div class="left flex_align">
             <img src="../assets/images/logo.jpg" alt="">
             <div class="box">

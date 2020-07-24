@@ -85,12 +85,7 @@
     },
     methods: {
       changeRouter(path) {
-        const userId = this.userInfo.id && this.userInfo.id
-        if (userId) {
-          this.$router.push(path)
-        } else {
-          this.$router.push('/login')
-        }
+        this.$router.push(path)
       }
     }
   }

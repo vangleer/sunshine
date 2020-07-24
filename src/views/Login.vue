@@ -3,7 +3,7 @@
   <!-- <div class="login" :style="{backgroundImage:'url('+loginBg+')'}"> -->
   <div class="login">
     <van-nav-bar :fixed="true" style="background-color: rgba(0,0,0,0);" :border="false" z-index="100"
-      @click-left="$router.back()">
+      @click-left="$router.push('/')">
       <template #left>
         <span class="iconfont icon-zuo"></span>
       </template>
@@ -16,20 +16,20 @@
       </div>
 
       <div class="input_box">
-        <div class="item">
-          <p :class="showName ? 'active' : 'de'">手机号</p>
+        <div class="item" :class="showName ? 'active' : 'de'">
+          <p>手机号</p>
           <input v-model="formData.mobile" type="text" @focus="handleFocus('showName', 'mobile')"
             @blur="handleBlur('showName', 'mobile')" />
         </div>
-        <div class="item">
-          <p :class="showPwd ? 'active' : 'de'">密码</p>
+        <div class="item" :class="showPwd ? 'active' : 'de'">
+          <p>密码</p>
           <input v-model="formData.password" type="text" @focus="handleFocus('showPwd', 'password')"
             @blur="handleBlur('showPwd', 'password')" />
         </div>
 
         <!-- <div class="item code" v-show="type===1"> -->
-        <div class="item code">
-          <p :class="showCode ? 'active' : 'de'">验证码</p>
+        <div class="item code" :class="showCode ? 'active' : 'de'">
+          <p>验证码</p>
           <input v-model="formData.code" type="text" @focus="handleFocus('showCode', 'code')"
             @blur="handleBlur('showCode', 'code')" />
           <!-- <embed class="img" :src="codeUrl" @click="getCode" type="image/svg+xml" /> -->
@@ -119,6 +119,7 @@
           if (this.type === 0) {
             // 把手机号存到localStorage
             localStorage.setItem('mobile', res.data.mobile)
+            this.$store.dispatch('getUserInfo')
             this.$router.back()
           } else {
             this.type = 0
@@ -223,10 +224,6 @@
         transform: translateY(0px);
       }
 
-      p.active {
-        transform: translateY(-30px);
-      }
-
       &::after {
         position: absolute;
         bottom: 0;
@@ -234,8 +231,20 @@
         content: '';
         width: 100%;
         height: 3px;
+        // background-size: 0px 0px;
         background: linear-gradient(to right, #ab27ff, #ff2764);
+        transition: width 0.3s;
       }
+    }
+
+    .active {
+      p {
+        transform: translateY(-30px);
+      }
+
+      // &::after {
+      //   width: 100%;
+      // }
     }
 
     .code {

@@ -14,7 +14,7 @@
   export default {
     data() {
       return {
-        currenNav: 0,
+        // currenNav: 0,
         tabList: [{
             id: 1,
             title: '语境',
@@ -52,6 +52,23 @@
     computed: {
       bg() {
         return this.currenNav === 0
+      },
+      currenNav: {
+        get() {
+          return this.$store.state.currenNav
+        },
+        set(newValue) {
+          this.$store.commit('changeTab', newValue)
+        }
+      }
+    },
+    watch: {
+      $route() {
+        console.log('yes')
+        const path = this.$route.path
+        this.currenNav = this.tabList.findIndex((item) => {
+          return item.path === path
+        })
       }
     },
     methods: {

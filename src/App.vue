@@ -31,9 +31,13 @@
     },
     watch: {
       $route(to, from) {
+        const token = localStorage.getItem('mobile')
+        if (to.meta.login && !token) {
+          this.$router.push('/login')
+        }
         const toIndex = to.meta.index
         const fromIndex = from.meta.index
-        console.log(toIndex, fromIndex)
+        console.log(toIndex, fromIndex, token)
         this.transitionName = toIndex < fromIndex ? 'right' : 'left'
       }
     }
@@ -44,6 +48,7 @@
 <style lang="less">
   .app {
     overflow-x: hidden;
+    width: 100vw;
 
     .van-nav-bar .van-icon {
       color: @blackCoor;
@@ -99,7 +104,7 @@
   }
 
   .left-leave-to {
-    opacity: 0;
+    opacity: 1;
     transform: translateX(-100vw);
     position: absolute;
   }
@@ -115,7 +120,7 @@
   }
 
   .right-leave-to {
-    opacity: 0;
+    opacity: 1;
     transform: translateX(100vw);
     position: absolute;
   }

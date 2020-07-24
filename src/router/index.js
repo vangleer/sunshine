@@ -37,14 +37,16 @@ const routes = [{
         path: 'community',
         component: Community,
         meta: {
-          index: 2
+          index: 2,
+          login: true
         }
       },
       {
         path: 'message',
         component: Message,
         meta: {
-          index: 3
+          index: 3,
+          login: true
         }
       }
     ]
@@ -60,125 +62,143 @@ const routes = [{
     path: '/film',
     component: Film,
     meta: {
-      index: 5
+      index: 5,
+      login: true
     }
   },
   {
     path: '/thank',
     component: Thank,
     meta: {
-      index: 6
+      index: 6,
+      login: true
     }
   },
   {
     path: '/comment',
     component: Comment,
     meta: {
-      index: 7
+      index: 7,
+      login: true
     }
   },
   {
     path: '/newfans',
     component: NewFans,
     meta: {
-      index: 8
+      index: 8,
+      login: true
     }
   },
   {
     path: '/profile',
     component: Profile,
     meta: {
-      index: 9
+      index: 9,
+      login: true
     }
   },
   {
     path: '/goal',
     component: () => import('../views/Goal.vue'),
     meta: {
-      index: 10
+      index: 10,
+      login: true
     }
   },
   {
     path: '/adjustment',
     component: () => import('../views/Adjustment.vue'),
     meta: {
-      index: 11
+      index: 11,
+      login: true
     }
   },
   {
     path: '/favorite',
     component: () => import('../views/Favorite.vue'),
     meta: {
-      index: 12
+      index: 12,
+      login: true
     }
   },
   {
     path: '/achievment',
     component: () => import('../views/Achievment.vue'),
     meta: {
-      index: 13
+      index: 13,
+      login: true
     }
   },
   {
     path: '/intergral',
     component: () => import('../views/Integral.vue'),
     meta: {
-      index: 14
+      index: 14,
+      login: true
     }
   },
   {
     path: '/inviteFriends',
     component: () => import('../views/InviteFriends.vue'),
     meta: {
-      index: 15
+      index: 15,
+      login: true
     }
   },
   {
     path: '/settings',
     component: () => import('../views/Settings.vue'),
     meta: {
-      index: 16
+      index: 16,
+      login: true
     }
   }, {
     path: '/feedBack',
     component: () => import('../views/Feedback.vue'),
     meta: {
-      index: 17
+      index: 17,
+      login: true
     }
   },
   {
     path: '/userData',
     component: () => import('../views/UserData.vue'),
     meta: {
-      index: 18
+      index: 18,
+      login: true
     }
   },
   {
     path: '/accountData',
     component: () => import('../views/ZhanghaoData.vue'),
     meta: {
-      index: 19
+      index: 19,
+      login: true
     }
   },
   {
     path: '/devotion',
     component: () => import('../views/Devotion.vue'),
     meta: {
-      index: 20
+      index: 20,
+      login: true
     }
   },
   {
     path: '/playMode',
     component: () => import('../views/PlayMode.vue'),
     meta: {
-      index: 21
+      index: 21,
+      login: true
     }
   },
   {
     path: '/hitList',
     component: () => import('../views/HitList.vue'),
     meta: {
-      index: 22
+      index: 22,
+      login: true
     }
   },
   {
@@ -206,14 +226,16 @@ const routes = [{
     path: '/editUser',
     component: () => import('../views/EditUser.vue'),
     meta: {
-      index: 26
+      index: 26,
+      login: true
     }
   },
   {
     path: '/user',
     component: () => import('../views/User.vue'),
     meta: {
-      index: 27
+      index: 27,
+      login: true
     }
   },
   {
@@ -278,10 +300,16 @@ const routes = [{
     meta: {
       index: 37
     }
+  },
+  {
+    path: '/official',
+    component: () => import('../views/Official.vue'),
+    meta: {
+      index: 38
+    }
   }
 ]
 const router = new VueRouter({
   routes
 })
-
 export default router

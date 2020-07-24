@@ -14,11 +14,16 @@ export default new Vuex.Store({
     signatrue: '',
     // 提词器内容
     autocueContent: '',
+    currenNav: 0,
     showUserPop: false // 显示隐藏用户详情框
   },
   mutations: {
     showUserinfo(state, opt) {
       state.showUserPop = !state.showUserPop
+    },
+    // 修改tab
+    changeTab(state, index) {
+      state.currenNav = index
     },
     // 修改用户消息
     changeType(state, data) {
