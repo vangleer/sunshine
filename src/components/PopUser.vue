@@ -3,12 +3,12 @@
     <!-- 弹出层头部 -->
     <div class="pop_hd">
       <div class="user_icon" @click="$router.push('/user')">
-        <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="70px">
+        <div class="user_img_box">
           <img class="user_img" v-if="userInfo.icon" :src="userInfo.icon" alt="">
           <div v-else class="icon_box">
             <span class="iconfont icon-user"></span>
           </div>
-        </van-circle>
+        </div>
         <div class="user_name">{{userInfo.username}}</div>
       </div>
       <div class="go_profile">
@@ -105,9 +105,16 @@
       .user_icon {
         display: flex;
 
-        .user_img {
+        .user_img_box {
           width: 70px;
           height: 70px;
+          border-radius: 50%;
+          border: 3px solid rgba(245, 58, 53, .7);
+        }
+
+        .user_img {
+          width: 100%;
+          height: 100%;
           border-radius: 50%;
         }
 
@@ -161,13 +168,13 @@
         }
 
         p:nth-child(1) {
-          background-color: #f4c5b9;
-          color: @themeColor2;
+          background-color: rgba(245, 58, 53, .1);
+          color: #d02824;
         }
 
         p:nth-child(2) {
-          background-color: #faebbe;
-          color: @yelColor;
+          background-color: rgba(244, 169, 50, 0.1);
+          color: #ed9204;
         }
       }
     }

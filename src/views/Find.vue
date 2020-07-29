@@ -265,7 +265,7 @@
       },
       // 点击收藏
       handleCollectClick(item) {
-        const arr = JSON.parse(localStorage.getItem('collect_list'))
+        const arr = JSON.parse(localStorage.getItem('collect_list')) || []
         item.isCollect = !item.isCollect
         item.isCollect ? item.collect++ : item.collect--
         if (item.isCollect) {
@@ -280,6 +280,8 @@
               arr.splice(index, 1)
               return true
             }
+
+             return true
           })
         }
         localStorage.setItem('collect_list', JSON.stringify(arr))

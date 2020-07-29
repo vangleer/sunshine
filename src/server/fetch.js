@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { BASE_URL } from '../config/index'
 axios.defaults.timeout = 50000
-axios.defaults.baseURL = 'http://192.168.1.113:3000'
+axios.defaults.baseURL = BASE_URL
 const instance = axios.create({
-  baseURL: 'http://192.168.1.113:3000',
+  baseURL: BASE_URL,
   // baseURL: 'http://exchangen.52jzsj.com/',
   // baseURL: "http://192.168.1.117:9503",
   // http://192.168.1.117:9503

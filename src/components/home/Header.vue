@@ -1,13 +1,12 @@
 <template>
   <div class="header" :class="active === 0 ? 'white-color':'normal-color'">
     <div class="avatar" is-link @click="showPopup">
-      <van-circle v-model="currentRate" :rate="30" layer-color="#f04007" :stroke-width="90" size="52px">
-        <img class="user_img" v-if="userInfo.icon" :src="userInfo.icon" alt="">
-        <div v-else class="icon_box">
-          <span class="iconfont icon-user"></span>
-        </div>
-      </van-circle>
-
+      <div class="user_img_box" v-if="userInfo.icon">
+        <img class="user_img" :src="userInfo.icon" alt="">
+      </div>
+      <div v-else class="icon_box">
+        <span class="iconfont icon-user"></span>
+      </div>
     </div>
     <slot></slot>
     <div v-if="isSearch" class="search" :style="searchStyle" @click="goSearch">
@@ -113,22 +112,33 @@
     padding: @padding12;
 
     .avatar {
-      .user_img {
+      .user_img_box {
         width: 52px;
         height: 52px;
         border-radius: 50%;
+        border: 3px solid rgba(245, 58, 53, .7);
+
+        .user_img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
       }
 
       .icon_box {
         width: 52px;
         height: 52px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 50%;
         background-color: @grayBgColor;
+        border: 3px solid rgba(245, 58, 53, .7);
       }
 
       .iconfont {
         font-size: @iconSize;
-        line-height: 50px;
+        // line-height: 50px;
         color: @whiteColor;
         // color: #fff;
       }

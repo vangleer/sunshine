@@ -35,7 +35,7 @@
   export default {
     data() {
       return {
-        bgImg: require('../assets/images/user2.jpg'),
+        bgImg: require('../assets/images/bg8.jpg'),
         showNav: false,
         pageScroll: null,
         list: []
@@ -117,7 +117,7 @@
   .top {
     width: 100vw;
     height: 260px;
-    background-size: 100% 100%;
+    background-size: 100% 150%;
     padding: 150px 20px 0;
 
     .title {

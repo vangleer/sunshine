@@ -55,14 +55,14 @@
                     <span>11月</span>
                   </div>
                   <div class="box">
-                    <div class="flex_align" v-for="index in 40" :key="index">
+                    <div class="flex_align" v-for="(item,index) in loginDayList" :key="index">
+                      <span :class="item2?'active':''" v-for="(item2,index2) in item.counts" :key="index2"></span>
+                      <!-- <span ></span>
+                      <span></span>
                       <span></span>
                       <span class="active"></span>
                       <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                      <span></span> -->
                     </div>
                   </div>
                   <div class="left flex_align">
@@ -125,7 +125,7 @@
         }, {
           name: '作品'
         }],
-        bgImg: require('../assets/images/bg3.jpg'),
+        bgImg: require('../assets/images/bg9.jpg'),
         scroll: null,
         pageScroll: null,
         activeTab: 0,
@@ -135,11 +135,15 @@
         tabHeight: 0,
         navHeight: 0,
         tabBoxStyle: {},
-        activeList: []
+        activeList: [],
+        loginDayList: []
       }
     },
     activated() {
       this.getActiveList()
+    },
+    created() {
+      this.getLoginDayList()
     },
     computed: {
       ...mapState(['userInfo'])
@@ -174,6 +178,12 @@
         const res = await this.$http.fetch('/mock/getActiveList')
         this.activeList = res.data.data
         console.log(this.activeList)
+      },
+      // 获取登录天数
+      async getLoginDayList() {
+        const res = await this.$http.fetch('/mock/loginDays')
+        this.loginDayList = res.data.data
+        console.log(this.loginDayList)
       }
     }
   }
@@ -192,7 +202,8 @@
     position: relative;
     padding-top: 150px;
     width: 100%;
-    background-repeat: no-repeat;
+    // background-repeat: no-repeat;
+    background-size: 100% 50%;
   }
 
   .nav_bar {

@@ -25,7 +25,7 @@
     <div class="tool_r">
       <div class="top">
         <div class="item" @click="handleUpload">
-          <van-button icon="star-o" size="small" color="linear-gradient(to right, #f83930, #e730f8)" type="primary">
+          <van-button icon="star-o" size="small" color="linear-gradient(to right, #f53a35, #d85124)" type="primary">
             立即上传</van-button>
           <!-- <van-button type="warning">立即上传</van-button> -->
           <!-- <span class="iconfont icon-fanzhuanjingtou"></span> -->
@@ -80,7 +80,7 @@
   export default {
     data() {
       return {
-        bgImg: require('../assets/images/study.jpg'),
+        bgImg: require('../assets/images/bg5.jpg'),
         count: 1,
         progress: 0,
         acceptType: 'video/*',
@@ -178,6 +178,7 @@
           video.addEventListener('ended', (e) => {
             this.currentTime = 0
             this.progress = 0
+            this.showBtn = true
           })
         }, 300)
       },
@@ -328,6 +329,7 @@
       display: block;
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
 
     .play_btn {
@@ -345,8 +347,8 @@
   }
 
   .slider_btn {
-    width: 8px;
-    height: 12px;
+    width: 7px;
+    height: 14px;
     background-color: #f85f30;
   }
 
