@@ -106,7 +106,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 90px;
+    padding-top: 40px;
     // background-color: transparent;
     display: flex;
     color: #fff;
@@ -136,7 +137,7 @@
 
   .top {
     position: relative;
-    height: 230px;
+    height: 270px;
     // background-size: contain;
     // border-radius: 0 0 80px/40px 80px;
     background: linear-gradient(to right, #322f2a, #64615c);
@@ -146,7 +147,7 @@
     .explain {
       position: absolute;
       right: 0;
-      top: 30px;
+      top: 70px;
       color: #eabe94;
       border-radius: 20px 0 0 20px;
       background-color: #fff;

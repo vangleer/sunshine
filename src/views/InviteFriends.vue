@@ -61,6 +61,7 @@
     // background-image: url();
     background-size: 100% 100vh;
     background-repeat: no-repeat;
+    padding-top: 30px;
   }
 
   .nav {

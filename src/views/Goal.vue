@@ -112,7 +112,7 @@
 
   .content {
     background-color: @grayBgColor;
-    padding: @padding12;
+    padding: 52px @padding12 12px;
   }
 
   .top {

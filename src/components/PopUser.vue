@@ -4,7 +4,7 @@
     <div class="pop_hd">
       <div class="user_icon" @click="$router.push('/user')">
         <div class="user_img_box">
-          <img class="user_img" v-if="userInfo.icon" :src="userInfo.icon" alt="">
+          <img class="user_img" v-if="userInfo.icon" :src="baseUrl+userInfo.icon" alt="">
           <div v-else class="icon_box">
             <span class="iconfont icon-user"></span>
           </div>
@@ -99,8 +99,8 @@
     .pop_hd {
       position: relative;
       width: 100%;
-      height: 120px;
-      padding: @padding12;
+      height: 160px;
+      padding: 52px @padding12 12px;
 
       .user_icon {
         display: flex;
@@ -142,7 +142,7 @@
       .go_profile {
         position: absolute;
         right: 12px;
-        top: 60px;
+        top: 100px;
 
         p {
           color: #ccc;
@@ -186,7 +186,7 @@
       padding-left: 30px;
 
       .item {
-        margin-top: 46px;
+        margin-top: 40px;
 
         &>p {
           margin: 22px;

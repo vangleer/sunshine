@@ -1,5 +1,5 @@
 <template>
-  <van-pull-refresh head-height="60" v-model="isLoading" @refresh="onRefresh" loosing-text=" " pulling-text="" loading-text="">
+  <van-pull-refresh :style="{ marginTop: '50px'}" head-height="60" v-model="isLoading" @refresh="onRefresh" loosing-text=" " pulling-text="" loading-text="">
     <template #loading>
       <div class="load_box">
         <van-loading color="#e54427" size="26px"/>

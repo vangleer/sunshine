@@ -104,6 +104,7 @@
 
   .content {
     width: 100%;
+    padding-top: 40px;
     // height: 100vh;
     // height: 80vh;
 

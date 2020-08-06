@@ -21,7 +21,7 @@
           </div>
         </div>
         <!-- 退出登录 -->
-        <div class="item logout">退出登录</div>
+        <div class="item logout" @click="handleLogout">退出登录</div>
       </div>
 
       <!-- 版本 -->
@@ -98,6 +98,14 @@
       // 清除缓存
       clearBuffer() {
         this.buffer = 0
+      },
+      handleLogout() {
+        this.$dialog.confirm({
+          message: '确定要退出吗?'
+        }).then(() => {
+          localStorage.removeItem('mobile')
+          this.$router.push('/')
+        })
       }
     }
   }

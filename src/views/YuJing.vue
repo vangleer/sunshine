@@ -9,7 +9,7 @@
         <van-swipe-item class="swiper-item" v-for="(item,index) in list" :key="index">
           <!-- 视频标签 -->
           <!-- <img @click="handlePlayClick" class="swipe_img" :src="item.imgSrc" /> -->
-          <video @click="handlePlayClick" class="swipe_img" :src="item.url"></video>
+          <video @click="handlePlayClick" class="swipe_img" :src="baseUrl+item.url"></video>
           <!-- 底部组件 -->
           <Tabbar :id="item.id" :numbers="{love:item.love_num,share:item.share_num,comment:item.comment_num}"
             :loves="item.love_ids" @shareClick="handleShare" @commentClick="handleComment">

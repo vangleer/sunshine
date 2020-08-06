@@ -4,7 +4,8 @@
     <van-nav-bar title="意见反馈" :fixed="true" :border="false" style="background-color:#fff;" left-arrow
       @click-left="$router.back()">
       <template #right>
-        <van-button size="mini" color="#ef6852" :disabled="isDisabled" @click="handleSubmit">提交</van-button>
+        <van-button size="mini" :style="{marginTop:'35px'}" color="#ef6852" :disabled="isDisabled"
+          @click="handleSubmit">提交</van-button>
       </template>
     </van-nav-bar>
 
@@ -118,7 +119,7 @@
 
 <style lang="less" scoped>
   .content {
-    padding-top: 60px;
+    padding-top: 100px;
   }
 
   .tip {

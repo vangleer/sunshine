@@ -2,7 +2,7 @@
   <div class="header" :class="active === 0 ? 'white-color':'normal-color'">
     <div class="avatar" is-link @click="showPopup">
       <div class="user_img_box" v-if="userInfo.icon">
-        <img class="user_img" :src="userInfo.icon" alt="">
+        <img class="user_img" :src="baseUrl+userInfo.icon" alt="">
       </div>
       <div v-else class="icon_box">
         <span class="iconfont icon-user"></span>
@@ -107,9 +107,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 72px;
+    height: 112px;
     width: 100%;
-    padding: @padding12;
+    padding: 40px 12px 12px;
 
     .avatar {
       .user_img_box {

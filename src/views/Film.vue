@@ -17,7 +17,7 @@
       <div class="play_btn" v-show="showBtn">
         <span class="iconfont icon-bofang1" @click.stop="startPlay"></span>
       </div>
-      <video id="upvideo" v-if="current==0" class="video" ref="myVideo" @click.stop="startPlay"
+      <video v-if="current==0" class="video" ref="myVideo" @click.stop="startPlay"
         :src="sourceUrl"></video>
       <audio v-if="current==1" class="video" ref="myVideo" @click.stop="startPlay" :src="sourceUrl"></audio>
     </div>
@@ -165,13 +165,11 @@
         const video = this.$refs.myVideo
         this.findvideocover(video)
         setTimeout(() => {
-          console.log('ok')
           this.allTime = video.duration
           video.addEventListener('timeupdate', (e) => {
             setTimeout(() => {
               this.currentTime = video.currentTime
               this.progress = parseInt(this.currentTime / this.allTime * 100)
-              console.log()
             }, 1000)
           })
 

@@ -323,7 +323,6 @@
     padding: 0 @padding12;
     border-radius: 10px;
     height: 150px;
-    margin-top: @margin10;
 
     .find_swipe {
       width: 100%;

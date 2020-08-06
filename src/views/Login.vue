@@ -153,13 +153,13 @@ import { BASE_URL } from '../config/index'
   }
 
   .box {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
     width: 90vw;
-    height: 70vh;
+    height: 460px;
     max-width: 350px;
 
     border-radius: 16px;
@@ -215,6 +215,7 @@ import { BASE_URL } from '../config/index'
         height: 30px;
         padding: 8px;
         background-color: transparent;
+        caret-color: tomato;
       }
 
       p {
